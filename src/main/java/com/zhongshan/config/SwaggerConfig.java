@@ -34,14 +34,14 @@ public class SwaggerConfig {
     /**
      * 是否开启swagger
      */
-    @Value("${swagger.enabled}")
-    private boolean enabled;
+    //@Value("${swagger.enabled}")
+    private boolean enabled = true;
 
     /**
      * 设置请求的统一前缀
      */
-    @Value("${swagger.pathMapping}")
-    private String pathMapping;
+    //@Value("${swagger.pathMapping}")
+    private String pathMapping = "/prod-api";
 
     /**
      * 创建API

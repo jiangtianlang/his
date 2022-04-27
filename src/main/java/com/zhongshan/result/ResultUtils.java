@@ -1,6 +1,7 @@
 package com.zhongshan.result;
 
-import com.sunews.common.result.code.ResponseCode;
+
+import com.zhongshan.result.code.ResponseCode;
 
 /**
  * @Author: 林义清

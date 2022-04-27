@@ -1,7 +1,8 @@
 package com.zhongshan.result;
 
-import com.sunews.common.result.code.ResponseCode;
-import com.sunews.common.result.code.ResponseCodeInterface;
+
+import com.zhongshan.result.code.ResponseCode;
+import com.zhongshan.result.code.ResponseCodeInterface;
 import lombok.Data;
 
 import java.io.Serializable;

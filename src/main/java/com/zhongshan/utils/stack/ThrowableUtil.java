@@ -4,8 +4,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * @Author: 林义清
- * @Date: 2020/8/22 4:21 下午
+ * @Author: jtl
  * @Description: 异常工具
  * @Version: 1.0.0
  */

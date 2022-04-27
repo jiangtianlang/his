@@ -1,7 +1,7 @@
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8080
-  port: 9000
+  port: 8888
   servlet:
     # 应用的访问路径
     context-path: /
@@ -92,12 +92,12 @@ xss:
   urlPatterns: /system/*,/monitor/*
 
 
-# Swagger配置
-swagger:
-  # 是否开启swagger
-  enabled: true
-  # 请求前缀
-  pathMapping: /prod-api
+## Swagger配置
+#swagger:
+#  # 是否开启swagger
+#  enabled: true
+#  # 请求前缀
+#  pathMapping: /prod-api
 
 
 # 日志配置
