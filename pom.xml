@@ -28,15 +28,13 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
-
             </dependency>
 
-            <!--Spring boot 安全框架-->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-
-            </dependency>
+<!--            &lt;!&ndash;Spring boot 安全框架&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-security</artifactId>-->
+<!--            </dependency>-->
 
             <!--Spring boot Redis-->
             <dependency>
