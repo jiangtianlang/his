@@ -1,0 +1,107 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 9000
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+spring:
+  messages: # 资源信息
+    basename: i18n/messages  # 国际化资源文件路径
+  profiles:
+    active: druid # 子配置文件
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #    default-property-inclusion: non_null   # 处理 jackson 返回的null值 不显示出来 只显示不为null的
+  # 解决多模块全局异常拦截失效
+  #  mvc:
+  #    throw-exception-if-no-handler-found: true # 出现错误时,直接抛出异常
+  #  resources:
+  #    add-mappings: false # 关闭工程中的资源文件建立映射
+
+# mybatis配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true  # 开启驼峰命名法
+  global-config:
+    db-config:
+      logic-delete-value: 2 # 逻辑已删除值
+      logic-not-delete-value: 0 # 逻辑未删除值
+
+
+management:
+  health:
+    rabbit:
+      enabled: false
+# 登录相关配置
+login:
+  #  验证码
+  login-code:
+    #  验证码类型配置 查看 LoginProperties 类
+    code-type: arithmetic
+    #  登录图形验证码有效时间/分钟
+    expiration: 2
+    #  验证码高度
+    width: 111
+    #  验证码宽度
+    heigth: 36
+    # 内容长度
+    length: 2
+    # 字体名称，为空则使用默认字体
+    font-name:
+    # 字体大小
+    font-size: 25
+
+#jwt
+jwt:
+  header: Authorization   # 令牌前缀
+  token-start-with: Bearer   # 必须使用最少88位的Base64对该令牌进行编码
+  base64-secret: ZmQ0ZGI5NjQ0MDQwY2I4MjMxY2Y3ZmI3MjdhN2ZmMjNhODViOTg1ZGE0NTBjMGM4NDA5NzYxMjdjOWMwYWRmZTBlZjlhNGY3ZTg4Y2U3YTE1ODVkZDU5Y2Y3OGYwZWE1NzUzNWQ2YjFjZDc0NGMxZWU2MmQ3MjY1NzJmNTE0MzI=
+  token-validity-in-minutes: 30   # 令牌过期时间 默认30min
+
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*
+
+
+# Swagger配置
+swagger:
+  # 是否开启swagger
+  enabled: true
+  # 请求前缀
+  pathMapping: /prod-api
+
+
+# 日志配置
+logging:
+  level:
+    com.sunews: debug
+    org.springframework: warn
