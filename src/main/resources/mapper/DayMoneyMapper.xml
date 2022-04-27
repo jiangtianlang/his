@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.DayMoneyMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.DayMoney">
+            <id property="personsNo" column="persons_no" jdbcType="VARCHAR"/>
+            <result property="dayDate" column="day_date" jdbcType="TIMESTAMP"/>
+            <result property="dayMoney" column="day_money" jdbcType="DOUBLE"/>
+            <result property="daySup" column="day_sup" jdbcType="DOUBLE"/>
+            <result property="opera" column="opera" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        persons_no,day_date,day_money,
+        day_sup,opera
+    </sql>
+</mapper>

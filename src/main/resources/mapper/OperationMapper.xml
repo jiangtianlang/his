@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.OperationMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Operation">
+            <id property="operationNum" column="operation_num" jdbcType="CHAR"/>
+            <result property="operationTimes" column="operation_times" jdbcType="INTEGER"/>
+            <result property="operationDate" column="operation_date" jdbcType="TIMESTAMP"/>
+            <result property="operationName" column="operation_name" jdbcType="CHAR"/>
+            <result property="operationCode" column="operation_code" jdbcType="CHAR"/>
+            <result property="operationHocus" column="operation_hocus" jdbcType="CHAR"/>
+            <result property="operationCut" column="operation_cut" jdbcType="CHAR"/>
+            <result property="operationDoctorName" column="operation_doctor_name" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        operation_num,operation_times,operation_date,
+        operation_name,operation_code,operation_hocus,
+        operation_cut,operation_doctor_name
+    </sql>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh03PriceCDbfMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh03PriceCDbf">
+            <id property="mediNo" column="medi_no" jdbcType="VARCHAR"/>
+            <result property="specification" column="specification" jdbcType="VARCHAR"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="unitPrice" column="unit_price" jdbcType="DOUBLE"/>
+            <result property="mediName" column="medi_name" jdbcType="VARCHAR"/>
+            <result property="quality" column="quality" jdbcType="VARCHAR"/>
+            <result property="storeLimit" column="store_limit" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        medi_no,specification,unit,
+        unit_price,medi_name,quality,
+        store_limit
+    </sql>
+</mapper>

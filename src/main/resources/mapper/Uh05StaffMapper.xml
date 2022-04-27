@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh05StaffMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh05Staff">
+            <id property="staffNo" column="staff_no" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="VARCHAR"/>
+            <result property="birthDate" column="birth_date" jdbcType="TIMESTAMP"/>
+            <result property="departmentNo" column="department_no" jdbcType="VARCHAR"/>
+            <result property="titleNo" column="title_no" jdbcType="VARCHAR"/>
+            <result property="postNo" column="post_no" jdbcType="VARCHAR"/>
+            <result property="rank" column="rank" jdbcType="VARCHAR"/>
+            <result property="nativePlace" column="native_place" jdbcType="VARCHAR"/>
+            <result property="mediHist" column="medi_hist" jdbcType="VARCHAR"/>
+            <result property="mediHistFamily" column="medi_hist_family" jdbcType="VARCHAR"/>
+            <result property="homeAdd" column="home_add" jdbcType="VARCHAR"/>
+            <result property="homeTel" column="home_tel" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+            <result property="spouseName" column="spouse_name" jdbcType="VARCHAR"/>
+            <result property="spouseOrga" column="spouse_orga" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        staff_no,name,sex,
+        birth_date,department_no,title_no,
+        post_no,rank,native_place,
+        medi_hist,medi_hist_family,home_add,
+        home_tel,status,spouse_name,
+        spouse_orga
+    </sql>
+</mapper>

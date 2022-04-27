@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.ParamentsMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Paraments">
+            <id property="paramentNo" column="parament_no" jdbcType="CHAR"/>
+            <result property="paramentValue" column="parament_value" jdbcType="CHAR"/>
+            <result property="remark" column="remark" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        parament_no,parament_value,remark
+    </sql>
+</mapper>

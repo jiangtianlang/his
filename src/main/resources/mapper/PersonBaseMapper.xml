@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.PersonBaseMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.PersonBase">
+            <id property="sectionNo" column="section_no" jdbcType="CHAR"/>
+            <result property="personNo" column="person_no" jdbcType="CHAR"/>
+            <result property="spellNo" column="spell_no" jdbcType="CHAR"/>
+            <result property="personName" column="person_name" jdbcType="CHAR"/>
+            <result property="anotherNo" column="another_no" jdbcType="CHAR"/>
+            <result property="personSex" column="person_sex" jdbcType="CHAR"/>
+            <result property="birthDate" column="birth_date" jdbcType="TIMESTAMP"/>
+            <result property="capacityNo" column="capacity_no" jdbcType="CHAR"/>
+            <result property="marry" column="marry" jdbcType="CHAR"/>
+            <result property="nativePlace" column="native_place" jdbcType="CHAR"/>
+            <result property="nation" column="nation" jdbcType="CHAR"/>
+            <result property="birthPlace" column="birth_place" jdbcType="CHAR"/>
+            <result property="finishDate" column="finish_date" jdbcType="CHAR"/>
+            <result property="finishSchool" column="finish_school" jdbcType="CHAR"/>
+            <result property="familyAddres" column="family_addres" jdbcType="CHAR"/>
+            <result property="degree" column="degree" jdbcType="CHAR"/>
+            <result property="degreeDate" column="degree_date" jdbcType="CHAR"/>
+            <result property="highSchooling" column="high_schooling" jdbcType="CHAR"/>
+            <result property="schoolName" column="school_name" jdbcType="CHAR"/>
+            <result property="postNo" column="post_no" jdbcType="CHAR"/>
+            <result property="titleNo" column="title_no" jdbcType="CHAR"/>
+            <result property="postDate" column="post_date" jdbcType="CHAR"/>
+            <result property="postWage" column="post_wage" jdbcType="DOUBLE"/>
+            <result property="health" column="health" jdbcType="CHAR"/>
+            <result property="inParty" column="in_party" jdbcType="CHAR"/>
+            <result property="portyDate" column="porty_date" jdbcType="CHAR"/>
+            <result property="inWorkDate" column="in_work_date" jdbcType="CHAR"/>
+            <result property="inZsuDate" column="in_zsu_date" jdbcType="CHAR"/>
+            <result property="specialityDate" column="speciality_date" jdbcType="CHAR"/>
+            <result property="remarks" column="remarks" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        section_no,person_no,spell_no,
+        person_name,another_no,person_sex,
+        birth_date,capacity_no,marry,
+        native_place,nation,birth_place,
+        finish_date,finish_school,family_addres,
+        degree,degree_date,high_schooling,
+        school_name,post_no,title_no,
+        post_date,post_wage,health,
+        in_party,porty_date,in_work_date,
+        in_zsu_date,speciality_date,remarks
+    </sql>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh05StudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh05Student">
+            <id property="studentNo" column="student_no" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="VARCHAR"/>
+            <result property="birthDate" column="birth_date" jdbcType="TIMESTAMP"/>
+            <result property="nativePlace" column="native_place" jdbcType="VARCHAR"/>
+            <result property="arear" column="arear" jdbcType="VARCHAR"/>
+            <result property="examNo" column="exam_no" jdbcType="VARCHAR"/>
+            <result property="mediHist" column="medi_hist" jdbcType="VARCHAR"/>
+            <result property="mediHistFamily" column="medi_hist_family" jdbcType="VARCHAR"/>
+            <result property="departmentNo" column="department_no" jdbcType="VARCHAR"/>
+            <result property="majorFieldNo" column="major_field_no" jdbcType="VARCHAR"/>
+            <result property="grade" column="grade" jdbcType="VARCHAR"/>
+            <result property="degreeLevel" column="degree_level" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        student_no,name,sex,
+        birth_date,native_place,arear,
+        exam_no,medi_hist,medi_hist_family,
+        department_no,major_field_no,grade,
+        degree_level,status
+    </sql>
+</mapper>

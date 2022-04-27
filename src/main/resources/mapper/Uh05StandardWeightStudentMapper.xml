@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh05StandardWeightStudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh05StandardWeightStudent">
+            <id property="sex" column="sex" jdbcType="CHAR"/>
+            <id property="age" column="age" jdbcType="SMALLINT"/>
+            <result property="p3" column="p3" jdbcType="DOUBLE"/>
+            <result property="p5" column="p5" jdbcType="DOUBLE"/>
+            <result property="p10" column="p10" jdbcType="DOUBLE"/>
+            <result property="p25" column="p25" jdbcType="DOUBLE"/>
+            <result property="p30" column="p30" jdbcType="DOUBLE"/>
+            <result property="p50" column="p50" jdbcType="DOUBLE"/>
+            <result property="p70" column="p70" jdbcType="DOUBLE"/>
+            <result property="p80" column="p80" jdbcType="DOUBLE"/>
+            <result property="p90" column="p90" jdbcType="DOUBLE"/>
+            <result property="p95" column="p95" jdbcType="DOUBLE"/>
+            <result property="p97" column="p97" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sex,age,p3,
+        p5,p10,p25,
+        p30,p50,p70,
+        p80,p90,p95,
+        p97
+    </sql>
+</mapper>

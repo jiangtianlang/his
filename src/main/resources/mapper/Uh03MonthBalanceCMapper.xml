@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh03MonthBalanceCMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh03MonthBalanceC">
+            <id property="mediNo" column="medi_no" jdbcType="VARCHAR"/>
+            <result property="specification" column="specification" jdbcType="VARCHAR"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="balancePrice" column="balance_price" jdbcType="DOUBLE"/>
+            <result property="inAmount" column="in_amount" jdbcType="INTEGER"/>
+            <result property="outPrice" column="out_price" jdbcType="DOUBLE"/>
+            <result property="outAmount" column="out_amount" jdbcType="INTEGER"/>
+            <result property="month" column="month" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        medi_no,specification,unit,
+        balance_price,in_amount,out_price,
+        out_amount,month
+    </sql>
+</mapper>

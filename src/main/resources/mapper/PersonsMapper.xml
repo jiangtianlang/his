@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.PersonsMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Persons">
+            <id property="personNo" column="person_no" jdbcType="CHAR"/>
+            <result property="personName" column="person_name" jdbcType="CHAR"/>
+            <result property="departmentNo" column="department_no" jdbcType="CHAR"/>
+            <result property="titleNo" column="title_no" jdbcType="CHAR"/>
+            <result property="personSex" column="person_sex" jdbcType="CHAR"/>
+            <result property="chargeNo" column="charge_no" jdbcType="CHAR"/>
+            <result property="personTel" column="person_tel" jdbcType="CHAR"/>
+            <result property="personAddress" column="person_address" jdbcType="CHAR"/>
+            <result property="personMoney" column="person_money" jdbcType="DOUBLE"/>
+            <result property="birthDate" column="birth_date" jdbcType="DATE"/>
+            <result property="registerDate" column="register_date" jdbcType="DATE"/>
+            <result property="cardMark" column="card_mark" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        person_no,person_name,department_no,
+        title_no,person_sex,charge_no,
+        person_tel,person_address,person_money,
+        birth_date,register_date,card_mark
+    </sql>
+</mapper>

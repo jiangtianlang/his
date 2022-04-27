@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.DiagnoseMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Diagnose">
+            <id property="diseaseIcd9" column="disease_icd9" jdbcType="CHAR"/>
+            <result property="diseaseCode" column="disease_code" jdbcType="CHAR"/>
+            <result property="diseaseType" column="disease_type" jdbcType="CHAR"/>
+            <result property="diseaseName" column="disease_name" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        disease_icd9,disease_code,disease_type,
+        disease_name
+    </sql>
+</mapper>

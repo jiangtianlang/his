@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.CaseHistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.CaseHistory">
+            <id property="chNum" column="ch_num" jdbcType="CHAR"/>
+            <result property="chTimes" column="ch_times" jdbcType="INTEGER"/>
+            <result property="chName" column="ch_name" jdbcType="CHAR"/>
+            <result property="chDepartment" column="ch_department" jdbcType="CHAR"/>
+            <result property="chBed" column="ch_bed" jdbcType="CHAR"/>
+            <result property="chXRayNum" column="ch_x_ray_num" jdbcType="INTEGER"/>
+            <result property="chCardiographNum" column="ch_cardiograph_num" jdbcType="INTEGER"/>
+            <result property="chElectroencephogramNum" column="ch_electroencephogram_num" jdbcType="INTEGER"/>
+            <result property="chPathologyNum" column="ch_pathology_num" jdbcType="INTEGER"/>
+            <result property="chInStatus" column="ch_in_status" jdbcType="VARCHAR"/>
+            <result property="chCureCourse" column="ch_cure_course" jdbcType="VARCHAR"/>
+            <result property="chOutStatus" column="ch_out_status" jdbcType="VARCHAR"/>
+            <result property="chOutDoctorAdvice" column="ch_out_doctor_advice" jdbcType="VARCHAR"/>
+            <result property="chSignatureDirectorDoctor" column="ch_signature_director_doctor" jdbcType="CHAR"/>
+            <result property="chSignatureChargeDoctor" column="ch_signature_charge_doctor" jdbcType="CHAR"/>
+            <result property="chSignatureHouseDoctor" column="ch_signature_house_doctor" jdbcType="CHAR"/>
+            <result property="chSignatureIntern" column="ch_signature_intern" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ch_num,ch_times,ch_name,
+        ch_department,ch_bed,ch_x_ray_num,
+        ch_cardiograph_num,ch_electroencephogram_num,ch_pathology_num,
+        ch_in_status,ch_cure_course,ch_out_status,
+        ch_out_doctor_advice,ch_signature_director_doctor,ch_signature_charge_doctor,
+        ch_signature_house_doctor,ch_signature_intern
+    </sql>
+</mapper>

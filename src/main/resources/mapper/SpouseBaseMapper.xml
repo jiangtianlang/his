@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.SpouseBaseMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.SpouseBase">
+            <id property="personNo" column="person_no" jdbcType="CHAR"/>
+            <result property="spouseName" column="spouse_name" jdbcType="CHAR"/>
+            <result property="spouseBirthDate" column="spouse_birth_date" jdbcType="TIMESTAMP"/>
+            <result property="spouseParty" column="spouse_party" jdbcType="CHAR"/>
+            <result property="spouseSchooling" column="spouse_schooling" jdbcType="CHAR"/>
+            <result property="marryDate" column="marry_date" jdbcType="TIMESTAMP"/>
+            <result property="workUnit" column="work_unit" jdbcType="CHAR"/>
+            <result property="spouseNative" column="spouse_native" jdbcType="CHAR"/>
+            <result property="workQuality" column="work_quality" jdbcType="CHAR"/>
+            <result property="cadre" column="cadre" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        person_no,spouse_name,spouse_birth_date,
+        spouse_party,spouse_schooling,marry_date,
+        work_unit,spouse_native,work_quality,
+        cadre
+    </sql>
+</mapper>

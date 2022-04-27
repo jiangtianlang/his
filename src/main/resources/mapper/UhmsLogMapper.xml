@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.UhmsLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.UhmsLog">
+            <id property="logNo" column="log_no" jdbcType="INTEGER"/>
+            <result property="subSystemName" column="sub_system_name" jdbcType="VARCHAR"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="inTime" column="in_time" jdbcType="TIMESTAMP"/>
+            <result property="operation" column="operation" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        log_no,sub_system_name,user_name,
+        in_time,operation
+    </sql>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.PatientBaseMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.PatientBase">
+            <id property="patientNo" column="patient_no" jdbcType="CHAR"/>
+            <result property="inDate" column="in_date" jdbcType="DATE"/>
+            <result property="patientName" column="patient_name" jdbcType="CHAR"/>
+            <result property="patientSex" column="patient_sex" jdbcType="CHAR"/>
+            <result property="birthDate" column="birth_date" jdbcType="TIMESTAMP"/>
+            <result property="marry" column="marry" jdbcType="INTEGER"/>
+            <result property="occupation" column="occupation" jdbcType="CHAR"/>
+            <result property="titleName" column="title_name" jdbcType="CHAR"/>
+            <result property="nativePlace" column="native_place" jdbcType="CHAR"/>
+            <result property="nationality" column="nationality" jdbcType="CHAR"/>
+            <result property="capacityNo" column="capacity_no" jdbcType="CHAR"/>
+            <result property="staffNo" column="staff_no" jdbcType="CHAR"/>
+            <result property="workPlace" column="work_place" jdbcType="VARCHAR"/>
+            <result property="homeAdder" column="home_adder" jdbcType="VARCHAR"/>
+            <result property="heName" column="he_name" jdbcType="CHAR"/>
+            <result property="heTel" column="he_tel" jdbcType="CHAR"/>
+            <result property="relation" column="relation" jdbcType="CHAR"/>
+            <result property="costMode" column="cost_mode" jdbcType="CHAR"/>
+            <result property="patientCost" column="patient_cost" jdbcType="TINYINT"/>
+            <result property="costType" column="cost_type" jdbcType="CHAR"/>
+            <result property="settleType" column="settle_type" jdbcType="CHAR"/>
+            <result property="payMoney" column="pay_money" jdbcType="DOUBLE"/>
+            <result property="diagnoseName" column="diagnose_name" jdbcType="VARCHAR"/>
+            <result property="icd9" column="icd9" jdbcType="CHAR"/>
+            <result property="section" column="section" jdbcType="CHAR"/>
+            <result property="bedNo" column="bed_no" jdbcType="CHAR"/>
+            <result property="outDate" column="out_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        patient_no,in_date,patient_name,
+        patient_sex,birth_date,marry,
+        occupation,title_name,native_place,
+        nationality,capacity_no,staff_no,
+        work_place,home_adder,he_name,
+        he_tel,relation,cost_mode,
+        patient_cost,cost_type,settle_type,
+        pay_money,diagnose_name,icd9,
+        section,bed_no,out_date
+    </sql>
+</mapper>

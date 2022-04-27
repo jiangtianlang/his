@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.PersonHistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.PersonHistory">
+            <id property="personNo" column="person_no" jdbcType="CHAR"/>
+            <result property="historyFrom" column="history_from" jdbcType="CHAR"/>
+            <result property="historyTo" column="history_to" jdbcType="CHAR"/>
+            <result property="workPlace" column="work_place" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        person_no,history_from,history_to,
+        work_place
+    </sql>
+</mapper>

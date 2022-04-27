@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.SymptomTypeMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.SymptomType">
+            <id property="symptomNo" column="symptom_no" jdbcType="CHAR"/>
+            <result property="symptomName" column="symptom_name" jdbcType="CHAR"/>
+            <result property="symptomStandard" column="symptom_standard" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        symptom_no,symptom_name,symptom_standard
+    </sql>
+</mapper>

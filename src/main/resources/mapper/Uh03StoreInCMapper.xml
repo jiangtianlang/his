@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh03StoreInCMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh03StoreInC">
+            <id property="inNo" column="in_no" jdbcType="INTEGER"/>
+            <id property="mediNo" column="medi_no" jdbcType="VARCHAR"/>
+            <result property="specification" column="specification" jdbcType="VARCHAR"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="unitPrice" column="unit_price" jdbcType="DOUBLE"/>
+            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+            <result property="inDate" column="in_date" jdbcType="TIMESTAMP"/>
+            <result property="comNo" column="com_no" jdbcType="CHAR"/>
+            <result property="billNo" column="bill_no" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        in_no,medi_no,specification,
+        unit,unit_price,quantity,
+        in_date,com_no,bill_no
+    </sql>
+</mapper>

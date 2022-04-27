@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.StandardExpenseMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.StandardExpense">
+            <id property="expenseItem" column="expense_item" jdbcType="CHAR"/>
+            <result property="expenseCode" column="expense_code" jdbcType="CHAR"/>
+            <result property="expenseName" column="expense_name" jdbcType="CHAR"/>
+            <result property="unitPrice" column="unit_price" jdbcType="DOUBLE"/>
+            <result property="gaugeUnit" column="gauge_unit" jdbcType="CHAR"/>
+            <result property="expense" column="expense" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        expense_item,expense_code,expense_name,
+        unit_price,gauge_unit,expense
+    </sql>
+</mapper>

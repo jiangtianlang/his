@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.UserAuthMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.UserAuth">
+            <id property="subsystemName" column="subSystem_name" jdbcType="CHAR"/>
+            <result property="userName" column="user_name" jdbcType="CHAR"/>
+            <result property="passworde" column="passworde" jdbcType="CHAR"/>
+            <result property="userLevel" column="user_Level" jdbcType="CHAR"/>
+            <result property="remark" column="remark" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        subSystem_name,user_name,passworde,
+        user_Level,remark
+    </sql>
+</mapper>

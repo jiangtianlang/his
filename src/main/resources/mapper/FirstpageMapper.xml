@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.FirstpageMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Firstpage">
+            <id property="fgNum" column="fg_num" jdbcType="CHAR"/>
+            <result property="fgTimes" column="fg_times" jdbcType="INTEGER"/>
+            <result property="fgName" column="fg_name" jdbcType="CHAR"/>
+            <result property="fgSex" column="fg_sex" jdbcType="CHAR"/>
+            <result property="fgBirthday" column="fg_birthday" jdbcType="TIMESTAMP"/>
+            <result property="fgMarriage" column="fg_marriage" jdbcType="CHAR"/>
+            <result property="fgOccupation" column="fg_occupation" jdbcType="CHAR"/>
+            <result property="fgBirthplace" column="fg_birthplace" jdbcType="CHAR"/>
+            <result property="fgNationality" column="fg_nationality" jdbcType="CHAR"/>
+            <result property="fgIdNum" column="fg_id_num" jdbcType="CHAR"/>
+            <result property="fgUnit" column="fg_unit" jdbcType="CHAR"/>
+            <result property="fgPhonenum" column="fg_phonenum" jdbcType="CHAR"/>
+            <result property="fgUnitPostalcodet" column="fg_unit_postalcodet" jdbcType="CHAR"/>
+            <result property="fgAddress" column="fg_address" jdbcType="CHAR"/>
+            <result property="fgHomePostalcode" column="fg_home_postalcode" jdbcType="CHAR"/>
+            <result property="fgLinkmanName" column="fg_linkman_name" jdbcType="CHAR"/>
+            <result property="fgLinkmanRelation" column="fg_linkman_relation" jdbcType="CHAR"/>
+            <result property="fgLinkmanAddress" column="fg_linkman_address" jdbcType="CHAR"/>
+            <result property="fgLinkmanPhonenum" column="fg_linkman_phonenum" jdbcType="CHAR"/>
+            <result property="fgDepartment" column="fg_department" jdbcType="CHAR"/>
+            <result property="fgRoom" column="fg_room" jdbcType="CHAR"/>
+            <result property="fgInTime" column="fg_in_time" jdbcType="TIMESTAMP"/>
+            <result property="fgInStatus" column="fg_in_status" jdbcType="CHAR"/>
+            <result property="fgPayway" column="fg_payway" jdbcType="CHAR"/>
+            <result property="fgChangedepartment" column="fg_changedepartment" jdbcType="CHAR"/>
+            <result property="fgOutDepartment" column="fg_out_department" jdbcType="CHAR"/>
+            <result property="fgOutRoom" column="fg_out_room" jdbcType="CHAR"/>
+            <result property="fgOutDate" column="fg_out_date" jdbcType="TIMESTAMP"/>
+            <result property="fgOutDiagnose" column="fg_out_diagnose" jdbcType="CHAR"/>
+            <result property="fgOutDiagnoseCode" column="fg_out_diagnose_code" jdbcType="CHAR"/>
+            <result property="fgInDiagnose" column="fg_in_diagnose" jdbcType="CHAR"/>
+            <result property="fgInDiagnoseCode" column="fg_in_diagnose_code" jdbcType="CHAR"/>
+            <result property="fgDiagnoseDate" column="fg_diagnose_date" jdbcType="TIMESTAMP"/>
+            <result property="fgMainDiagnose" column="fg_main_diagnose" jdbcType="VARCHAR"/>
+            <result property="fgMainDiagnoseCode" column="fg_main_diagnose_code" jdbcType="CHAR"/>
+            <result property="fgSubordinationDiagnose" column="fg_subordination_diagnose" jdbcType="VARCHAR"/>
+            <result property="fgSubordinationDiagnoseCode" column="fg_subordination_diagnose_code" jdbcType="CHAR"/>
+            <result property="fgIntercurrentDisease" column="fg_intercurrent_disease" jdbcType="VARCHAR"/>
+            <result property="fgIntercurrentDiseaseCode" column="fg_intercurrent_disease_code" jdbcType="CHAR"/>
+            <result property="fgOutStatus" column="fg_out_status" jdbcType="CHAR"/>
+            <result property="fgNameInfect" column="fg_name_infect" jdbcType="CHAR"/>
+            <result property="fgOuterReasonMarAndToxicosis" column="fg_outer_reason_mar_and_toxicosis" jdbcType="VARCHAR"/>
+            <result property="fgPathologicDiagnose" column="fg_pathologic_diagnose" jdbcType="VARCHAR"/>
+            <result property="fgAllergicMedicament" column="fg_allergic_medicament" jdbcType="CHAR"/>
+            <result property="fgBloodType" column="fg_blood_type" jdbcType="CHAR"/>
+            <result property="fgDiseaseCaseQuality" column="fg_disease_case_quality" jdbcType="CHAR"/>
+            <result property="fgTimesSave" column="fg_times_save" jdbcType="INTEGER"/>
+            <result property="fgTimesSuccess" column="fg_times_success" jdbcType="INTEGER"/>
+            <result property="fgFollowDiagnose" column="fg_follow_diagnose" jdbcType="CHAR"/>
+            <result property="fgFollowDiagnoseLimit" column="fg_follow_diagnose_limit" jdbcType="TIMESTAMP"/>
+            <result property="fgAshesCheck" column="fg_ashes_check" jdbcType="CHAR"/>
+            <result property="fgTotalCharge" column="fg_total_charge" jdbcType="DOUBLE"/>
+            <result property="fgBedCharge" column="fg_bed_charge" jdbcType="INTEGER"/>
+            <result property="fgWesternMedicineCharge" column="fg_western_medicine_charge" jdbcType="DOUBLE"/>
+            <result property="fgChineseMedicineCharge" column="fg_chinese_medicine_charge" jdbcType="DOUBLE"/>
+            <result property="fgCheckCharge" column="fg_check_charge" jdbcType="INTEGER"/>
+            <result property="fgCureCharge" column="fg_cure_charge" jdbcType="INTEGER"/>
+            <result property="fgRadiateCharge" column="fg_radiate_charge" jdbcType="INTEGER"/>
+            <result property="fgOperationCharge" column="fg_operation_charge" jdbcType="INTEGER"/>
+            <result property="fgAssayCharge" column="fg_assay_charge" jdbcType="DOUBLE"/>
+            <result property="fgTransfuseCharge" column="fg_transfuse_charge" jdbcType="INTEGER"/>
+            <result property="fgOxygenTherapyCharge" column="fg_oxygen_therapy_charge" jdbcType="DOUBLE"/>
+            <result property="fgAccoucheCharge" column="fg_accouche_charge" jdbcType="INTEGER"/>
+            <result property="fgRestCharge" column="fg_rest_charge" jdbcType="DOUBLE"/>
+            <result property="fgWholeNum" column="fg_whole_num" jdbcType="CHAR"/>
+            <result property="fgIndividualShares" column="fg_individual_shares" jdbcType="INTEGER"/>
+            <result property="fgCheckoutWay" column="fg_checkout_way" jdbcType="CHAR"/>
+            <result property="fgLeaveHospital" column="fg_leave_hospital" jdbcType="CHAR"/>
+            <result property="fgShowDiseasecase" column="fg_show_diseasecase" jdbcType="CHAR"/>
+            <result property="fgSignatureDirectorDoctor" column="fg_signature_director_doctor" jdbcType="CHAR"/>
+            <result property="fgSignatureChargeDoctor" column="fg_signature_charge_doctor" jdbcType="CHAR"/>
+            <result property="fgSignatureHouseDoctor" column="fg_signature_house_doctor" jdbcType="CHAR"/>
+            <result property="fgSignatureIntern" column="fg_signature_intern" jdbcType="CHAR"/>
+            <result property="fgSignatureCoder" column="fg_signature_coder" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        fg_num,fg_times,fg_name,
+        fg_sex,fg_birthday,fg_marriage,
+        fg_occupation,fg_birthplace,fg_nationality,
+        fg_id_num,fg_unit,fg_phonenum,
+        fg_unit_postalcodet,fg_address,fg_home_postalcode,
+        fg_linkman_name,fg_linkman_relation,fg_linkman_address,
+        fg_linkman_phonenum,fg_department,fg_room,
+        fg_in_time,fg_in_status,fg_payway,
+        fg_changedepartment,fg_out_department,fg_out_room,
+        fg_out_date,fg_out_diagnose,fg_out_diagnose_code,
+        fg_in_diagnose,fg_in_diagnose_code,fg_diagnose_date,
+        fg_main_diagnose,fg_main_diagnose_code,fg_subordination_diagnose,
+        fg_subordination_diagnose_code,fg_intercurrent_disease,fg_intercurrent_disease_code,
+        fg_out_status,fg_name_infect,fg_outer_reason_mar_and_toxicosis,
+        fg_pathologic_diagnose,fg_allergic_medicament,fg_blood_type,
+        fg_disease_case_quality,fg_times_save,fg_times_success,
+        fg_follow_diagnose,fg_follow_diagnose_limit,fg_ashes_check,
+        fg_total_charge,fg_bed_charge,fg_western_medicine_charge,
+        fg_chinese_medicine_charge,fg_check_charge,fg_cure_charge,
+        fg_radiate_charge,fg_operation_charge,fg_assay_charge,
+        fg_transfuse_charge,fg_oxygen_therapy_charge,fg_accouche_charge,
+        fg_rest_charge,fg_whole_num,fg_individual_shares,
+        fg_checkout_way,fg_leave_hospital,fg_show_diseasecase,
+        fg_signature_director_doctor,fg_signature_charge_doctor,fg_signature_house_doctor,
+        fg_signature_intern,fg_signature_coder
+    </sql>
+</mapper>

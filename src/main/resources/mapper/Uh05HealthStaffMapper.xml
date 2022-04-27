@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh05HealthStaffMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh05HealthStaff">
+            <id property="checkNo" column="check_no" jdbcType="CHAR"/>
+            <result property="staffNo" column="staff_no" jdbcType="CHAR"/>
+            <result property="date" column="date" jdbcType="TIMESTAMP"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="hobby" column="hobby" jdbcType="CHAR"/>
+            <result property="high" column="high" jdbcType="DOUBLE"/>
+            <result property="weight" column="weight" jdbcType="DOUBLE"/>
+            <result property="bloodPressureH" column="blood_pressure_h" jdbcType="DOUBLE"/>
+            <result property="bloodPressureL" column="blood_pressure_l" jdbcType="DOUBLE"/>
+            <result property="eyesightL" column="eyesight_l" jdbcType="DOUBLE"/>
+            <result property="eyesightR" column="eyesight_r" jdbcType="DOUBLE"/>
+            <result property="eyesightCorrectL" column="eyesight_correct_l" jdbcType="DOUBLE"/>
+            <result property="eyesightCorrectR" column="eyesight_correct_r" jdbcType="DOUBLE"/>
+            <result property="nose" column="nose" jdbcType="CHAR"/>
+            <result property="pharynx" column="pharynx" jdbcType="CHAR"/>
+            <result property="oralCavity" column="oral_cavity" jdbcType="CHAR"/>
+            <result property="tooth" column="tooth" jdbcType="CHAR"/>
+            <result property="heart" column="heart" jdbcType="CHAR"/>
+            <result property="liver" column="liver" jdbcType="CHAR"/>
+            <result property="lungs" column="lungs" jdbcType="CHAR"/>
+            <result property="spleen" column="spleen" jdbcType="CHAR"/>
+            <result property="skin" column="skin" jdbcType="CHAR"/>
+            <result property="lymph" column="lymph" jdbcType="CHAR"/>
+            <result property="limbs" column="limbs" jdbcType="CHAR"/>
+            <result property="thyroidGland" column="thyroid_gland" jdbcType="CHAR"/>
+            <result property="anus" column="anus" jdbcType="CHAR"/>
+            <result property="genitourinary" column="genitourinary" jdbcType="CHAR"/>
+            <result property="others" column="others" jdbcType="CHAR"/>
+            <result property="xRays" column="x_rays" jdbcType="CHAR"/>
+            <result property="urine" column="urine" jdbcType="CHAR"/>
+            <result property="electrocardiogram" column="electrocardiogram" jdbcType="CHAR"/>
+            <result property="ultrasonic" column="ultrasonic" jdbcType="CHAR"/>
+            <result property="liverFunction" column="liver_function" jdbcType="CHAR"/>
+            <result property="gynecology" column="gynecology" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        check_no,staff_no,date,
+        status,hobby,high,
+        weight,blood_pressure_h,blood_pressure_l,
+        eyesight_l,eyesight_r,eyesight_correct_l,
+        eyesight_correct_r,nose,pharynx,
+        oral_cavity,tooth,heart,
+        liver,lungs,spleen,
+        skin,lymph,limbs,
+        thyroid_gland,anus,genitourinary,
+        others,x_rays,urine,
+        electrocardiogram,ultrasonic,liver_function,
+        gynecology
+    </sql>
+</mapper>

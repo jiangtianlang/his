@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh08OnDutyMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh08OnDuty">
+            <id property="staffNo" column="staff_no" jdbcType="CHAR"/>
+            <result property="department" column="department" jdbcType="CHAR"/>
+            <result property="workDate" column="work_date" jdbcType="TIMESTAMP"/>
+            <result property="branchOfWork" column="branch_of_work" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        staff_no,department,work_date,
+        branch_of_work
+    </sql>
+</mapper>

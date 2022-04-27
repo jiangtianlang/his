@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.TreatMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Treat">
+            <id property="personsNo" column="persons_no" jdbcType="VARCHAR"/>
+            <result property="treatDate" column="treat_date" jdbcType="TIMESTAMP"/>
+            <result property="mediTotal" column="medi_total" jdbcType="DOUBLE"/>
+            <result property="percentage" column="percentage" jdbcType="INTEGER"/>
+            <result property="mediType" column="medi_type" jdbcType="VARCHAR"/>
+            <result property="opera" column="opera" jdbcType="VARCHAR"/>
+            <result property="registerYn" column="register_yn" jdbcType="VARCHAR"/>
+            <result property="printNumber" column="print_number" jdbcType="INTEGER"/>
+            <result property="presNumber" column="pres_number" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        persons_no,treat_date,medi_total,
+        percentage,medi_type,opera,
+        register_yn,print_number,pres_number
+    </sql>
+</mapper>

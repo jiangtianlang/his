@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh04WardBedSumMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh04WardBedSum">
+            <result property="totalDate" column="total_date" jdbcType="TIMESTAMP"/>
+            <result property="validBedNumber" column="valid_bed_number" jdbcType="INTEGER"/>
+            <result property="useBedNumber" column="use_bed_number" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        total_date,valid_bed_number,use_bed_number
+    </sql>
+</mapper>

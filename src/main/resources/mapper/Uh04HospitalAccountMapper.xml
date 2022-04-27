@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh04HospitalAccountMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh04HospitalAccount">
+            <result property="subjectCode" column="subject_code" jdbcType="CHAR"/>
+            <result property="accountDate" column="account_date" jdbcType="TIMESTAMP"/>
+            <result property="dayMoney" column="day_money" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        subject_code,account_date,day_money
+    </sql>
+</mapper>

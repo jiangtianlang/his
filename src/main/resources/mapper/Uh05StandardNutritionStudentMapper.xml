@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh05StandardNutritionStudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh05StandardNutritionStudent">
+            <id property="sex" column="sex" jdbcType="CHAR"/>
+            <result property="age" column="age" jdbcType="SMALLINT"/>
+            <result property="hight" column="hight" jdbcType="SMALLINT"/>
+            <result property="weightL" column="weight_l" jdbcType="DOUBLE"/>
+            <result property="weightM" column="weight_m" jdbcType="DOUBLE"/>
+            <result property="weightH" column="weight_h" jdbcType="DOUBLE"/>
+            <result property="weightSl" column="weight_sl" jdbcType="DOUBLE"/>
+            <result property="weightSh" column="weight_sh" jdbcType="DOUBLE"/>
+            <result property="weightFat" column="weight_fat" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        sex,age,hight,
+        weight_l,weight_m,weight_h,
+        weight_sl,weight_sh,weight_fat
+    </sql>
+</mapper>

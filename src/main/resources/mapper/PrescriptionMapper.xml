@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.PrescriptionMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Prescription">
+            <id property="personsNo" column="persons_no" jdbcType="VARCHAR"/>
+            <result property="mediNo" column="medi_no" jdbcType="VARCHAR"/>
+            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+            <result property="pay" column="pay" jdbcType="DOUBLE"/>
+            <result property="mediMoney" column="medi_money" jdbcType="DOUBLE"/>
+            <result property="unit" column="unit" jdbcType="VARCHAR"/>
+            <result property="doctorNo" column="doctor_no" jdbcType="VARCHAR"/>
+            <result property="todayDate" column="today_date" jdbcType="TIMESTAMP"/>
+            <result property="subjectNo" column="subject_no" jdbcType="VARCHAR"/>
+            <result property="opera" column="opera" jdbcType="VARCHAR"/>
+            <result property="presNumber" column="pres_number" jdbcType="INTEGER"/>
+            <result property="todayTotalYn" column="today_total_yn" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        persons_no,medi_no,quantity,
+        pay,medi_money,unit,
+        doctor_no,today_date,subject_no,
+        opera,pres_number,today_total_yn
+    </sql>
+</mapper>

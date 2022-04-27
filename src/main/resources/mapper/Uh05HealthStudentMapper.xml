@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.Uh05HealthStudentMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh05HealthStudent">
+            <id property="checkNo" column="check_no" jdbcType="INTEGER"/>
+            <result property="studentNo" column="student_no" jdbcType="INTEGER"/>
+            <result property="studentTime" column="student_time" jdbcType="TIMESTAMP"/>
+            <result property="hight" column="hight" jdbcType="DOUBLE"/>
+            <result property="weight" column="weight" jdbcType="DOUBLE"/>
+            <result property="chestMeasur" column="chest_measur" jdbcType="DOUBLE"/>
+            <result property="vitalCapacity" column="vital_capacity" jdbcType="DOUBLE"/>
+            <result property="eyesightL" column="eyesight_l" jdbcType="DOUBLE"/>
+            <result property="eyesightR" column="eyesight_r" jdbcType="DOUBLE"/>
+            <result property="eyesightCorrectL" column="eyesight_correct_l" jdbcType="DOUBLE"/>
+            <result property="eyesightCorrectR" column="eyesight_correct_r" jdbcType="DOUBLE"/>
+            <result property="trachomaL" column="trachoma_l" jdbcType="VARCHAR"/>
+            <result property="trachomaR" column="trachoma_r" jdbcType="VARCHAR"/>
+            <result property="achromatopsia" column="achromatopsia" jdbcType="VARCHAR"/>
+            <result property="bloodPressureH" column="blood_pressure_h" jdbcType="DOUBLE"/>
+            <result property="bloodPressureL" column="blood_pressure_l" jdbcType="DOUBLE"/>
+            <result property="heart" column="heart" jdbcType="VARCHAR"/>
+            <result property="liver" column="liver" jdbcType="VARCHAR"/>
+            <result property="lungs" column="lungs" jdbcType="VARCHAR"/>
+            <result property="spleen" column="spleen" jdbcType="VARCHAR"/>
+            <result property="oralCavity" column="oral_cavity" jdbcType="VARCHAR"/>
+            <result property="ear" column="ear" jdbcType="VARCHAR"/>
+            <result property="nose" column="nose" jdbcType="VARCHAR"/>
+            <result property="throat" column="throat" jdbcType="VARCHAR"/>
+            <result property="auditionL" column="audition_l" jdbcType="VARCHAR"/>
+            <result property="auditionR" column="audition_r" jdbcType="VARCHAR"/>
+            <result property="thyroid" column="thyroid" jdbcType="VARCHAR"/>
+            <result property="lymph" column="lymph" jdbcType="VARCHAR"/>
+            <result property="rachis" column="rachis" jdbcType="VARCHAR"/>
+            <result property="limbUp" column="limb_up" jdbcType="VARCHAR"/>
+            <result property="limbLower" column="limb_lower" jdbcType="VARCHAR"/>
+            <result property="genitourinary" column="genitourinary" jdbcType="VARCHAR"/>
+            <result property="poliomyelitis" column="poliomyelitis" jdbcType="VARCHAR"/>
+            <result property="anus" column="anus" jdbcType="VARCHAR"/>
+            <result property="skin" column="skin" jdbcType="VARCHAR"/>
+            <result property="xRays" column="x_rays" jdbcType="VARCHAR"/>
+            <result property="inspection" column="inspection" jdbcType="VARCHAR"/>
+            <result property="standardHigh" column="standard_high" jdbcType="VARCHAR"/>
+            <result property="standardWeight" column="standard_weight" jdbcType="VARCHAR"/>
+            <result property="standardNutrition" column="standard_nutrition" jdbcType="VARCHAR"/>
+            <result property="others" column="others" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        check_no,student_no,student_time,
+        hight,weight,chest_measur,
+        vital_capacity,eyesight_l,eyesight_r,
+        eyesight_correct_l,eyesight_correct_r,trachoma_l,
+        trachoma_r,achromatopsia,blood_pressure_h,
+        blood_pressure_l,heart,liver,
+        lungs,spleen,oral_cavity,
+        ear,nose,throat,
+        audition_l,audition_r,thyroid,
+        lymph,rachis,limb_up,
+        limb_lower,genitourinary,poliomyelitis,
+        anus,skin,x_rays,
+        inspection,standard_high,standard_weight,
+        standard_nutrition,others
+    </sql>
+</mapper>

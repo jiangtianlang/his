@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.FixedAssetsMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.FixedAssets">
+            <id property="fixedNo" column="fixed_no" jdbcType="CHAR"/>
+            <result property="fixedName" column="fixed_name" jdbcType="CHAR"/>
+            <result property="fixedNum" column="fixed_num" jdbcType="INTEGER"/>
+            <result property="fixedPrice" column="fixed_price" jdbcType="DOUBLE"/>
+            <result property="fixedDate" column="fixed_date" jdbcType="TIMESTAMP"/>
+            <result property="scrap" column="scrap" jdbcType="INTEGER"/>
+            <result property="maintenance" column="Maintenance" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        fixed_no,fixed_name,fixed_num,
+        fixed_price,fixed_date,scrap,
+        Maintenance
+    </sql>
+</mapper>
