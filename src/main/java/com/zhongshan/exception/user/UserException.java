@@ -1,7 +1,7 @@
 package com.zhongshan.exception.user;
 
 
-import com.sunews.common.exception.BaseException;
+import com.zhongshan.exception.BaseException;
 
 /**
  * 用户信息异常类

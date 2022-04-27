@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.ParamentsDao;
+import com.zhongshan.mapper.ParamentsMapper;
 import com.zhongshan.entity.Paraments;
 import com.zhongshan.service.ParamentsService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:26
  */
 @Service("paramentsService")
-public class ParamentsServiceImpl extends ServiceImpl<ParamentsDao, Paraments> implements ParamentsService {
+public class ParamentsServiceImpl extends ServiceImpl<ParamentsMapper, Paraments> implements ParamentsService {
 
 }

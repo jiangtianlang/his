@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.TitleDao;
+import com.zhongshan.mapper.TitleMapper;
 import com.zhongshan.entity.Title;
 import com.zhongshan.service.TitleService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:29
  */
 @Service("titleService")
-public class TitleServiceImpl extends ServiceImpl<TitleDao, Title> implements TitleService {
+public class TitleServiceImpl extends ServiceImpl<TitleMapper, Title> implements TitleService {
 
 }

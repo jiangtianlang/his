@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.CheckStandardDao;
+import com.zhongshan.mapper.CheckStandardMapper;
 import com.zhongshan.entity.CheckStandard;
 import com.zhongshan.service.CheckStandardService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:25
  */
 @Service("checkStandardService")
-public class CheckStandardServiceImpl extends ServiceImpl<CheckStandardDao, CheckStandard> implements CheckStandardService {
+public class CheckStandardServiceImpl extends ServiceImpl<CheckStandardMapper, CheckStandard> implements CheckStandardService {
 
 }

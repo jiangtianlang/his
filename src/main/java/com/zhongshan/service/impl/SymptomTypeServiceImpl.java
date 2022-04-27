@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.SymptomTypeDao;
+import com.zhongshan.mapper.SymptomTypeMapper;
 import com.zhongshan.entity.SymptomType;
 import com.zhongshan.service.SymptomTypeService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:29
  */
 @Service("symptomTypeService")
-public class SymptomTypeServiceImpl extends ServiceImpl<SymptomTypeDao, SymptomType> implements SymptomTypeService {
+public class SymptomTypeServiceImpl extends ServiceImpl<SymptomTypeMapper, SymptomType> implements SymptomTypeService {
 
 }

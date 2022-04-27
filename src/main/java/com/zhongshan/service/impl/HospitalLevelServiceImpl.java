@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.HospitalLevelDao;
+import com.zhongshan.mapper.HospitalLevelMapper;
 import com.zhongshan.entity.HospitalLevel;
 import com.zhongshan.service.HospitalLevelService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:26
  */
 @Service("hospitalLevelService")
-public class HospitalLevelServiceImpl extends ServiceImpl<HospitalLevelDao, HospitalLevel> implements HospitalLevelService {
+public class HospitalLevelServiceImpl extends ServiceImpl<HospitalLevelMapper, HospitalLevel> implements HospitalLevelService {
 
 }

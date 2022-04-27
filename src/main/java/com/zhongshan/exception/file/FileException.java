@@ -1,7 +1,7 @@
 package com.zhongshan.exception.file;
 
 
-import com.sunews.common.exception.BaseException;
+import com.zhongshan.exception.BaseException;
 
 /**
  * 文件信息异常类

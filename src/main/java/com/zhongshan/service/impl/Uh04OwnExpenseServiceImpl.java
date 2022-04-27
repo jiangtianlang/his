@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.Uh04OwnExpenseDao;
+import com.zhongshan.mapper.Uh04OwnExpenseMapper;
 import com.zhongshan.entity.Uh04OwnExpense;
 import com.zhongshan.service.Uh04OwnExpenseService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:30
  */
 @Service("uh04OwnExpenseService")
-public class Uh04OwnExpenseServiceImpl extends ServiceImpl<Uh04OwnExpenseDao, Uh04OwnExpense> implements Uh04OwnExpenseService {
+public class Uh04OwnExpenseServiceImpl extends ServiceImpl<Uh04OwnExpenseMapper, Uh04OwnExpense> implements Uh04OwnExpenseService {
 
 }

@@ -1,8 +1,8 @@
 package com.zhongshan.exception;
 
 
-import com.sunews.common.utils.MessageUtils;
-import com.sunews.common.utils.string.StringUtils;
+import com.zhongshan.utils.MessageUtils;
+import com.zhongshan.utils.string.StringUtils;
 
 /**
  * 基础异常

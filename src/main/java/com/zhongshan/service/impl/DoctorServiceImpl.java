@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.DoctorDao;
+import com.zhongshan.mapper.DoctorMapper;
 import com.zhongshan.entity.Doctor;
 import com.zhongshan.service.DoctorService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:26
  */
 @Service("doctorService")
-public class DoctorServiceImpl extends ServiceImpl<DoctorDao, Doctor> implements DoctorService {
+public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor> implements DoctorService {
 
 }

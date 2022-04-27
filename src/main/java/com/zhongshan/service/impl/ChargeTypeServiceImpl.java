@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.dao.ChargeTypeDao;
+import com.zhongshan.mapper.ChargeTypeMapper;
 import com.zhongshan.entity.ChargeType;
 import com.zhongshan.service.ChargeTypeService;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-04-27 16:27:25
  */
 @Service("chargeTypeService")
-public class ChargeTypeServiceImpl extends ServiceImpl<ChargeTypeDao, ChargeType> implements ChargeTypeService {
+public class ChargeTypeServiceImpl extends ServiceImpl<ChargeTypeMapper, ChargeType> implements ChargeTypeService {
 
 }
