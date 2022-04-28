@@ -41,10 +41,10 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
             throws AuthenticationException {
         //获取表单提交数据
         try {
+
             User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
             Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(),
                     new ArrayList<>()));
-            System.out.println(authenticate);
             return authenticate;
         } catch (IOException e) {
             e.printStackTrace();

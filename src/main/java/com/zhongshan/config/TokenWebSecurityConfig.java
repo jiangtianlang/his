@@ -9,13 +9,16 @@ import com.zhongshan.security.UnauthEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -47,7 +50,20 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .authenticationEntryPoint(new UnauthEntryPoint())//没有权限访问
                 .and().csrf().disable()
-                .authorizeRequests()
+                .authorizeRequests().and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 基于token，所以不需要session
+                .and()
+                .authorizeRequests() // 过滤请求
+                .antMatchers("/login", "/code/img").anonymous()
+                .antMatchers(HttpMethod.GET, "/*.html", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+                .antMatchers("/profile/**").anonymous()
+                .antMatchers("/common/download**").anonymous()
+                .antMatchers("/common/download/resource**").anonymous()
+                .antMatchers("/swagger-ui.html").anonymous()
+                .antMatchers("/swagger-resources/**").anonymous()
+                .antMatchers("/webjars/**").anonymous()
+                .antMatchers("/*/api-docs").anonymous()
+                .antMatchers("/druid/**").anonymous()
                 .anyRequest().authenticated()
                 .and().logout().logoutUrl("/admin/logout")//退出路径
                 .addLogoutHandler(new TokenLogoutHandler(tokenManager,redisTemplate)).and()
@@ -63,6 +79,6 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     //不进行认证的路径，可以直接访问
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/test/**");
+        web.ignoring().antMatchers("/test/**","/login", "/code/img");
     }
 }
