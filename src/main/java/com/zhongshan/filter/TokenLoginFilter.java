@@ -1,11 +1,14 @@
 package com.zhongshan.filter;
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.zhongshan.common.Constants;
 import com.zhongshan.entity.security.SecurityUser;
 import com.zhongshan.entity.security.User;
 import com.zhongshan.security.TokenManager;
 import com.zhongshan.utils.R;
 import com.zhongshan.utils.ResponseUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zhongshan.vo.UserLogin;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
+
 
     private TokenManager tokenManager;
     private RedisTemplate redisTemplate;
@@ -41,8 +45,26 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
             throws AuthenticationException {
         //获取表单提交数据
         try {
-
-            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+            UserLogin userLogin = new ObjectMapper().readValue(request.getInputStream(), UserLogin.class);
+            String verifyKey = Constants.CAPTCHA_CODE_KEY + userLogin.getUuid();
+            // 查询验证码
+            String captcha = (String) redisTemplate.opsForValue().get(verifyKey);
+            // 清除验证码
+            redisTemplate.delete(verifyKey);
+            if (StringUtils.isBlank(captcha)) {
+                // 记录登录日志
+                System.out.println(">>>>>>>>>>>>>>>>>>>>从Redis获取验证码失败!!");
+                ResponseUtil.out(response,R.error().message("验证码过期,请稍后重试!!"));
+                return null;
+            }
+            // 验证码错误
+            if (!userLogin.getCode().equalsIgnoreCase(captcha)) {
+                // 记录登录日志
+                System.out.println(">>>>>>>>>>>>>>>>>>>>验证码错误!!");
+                ResponseUtil.out(response,R.error().message("验证码错误,请稍后重试!!"));
+                return null;
+            }
+            User user = new User(userLogin.getUserName(),userLogin.getPassWord());
             Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(),
                     new ArrayList<>()));
             return authenticate;

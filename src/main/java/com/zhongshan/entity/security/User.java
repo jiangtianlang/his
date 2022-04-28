@@ -3,10 +3,12 @@ package com.zhongshan.entity.security;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 @ApiModel(description = "用户实体类")
 public class User implements Serializable {
 
@@ -27,5 +29,9 @@ public class User implements Serializable {
     @ApiModelProperty(value = "用户签名")
     private String token;
 
+    public User(String userName, String passWord) {
+        this.username = userName;
+        this.password = passWord;
+    }
 }
 

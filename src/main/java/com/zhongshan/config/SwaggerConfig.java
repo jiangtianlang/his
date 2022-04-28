@@ -108,7 +108,7 @@ public class SwaggerConfig {
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("标题：sunews新闻发布后台管理系统_接口文档")
+                .title("标题：中山大学校医院后台管理系统_接口文档")
                 // 描述
                 .description("描述：个人使用")
                 // 作者信息
