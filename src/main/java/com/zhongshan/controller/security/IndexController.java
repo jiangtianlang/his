@@ -3,7 +3,7 @@ package com.zhongshan.controller.security;
 import com.alibaba.fastjson.JSONObject;
 
 import com.zhongshan.service.security_service.IndexService;
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

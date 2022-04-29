@@ -1,8 +1,9 @@
 package com.zhongshan.filter;
 
 import com.zhongshan.security.TokenManager;
-import com.zhongshan.utils.R;
+
 import com.zhongshan.utils.ResponseUtil;
+import com.zhongshan.utils.result.R;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -51,6 +52,9 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
             String username = tokenManager.getUserInfoFromToken(token);
             //从redis获取对应权限列表
             List<String> permissionValueList = (List<String>)redisTemplate.opsForValue().get(username);
+            if(permissionValueList == null){
+                return null;
+            }
             Collection<GrantedAuthority> authority = new ArrayList<>();
             for(String permissionValue : permissionValueList) {
                 SimpleGrantedAuthority auth = new SimpleGrantedAuthority(permissionValue);

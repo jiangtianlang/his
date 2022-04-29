@@ -4,7 +4,7 @@ package com.zhongshan.controller.security;
 
 import com.zhongshan.pojo.Permission;
 import com.zhongshan.service.security_service.PermissionService;
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -4,7 +4,7 @@ import com.wf.captcha.base.Captcha;
 import com.zhongshan.common.Constants;
 import com.zhongshan.config.bean.LoginProperties;
 import com.zhongshan.utils.IdUtils;
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import com.zhongshan.utils.RedisService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

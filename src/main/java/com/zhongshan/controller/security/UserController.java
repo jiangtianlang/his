@@ -9,7 +9,7 @@ import com.zhongshan.pojo.User;
 import com.zhongshan.service.security_service.RoleService;
 import com.zhongshan.service.security_service.UserService;
 import com.zhongshan.utils.MD5;
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

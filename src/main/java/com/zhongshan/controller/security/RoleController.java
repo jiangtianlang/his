@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.pojo.Role;
 import com.zhongshan.service.security_service.RoleService;
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
