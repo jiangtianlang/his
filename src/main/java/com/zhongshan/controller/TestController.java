@@ -1,6 +1,6 @@
 package com.zhongshan.controller;
 
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

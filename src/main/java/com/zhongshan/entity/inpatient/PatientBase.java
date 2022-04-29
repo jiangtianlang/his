@@ -1,4 +1,4 @@
-package com.zhongshan.entity;
+package com.zhongshan.entity.inpatient;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -112,12 +112,20 @@ public class PatientBase implements Serializable {
     private Integer patientCost;
 
     /**
-     * 非空。A--特约记帐      B--公费记帐      C--保险记帐      D--本校记帐      E—自费记帐若交费方式为公费则此项自动置为“D”，若交费方式为自费则此项自动置为“E”
+     * 非空。A--特约记帐
+      B--公费记帐
+      C--保险记帐
+      D--本校记帐
+      E—自费记帐
+若交费方式为公费则此项自动置为“D”，若交费方式为自费则此项自动置为“E”
      */
     private String costType;
 
     /**
-     * 非空  F—现金结算      G--支票结算      H--外币结算      I--转帐结算
+     * 非空  F—现金结算
+      G--支票结算
+      H--外币结算
+      I--转帐结算
      */
     private String settleType;
 
@@ -132,7 +140,8 @@ public class PatientBase implements Serializable {
     private String diagnoseName;
 
     /**
-     * ICD-9编码对应主键在Diagnose表中
+     * ICD-9编码
+对应主键在Diagnose表中
      */
     private String icd9;
 

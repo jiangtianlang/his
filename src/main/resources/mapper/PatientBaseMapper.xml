@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhongshan.mapper.PatientBaseMapper">
 
-    <resultMap id="BaseResultMap" type="com.zhongshan.entity.PatientBase">
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.PatientBase">
             <id property="patientNo" column="patient_no" jdbcType="CHAR"/>
             <result property="inDate" column="in_date" jdbcType="DATE"/>
             <result property="patientName" column="patient_name" jdbcType="CHAR"/>

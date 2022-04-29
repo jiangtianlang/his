@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.entity.PatientBase;
+import com.zhongshan.entity.inpatient.PatientBase;
 import com.zhongshan.service.PatientBaseService;
 import com.zhongshan.mapper.PatientBaseMapper;
 import org.springframework.stereotype.Service;

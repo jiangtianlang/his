@@ -5,7 +5,7 @@ import com.zhongshan.common.Constants;
 import com.zhongshan.entity.security.SecurityUser;
 import com.zhongshan.entity.security.User;
 import com.zhongshan.security.TokenManager;
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import com.zhongshan.utils.ResponseUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhongshan.vo.UserLogin;

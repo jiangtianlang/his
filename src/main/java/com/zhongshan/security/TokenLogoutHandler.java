@@ -1,6 +1,6 @@
 package com.zhongshan.security;
 
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import com.zhongshan.utils.ResponseUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;

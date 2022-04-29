@@ -1,6 +1,6 @@
 package com.zhongshan.exceptionhandler;
 
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

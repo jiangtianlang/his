@@ -1,6 +1,6 @@
 package com.zhongshan.security;
 
-import com.zhongshan.utils.R;
+import com.zhongshan.utils.result.R;
 import com.zhongshan.utils.ResponseUtil;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
