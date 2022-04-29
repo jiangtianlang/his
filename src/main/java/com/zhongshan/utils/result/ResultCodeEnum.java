@@ -1,4 +1,4 @@
-package com.zhongshan.utils;
+package com.zhongshan.utils.result;
 
 /**
  * 结果集枚举

@@ -1,4 +1,4 @@
-package com.zhongshan.utils;
+package com.zhongshan.utils.result;
 
 import java.io.Serializable;
 import java.util.HashMap;
