@@ -36,7 +36,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         this.tokenManager = tokenManager;
         this.redisTemplate = redisTemplate;
         this.setPostOnly(false);
-        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/login","POST"));
+        this.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/index/login","POST"));
     }
 
     //1 获取表单提交用户名和密码
@@ -92,6 +92,6 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     //3 认证失败调用的方法
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed)
             throws IOException, ServletException {
-        ResponseUtil.out(response, R.error());
+        ResponseUtil.out(response, R.error().message("登陆失败"));
     }
 }

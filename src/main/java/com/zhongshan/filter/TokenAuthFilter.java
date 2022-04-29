@@ -1,6 +1,8 @@
 package com.zhongshan.filter;
 
 import com.zhongshan.security.TokenManager;
+import com.zhongshan.utils.R;
+import com.zhongshan.utils.ResponseUtil;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +37,8 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
         //判断如果有权限信息，放到权限上下文中
         if(authRequest != null) {
             SecurityContextHolder.getContext().setAuthentication(authRequest);
+        }else {
+            ResponseUtil.out(response, R.error().message("登录已过期,请重新登录").code(20002));
         }
         chain.doFilter(request,response);
     }

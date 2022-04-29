@@ -65,7 +65,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*/api-docs").anonymous()
                 .antMatchers("/druid/**").anonymous()
                 .anyRequest().authenticated()
-                .and().logout().logoutUrl("/admin/logout")//退出路径
+                .and().logout().logoutUrl("/index/logout")//退出路径
                 .addLogoutHandler(new TokenLogoutHandler(tokenManager,redisTemplate)).and()
                 .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))
                 .addFilter(new TokenAuthFilter(authenticationManager(), tokenManager, redisTemplate)).httpBasic();

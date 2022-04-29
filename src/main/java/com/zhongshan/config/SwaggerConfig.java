@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -62,43 +64,22 @@ public class SwaggerConfig {
                 // 扫描所有 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
-                /* 设置安全模式，swagger可以设置访问token */
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts());
+                .globalOperationParameters(this.getParameterList());// 全局配置;
     }
 
-    /**
-     * 安全模式，这里指定token通过Authorization头请求头传递
-     */
-    private List<ApiKey> securitySchemes() {
-        List<ApiKey> apiKeyList = new ArrayList<ApiKey>();
-        apiKeyList.add(new ApiKey("Authorization", "Authorization", "header"));
-        return apiKeyList;
-    }
 
     /**
-     * 安全上下文
+     * 添加head参数配置
      */
-    private List<SecurityContext> securityContexts() {
-        List<SecurityContext> securityContexts = new ArrayList<>();
-        securityContexts.add(
-                SecurityContext.builder()
-                        .securityReferences(defaultAuth())
-                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
-                        .build());
-        return securityContexts;
-    }
-
-    /**
-     * 默认的安全上引用
-     */
-    private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        List<SecurityReference> securityReferences = new ArrayList<>();
-        securityReferences.add(new SecurityReference("Authorization", authorizationScopes));
-        return securityReferences;
+    private List<Parameter> getParameterList() {
+        ParameterBuilder clientIdTicket = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<Parameter>();
+        clientIdTicket.name("token").description("token令牌")
+                .modelRef(new ModelRef("string"))
+                .parameterType("header")
+                .required(false).build(); //设置false，表示clientId参数 非必填,可传可不传！
+        pars.add(clientIdTicket.build());
+        return pars;
     }
 
     /**
@@ -114,6 +95,7 @@ public class SwaggerConfig {
                 // 作者信息
                 .contact(new Contact("J283", null, null))
                 // 版本
+                .termsOfServiceUrl("http://localhost:8888/")
                 .version("版本号:1.0.0" )
                 .build();
     }
