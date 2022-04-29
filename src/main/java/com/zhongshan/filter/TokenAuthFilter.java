@@ -38,8 +38,6 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
         //判断如果有权限信息，放到权限上下文中
         if(authRequest != null) {
             SecurityContextHolder.getContext().setAuthentication(authRequest);
-        }else {
-            ResponseUtil.out(response, R.error().message("登录已过期,请重新登录").code(20002));
         }
         chain.doFilter(request,response);
     }

@@ -64,24 +64,56 @@ public class SwaggerConfig {
                 // 扫描所有 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(this.getParameterList());// 全局配置;
+                /* 设置安全模式，swagger可以设置访问token */
+                .securitySchemes(securitySchemes())
+                .securityContexts(securityContexts())
+                .globalOperationParameters(this.pars());
+    }
+
+    private List<Parameter> pars() {
+        //添加header参数
+        ParameterBuilder ticketPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<>();
+        ticketPar.name("token").description("user token")
+                .modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).build(); //header中的ticket参数非必填，传空也可以
+        pars.add(ticketPar.build());//根据每个方法名也知道当前方法在设置什么参数
+        return pars;
     }
 
 
     /**
-     * 添加head参数配置
+     * 安全模式，这里指定token通过Authorization头请求头传递
      */
-    private List<Parameter> getParameterList() {
-        ParameterBuilder clientIdTicket = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<Parameter>();
-        clientIdTicket.name("token").description("token令牌")
-                .modelRef(new ModelRef("string"))
-                .parameterType("header")
-                .required(false).build(); //设置false，表示clientId参数 非必填,可传可不传！
-        pars.add(clientIdTicket.build());
-        return pars;
+    private List<ApiKey> securitySchemes() {
+        List<ApiKey> apiKeyList = new ArrayList<ApiKey>();
+        apiKeyList.add(new ApiKey("Authorization", "Authorization", "header"));
+        return apiKeyList;
     }
 
+    /**
+     * 安全上下文
+     */
+    private List<SecurityContext> securityContexts() {
+        List<SecurityContext> securityContexts = new ArrayList<>();
+        securityContexts.add(
+                SecurityContext.builder()
+                        .securityReferences(defaultAuth())
+                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
+                        .build());
+        return securityContexts;
+    }
+    /**
+     * 默认的安全上引用
+     */
+    private List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        List<SecurityReference> securityReferences = new ArrayList<>();
+        securityReferences.add(new SecurityReference("Authorization", authorizationScopes));
+        return securityReferences;
+    }
     /**
      * 添加摘要信息
      */
@@ -93,10 +125,9 @@ public class SwaggerConfig {
                 // 描述
                 .description("描述：个人使用")
                 // 作者信息
-                .contact(new Contact("J283", null, null))
+                .contact(new Contact("J283", "", ""))
                 // 版本
-                .termsOfServiceUrl("http://localhost:8888/")
-                .version("版本号:1.0.0" )
+                .version("版本号:1.0.0")
                 .build();
     }
 }

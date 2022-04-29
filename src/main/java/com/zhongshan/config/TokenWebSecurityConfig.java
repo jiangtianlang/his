@@ -49,12 +49,9 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.exceptionHandling()
                 .authenticationEntryPoint(new UnauthEntryPoint())//没有权限访问
-                .and().csrf().disable()
-                .authorizeRequests().and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 基于token，所以不需要session
                 .and()
-                .authorizeRequests() // 过滤请求
-                .antMatchers( "/code/img").anonymous()
+                .csrf().disable()
+                .authorizeRequests()// 过滤请求
                 .antMatchers(HttpMethod.GET, "/*.html", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
                 .antMatchers("/profile/**").anonymous()
                 .antMatchers("/common/download**").anonymous()
@@ -79,6 +76,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     //不进行认证的路径，可以直接访问
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/test/**", "/code/img");
+        web.ignoring().antMatchers("/test/**",
+                "/code/img");
     }
 }
