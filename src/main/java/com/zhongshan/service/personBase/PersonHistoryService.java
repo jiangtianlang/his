@@ -1,5 +1,6 @@
-package com.zhongshan.service;
+package com.zhongshan.service.personBase;
 
+import com.zhongshan.entity.PersonBase;
 import com.zhongshan.entity.PersonHistory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -9,5 +10,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-04-27 18:13:38
 */
 public interface PersonHistoryService extends IService<PersonHistory> {
+     Boolean add(PersonHistory personHistory);
 
+    boolean updateMany(PersonHistory personHistory);
+
+    PersonHistory select(String personNo);
 }

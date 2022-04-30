@@ -44,6 +44,10 @@ public class Doctor implements Serializable {
      * 工资代号
      */
     private String personNo;
+    /**
+     * 医生状态
+     */
+    private String sate;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

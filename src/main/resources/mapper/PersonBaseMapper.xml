@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhongshan.mapper.PersonBaseMapper">
+<mapper namespace="com.zhongshan.mapper.personBase_mapper.PersonBaseMapper">
 
     <resultMap id="BaseResultMap" type="com.zhongshan.entity.PersonBase">
             <id property="sectionNo" column="section_no" jdbcType="CHAR"/>
@@ -38,15 +38,37 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        section_no,person_no,spell_no,
-        person_name,another_no,person_sex,
-        birth_date,capacity_no,marry,
-        native_place,nation,birth_place,
-        finish_date,finish_school,family_addres,
-        degree,degree_date,high_schooling,
-        school_name,post_no,title_no,
-        post_date,post_wage,health,
-        in_party,porty_date,in_work_date,
-        in_zsu_date,speciality_date,remarks
+        pb section_no,pb person_no,pb spell_no,pb person_name,pb another_no,pb person_sex,pb birth_date,pb capacity_no,
+        pb marry,pb native_place,pb nation,pb birth_place,
+        pb finish_date,pb finish_school,pb family_addres,
+        pb degree,pb degree_date,pb high_schooling,
+        pb school_name,pb post_no,pb title_no,
+        pb post_date,pb post_wage,pb health,
+        pb in_party,pb porty_date,pb in_work_date,
+        pb in_zsu_date,pb speciality_date,pb remarks,
+        ph history_from,ph history_to,
+        ph work_place,
+        fm member_name,fm member_sex,
+        fm member_birth_date,fm member_party,fm member_work_unit,
+        fm relation
     </sql>
+    <select id="findByIdName" resultType="com.zhongshan.entity.vo.PersonInfo">
+        select
+        <include refid="Base_Column_List"/>
+        from person_base pb,person_history ph,family_member fm
+        <where>
+            <if test="pb.personNo!=null">
+                and person_base like #{personNo}
+            </if>
+            <if test="pb.personName!=null">
+                and person_base like #{personName}
+            </if>
+        </where>
+        order by empCreateTime desc
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+
+    </select>
+
 </mapper>

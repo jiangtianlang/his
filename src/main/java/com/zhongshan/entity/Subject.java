@@ -30,6 +30,11 @@ public class Subject implements Serializable {
      */
     private Double registerMoney;
 
+    /**
+     * 状态
+     */
+    private String state;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -1,4 +1,4 @@
-package com.zhongshan.service;
+package com.zhongshan.service.personBase;
 
 import com.zhongshan.entity.FamilyMember;
 import com.baomidou.mybatisplus.extension.service.IService;

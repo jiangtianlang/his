@@ -1,7 +1,10 @@
 package com.zhongshan.mapper;
 
+import com.zhongshan.entity.PersonBase;
 import com.zhongshan.entity.PersonHistory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author 13427
