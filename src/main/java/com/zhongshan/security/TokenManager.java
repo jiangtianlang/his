@@ -26,5 +26,6 @@ public class TokenManager {
         return userinfo;
     }
     //3 删除token
-    public void removeToken(String token) { }
+    public void removeToken(String token) {
+    }
 }

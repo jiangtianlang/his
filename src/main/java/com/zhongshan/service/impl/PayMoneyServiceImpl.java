@@ -1,7 +1,7 @@
 package com.zhongshan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.entity.PayMoney;
+import com.zhongshan.entity.inpatient.PayMoney;
 import com.zhongshan.service.PayMoneyService;
 import com.zhongshan.mapper.PayMoneyMapper;
 import org.springframework.stereotype.Service;

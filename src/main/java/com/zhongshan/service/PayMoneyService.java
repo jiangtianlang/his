@@ -1,6 +1,6 @@
 package com.zhongshan.service;
 
-import com.zhongshan.entity.PayMoney;
+import com.zhongshan.entity.inpatient.PayMoney;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

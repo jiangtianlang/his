@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhongshan.mapper.PayMoneyMapper">
 
-    <resultMap id="BaseResultMap" type="com.zhongshan.entity.PayMoney">
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.PayMoney">
             <id property="patientNo" column="patient_no" jdbcType="CHAR"/>
             <result property="paydate" column="paydate" jdbcType="TIMESTAMP"/>
             <result property="patientName" column="patient_name" jdbcType="CHAR"/>

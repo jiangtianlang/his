@@ -2,8 +2,6 @@ package com.zhongshan.config;
 
 
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -65,8 +63,8 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build()
                 /* 设置安全模式，swagger可以设置访问token */
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts())
+                //.securitySchemes(securitySchemes())
+                //.securityContexts(securityContexts())
                 .globalOperationParameters(this.pars());
     }
 

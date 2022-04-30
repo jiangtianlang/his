@@ -53,6 +53,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()// 过滤请求
                 .antMatchers(HttpMethod.GET, "/*.html", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+                .antMatchers("/code/img").anonymous()
                 .antMatchers("/profile/**").anonymous()
                 .antMatchers("/common/download**").anonymous()
                 .antMatchers("/common/download/resource**").anonymous()
@@ -77,6 +78,14 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/test/**",
-                "/code/img");
+                "/code/img",
+                "/swagger-ui.html",
+                "/swagger-resources/**",
+                "/webjars/**" ,
+                "/*.html",
+                "/**/*.html",
+                "/**/*.css",
+                "/**/*.js",
+                "/*/api-docs");
     }
 }
