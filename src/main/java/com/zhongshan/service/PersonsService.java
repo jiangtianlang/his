@@ -1,5 +1,6 @@
 package com.zhongshan.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.entity.Persons;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PersonsService extends IService<Persons> {
 
+    Page selectBusiness(String personName, Integer page, Integer limit);
 }

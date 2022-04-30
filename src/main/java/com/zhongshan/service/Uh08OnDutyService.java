@@ -3,6 +3,8 @@ package com.zhongshan.service;
 import com.zhongshan.entity.Uh08OnDuty;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author 13427
 * @description 针对表【uh08_on_duty】的数据库操作Service
@@ -10,4 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface Uh08OnDutyService extends IService<Uh08OnDuty> {
 
+    List<Uh08OnDuty> selectDepartment(String department);
 }
