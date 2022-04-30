@@ -19,7 +19,7 @@ import java.util.List;
  * 
  * @TableName pay_money
  */
-@Api(tags = "病人基本资料接口")
+@Api(tags = "(住院管理)预交款接口")
 @RestController
 @RequestMapping("/payMoney")
 public class PayMoneyController{

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
-@Api(tags = "主页面接口")
+@Api(tags = "(系统管理)主页面接口")
 @RestController
 @RequestMapping("/index")
 //@CrossOrigin

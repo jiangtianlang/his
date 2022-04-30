@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-@Api(tags = "验证码接口")
+@Api(tags = "(系统管理)验证码接口")
 @RestController
 public class CaptchaController {
     @Autowired

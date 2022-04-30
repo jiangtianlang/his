@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.pojo.Role;
 import com.zhongshan.service.security_service.RoleService;
 import com.zhongshan.utils.result.R;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/admin/acl/role")
+@Api(tags = "(系统管理)角色管理接口")
 //@CrossOrigin
 public class RoleController {
 
