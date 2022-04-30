@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.entity.Subject;
 import com.zhongshan.service.SubjectService;
 import com.zhongshan.utils.result.R;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("subject")
+@Api(tags = "(住院管理)科室管理接口")
 public class SubjectController {
     /**
      * 服务对象

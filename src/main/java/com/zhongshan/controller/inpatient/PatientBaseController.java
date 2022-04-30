@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @author jtl
  * @date 2022年04月29日 10:39:27
  */
-@Api(tags = "病人基本资料接口")
+@Api(tags = "(住院管理)病人基本资料接口")
 @RestController
 @RequestMapping("/patientBase")
 public class PatientBaseController {

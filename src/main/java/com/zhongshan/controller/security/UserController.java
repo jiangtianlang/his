@@ -24,7 +24,7 @@ import java.util.Map;
  * 用户表 前端控制器
  * </p>
  */
-@Api(tags = "管理用户接口")
+@Api(tags = "(系统管理)管理用户接口")
 @RestController
 @RequestMapping("/admin/acl/user")
 //@CrossOrigin

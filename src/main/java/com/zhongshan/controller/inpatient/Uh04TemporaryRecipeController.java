@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.entity.Uh04TemporaryRecipe;
 import com.zhongshan.service.Uh04TemporaryRecipeService;
 import com.zhongshan.utils.result.R;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("uh04TemporaryRecipe")
+@Api(tags = "(住院管理)临时医嘱管理接口")
 public class Uh04TemporaryRecipeController  {
     /**
      * 服务对象

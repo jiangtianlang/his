@@ -5,6 +5,7 @@ package com.zhongshan.controller.security;
 import com.zhongshan.pojo.Permission;
 import com.zhongshan.service.security_service.PermissionService;
 import com.zhongshan.utils.result.R;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/admin/permission")
+@Api(tags = "(系统管理)权限控制接口")
 //@CrossOrigin
 public class PermissionController {
 

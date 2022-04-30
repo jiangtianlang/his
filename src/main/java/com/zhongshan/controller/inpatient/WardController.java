@@ -23,7 +23,7 @@ import java.util.List;
  * 
  * @TableName ward
  */
-@Api(tags = "床位登记接口")
+@Api(tags = "(住院管理)床位登记接口")
 @RestController
 @RequestMapping("/ward")
 public class WardController  {

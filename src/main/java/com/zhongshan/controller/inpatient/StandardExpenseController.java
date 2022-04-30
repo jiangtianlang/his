@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.utils.result.R;
 import com.zhongshan.entity.StandardExpense;
 import com.zhongshan.service.StandardExpenseService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("standardExpense")
+@Api(tags = "(住院管理)收费标准接口")
 public class  StandardExpenseController{
     /**
      * 服务对象
