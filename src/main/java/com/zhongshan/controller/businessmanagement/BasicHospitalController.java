@@ -2,8 +2,8 @@ package com.zhongshan.controller.businessmanagement;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.service.FixedAssetsService;
-import com.zhongshan.service.PersonBaseService;
 import com.zhongshan.service.PersonsService;
+import com.zhongshan.service.personBase.PersonBaseService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
