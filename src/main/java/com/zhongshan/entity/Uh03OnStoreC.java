@@ -1,9 +1,7 @@
 package com.zhongshan.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import lombok.Data;
 
@@ -39,7 +37,26 @@ public class Uh03OnStoreC implements Serializable {
      * 数量
      */
     private Integer quantity;
+    /**
+     * 状态
+     */
+    @TableLogic
+    private Integer state;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Uh03OnStoreC() {
+    }
+
+    public Uh03OnStoreC(String mediNo, String specification, String unit, Double unitPrice, Integer quantity) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
+
+    public Uh03OnStoreC(String mediNo, Double unitPrice, String specification, String unit, Integer quantity) {
+    }
 }

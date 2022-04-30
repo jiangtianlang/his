@@ -21,4 +21,20 @@
         unit,unit_price,quantity,
         in_date,com_no,bill_no
     </sql>
+    <insert id="insertaa"></insert>
+    <select id="findByIdi" resultType="com.zhongshan.entity.Uh03StoreInC">
+        select
+        <include refid="Base_Column_List"/>
+            from
+             uh03_store_in_c
+            <where>
+                <if test="uh03StoreInC.in_no!=null">
+              and  in_no=#{uh03StoreInC.in_no}
+                </if>
+                <if test="uh03StoreInC.in_date!=null">
+                    and in_date like #{uh03StoreInC.indate}
+                </if>
+            </where>
+
+    </select>
 </mapper>

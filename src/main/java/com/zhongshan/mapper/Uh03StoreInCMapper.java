@@ -1,7 +1,10 @@
 package com.zhongshan.mapper;
 
+import com.zhongshan.entity.Uh03OnStoreC;
 import com.zhongshan.entity.Uh03StoreInC;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.Date;
 
 /**
 * @author 13427
@@ -11,6 +14,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface Uh03StoreInCMapper extends BaseMapper<Uh03StoreInC> {
 
+    Uh03StoreInC findByIdi(int id, Date date);
+
+    int insertaa(Uh03OnStoreC uh03OnStoreC);
 }
 
 

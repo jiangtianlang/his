@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface Uh03StoreWMapper extends BaseMapper<Uh03StoreW> {
 
+    int updateBybyno(String id);
 }
 
 

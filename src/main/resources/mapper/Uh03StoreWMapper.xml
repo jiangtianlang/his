@@ -12,7 +12,10 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        medi _no,specification,unit,
+        medi_no,specification,unit,
         quantity
     </sql>
+    <update id="updateBybyno" parameterType="int">
+        update uh03_store_w set quantity=#{quantity}+quantity where=#{medi_on};
+    </update>
 </mapper>

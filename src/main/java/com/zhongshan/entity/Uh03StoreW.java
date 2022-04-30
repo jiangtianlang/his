@@ -37,4 +37,20 @@ public class Uh03StoreW implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Uh03StoreW() {
+    }
+
+    public Uh03StoreW(String mediNo, String specification, String unit, Integer quantity) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.quantity = quantity;
+    }
+
+    public Uh03StoreW(String comNo) {
+    }
+
+    public Uh03StoreW(Integer quantity) {
+    }
 }

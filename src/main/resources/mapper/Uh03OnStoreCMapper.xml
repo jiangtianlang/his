@@ -16,4 +16,7 @@
         medi_no,specification,unit,
         unit_price,quantity
     </sql>
+    <update id="updateBybyno" parameterType="int">
+         update uh03_on_store_c set quantity=#{quantity}+quantity where=#{medi_on};
+    </update>
 </mapper>
