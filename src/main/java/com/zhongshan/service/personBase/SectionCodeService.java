@@ -1,7 +1,9 @@
-package com.zhongshan.service;
+package com.zhongshan.service.personBase;
 
 import com.zhongshan.entity.SectionCode;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -10,4 +12,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SectionCodeService extends IService<SectionCode> {
 
+
+    List<SectionCode> findAll();
+
+    List<SectionCode> findSectionCodeById(String sectionNo);
 }
