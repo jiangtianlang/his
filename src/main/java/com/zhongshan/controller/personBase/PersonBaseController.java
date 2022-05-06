@@ -31,6 +31,7 @@ public class PersonBaseController {
     public R findByIdOrName(String IdOrNmae){
         if(IdOrNmae==null){
             List<PersonBase> list=personBaseService.findAll();
+            return R.ok().data("data",list).message("查询成功");
         }
         boolean flag=false;
         Pattern p=Pattern.compile(".*\\d+.*");
