@@ -20,22 +20,22 @@ public class BasicHospitalController {
     private PersonBaseService personBaseService;
     @RequestMapping(value = "/selectPerson",method = RequestMethod.GET)
     @ApiOperation(value = "查询科室人员信息",notes = "",httpMethod = "GET", response = String.class)
-    public Page selectPerson(String sectionNo, Integer page, Integer limit){
+    public R selectPerson(){
        // return personBaseService.selectPerson(sectionNo,page,limit);
-        return null;
+        return R.ok();
     }
     @Resource
     private PersonsService personsService;
     @RequestMapping(value = "/selectBusiness")
     @ApiOperation(value = "查询职工业务档案",notes = "",httpMethod = "GET", response = String.class)
-    public Page selectBusiness(String personName, Integer page, Integer limit){
-        return personsService.selectBusiness(personName,page,limit);
+    public R selectBusiness(String personName, Integer page, Integer limit){
+        return R.ok();
     }
     @Resource
     private FixedAssetsService fixedAssetsService;
     @RequestMapping(value = "/selectFixed")
     @ApiOperation(value = "查询医院大型设备",notes = "",httpMethod = "GET", response = String.class)
     public R selectFixed(){
-        return null;
+        return R.ok();
     }
 }
