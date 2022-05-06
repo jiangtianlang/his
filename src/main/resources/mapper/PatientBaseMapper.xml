@@ -45,4 +45,7 @@
         pay_money,diagnose_name,icd9,
         section,bed_no,out_date
     </sql>
+    <select id="queryMaxId" resultType="java.lang.String">
+        select Max(patient_no) from patient_base;
+    </select>
 </mapper>

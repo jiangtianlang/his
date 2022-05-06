@@ -1,8 +1,8 @@
-package com.zhongshan.service.impl;
+package com.zhongshan.service.inpatient.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.entity.Uh04DayCureExpense;
-import com.zhongshan.service.Uh04DayCureExpenseService;
+import com.zhongshan.entity.inpatient.Uh04DayCureExpense;
+import com.zhongshan.service.inpatient.Uh04DayCureExpenseService;
 import com.zhongshan.mapper.Uh04DayCureExpenseMapper;
 import org.springframework.stereotype.Service;
 

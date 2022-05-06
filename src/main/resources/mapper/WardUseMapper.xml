@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.WardUseMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.WardUse">
+            <id property="wardId" column="ward_id" jdbcType="CHAR"/>
+            <result property="bedNo" column="bed_no" jdbcType="CHAR"/>
+            <result property="section" column="section" jdbcType="CHAR"/>
+            <result property="patientNo" column="patient_no" jdbcType="CHAR"/>
+            <result property="patientName" column="patient_name" jdbcType="CHAR"/>
+            <result property="patientSex" column="patient_sex" jdbcType="CHAR"/>
+            <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ward_id,bed_no,section,
+        patient_no,patient_name,patient_sex,
+        is_delete
+    </sql>
+</mapper>

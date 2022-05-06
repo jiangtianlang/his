@@ -1,17 +1,13 @@
 package com.zhongshan.controller.inpatient;
 
 
-import com.baomidou.mybatisplus.extension.conditions.query.QueryChainWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhongshan.entity.inpatient.PatientBase;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zhongshan.entity.inpatient.PayMoney;
-import com.zhongshan.service.PayMoneyService;
+import com.zhongshan.service.inpatient.PayMoneyService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -27,13 +23,14 @@ public class PayMoneyController{
     private PayMoneyService payMoneyService;
 
     @ApiOperation(value = "病人预交款资料查询")
-    @PostMapping("selectByLimit")
+    @GetMapping("selectByConditions")
     public R selectByConditions(
-            @RequestBody @ApiParam(name = "patientBaseVo", value = "查询对象", required = true)
+             @ApiParam(name = "patientBaseVo", value = "查询对象", required = true)
                     PayMoney payMoney) {
-        List<PayMoney> payMonies = payMoneyService.list();
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>page:");
-        return R.ok().data("items", payMonies).data("total", payMonies.size());
+        //病人预交款资料查询 单项选择
+        QueryWrapper<PayMoney> wrapper = new QueryWrapper<>(payMoney);
+        List<PayMoney> payMonies = payMoneyService.list(wrapper);
+        return R.ok().data("payMonies", payMonies).data("total", payMonies.size());
     }
 
     @ApiOperation(value = "病人预交款资料录入")
@@ -42,20 +39,25 @@ public class PayMoneyController{
             @RequestBody@ApiParam(name = "payMoney", value = "添加对象", required = true)
                     PayMoney payMoney) {
         boolean save = payMoneyService.save(payMoney);
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>patientBase");
-        return R.ok().message(save?"添加成功!!":"添加失败!!");
+        if (save) {
+            return R.ok().message("添加成功!!");
+        } else {
+            return R.error().message("添加失败!!");
+        }
     }
 
-    @ApiOperation(value = "病人预交款资料删除")
+    @ApiOperation(value = "病人预交款资料批量删除")
     @PostMapping("delete")
     public R delete(
-            @RequestBody@ApiParam(name = "payMoney", value = "添加对象", required = true)
-                    String patientNo) {
+            @RequestBody@ApiParam(name = "payId", value = "删除ById", required = true)
+                    List<String> payIds) {
 
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>patientBase");
-        return R.ok().message("删除成功!!");
+        boolean result = payMoneyService.removeByIds(payIds);
+        if (result) {
+            return R.ok().message("删除成功!!");
+        } else {
+            return R.error().message("删除失败!!");
+        }
     }
 
     @ApiOperation(value = "病人预交款资料修改")
@@ -64,8 +66,11 @@ public class PayMoneyController{
             @RequestBody@ApiParam(name = "payMoney", value = "修改对象", required = true)
                     PayMoney payMoney) {
 
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>payMoney"+payMoney);
-        return R.ok().message("修改成功!!");
+        boolean result = payMoneyService.updateById(payMoney);
+        if (result) {
+            return R.ok().message("修改成功!!");
+        } else {
+            return R.error().message("修改成功!!");
+        }
     }
 }

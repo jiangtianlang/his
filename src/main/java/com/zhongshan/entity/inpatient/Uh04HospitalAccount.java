@@ -1,4 +1,4 @@
-package com.zhongshan.entity;
+package com.zhongshan.entity.inpatient;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -10,26 +10,25 @@ import lombok.Data;
 
 /**
  * 
- * @TableName uh04_ward_bed_sum
+ * @TableName uh04_hospital_account
  */
-@TableName(value ="uh04_ward_bed_sum")
+@TableName(value ="uh04_hospital_account")
 @Data
-public class Uh04WardBedSum implements Serializable {
+public class Uh04HospitalAccount implements Serializable {
+    /**
+     * 科目编码
+     */
+    private String subjectCode;
+
     /**
      * 日期
      */
-    @TableId
-    private Date totalDate;
+    private Date accountDate;
 
     /**
-     * 有效床位数
+     * 本日发生数
      */
-    private Integer validBedNumber;
-
-    /**
-     * 占用床位数
-     */
-    private Integer useBedNumber;
+    private Double dayMoney;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

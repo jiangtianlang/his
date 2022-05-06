@@ -4,8 +4,8 @@ package com.zhongshan.controller.inpatient;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhongshan.entity.Uh04DayCureExpense;
-import com.zhongshan.service.Uh04DayCureExpenseService;
+import com.zhongshan.entity.inpatient.Uh04DayCureExpense;
+import com.zhongshan.service.inpatient.Uh04DayCureExpenseService;
 import com.zhongshan.utils.result.R;
 import org.springframework.web.bind.annotation.*;
 

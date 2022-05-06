@@ -6,10 +6,11 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhongshan.entity.Uh04LongRecipe;
-import com.zhongshan.service.Uh04LongRecipeService;
+import com.zhongshan.entity.inpatient.Uh04LongRecipe;
+import com.zhongshan.service.inpatient.Uh04LongRecipeService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -61,9 +62,18 @@ public class Uh04LongRecipeController  {
      * @param uh04LongRecipe 实体对象
      * @return 新增结果
      */
+    @ApiOperation(value = "新增数据")
     @PostMapping
     public R insert(@RequestBody Uh04LongRecipe uh04LongRecipe) {
-        return R.ok().data("data",this.uh04LongRecipeService.save(uh04LongRecipe));
+        //当录入长期医嘱时，自动将出院标志置为“F”
+        uh04LongRecipe.setOutFlag(false);
+        boolean save = this.uh04LongRecipeService.save(uh04LongRecipe);
+        if (save){
+            return R.ok().message("录入长期医嘱成功");
+        }else {
+            return R.error().message("录入长期医嘱失败");
+        }
+
     }
 
     /**
@@ -72,9 +82,15 @@ public class Uh04LongRecipeController  {
      * @param uh04LongRecipe 实体对象
      * @return 修改结果
      */
+    @ApiOperation(value = "修改数据")
     @PutMapping
     public R update(@RequestBody Uh04LongRecipe uh04LongRecipe) {
-        return R.ok().data("data",this.uh04LongRecipeService.updateById(uh04LongRecipe));
+        boolean save = this.uh04LongRecipeService.updateById(uh04LongRecipe);
+        if (save){
+            return R.ok().message("修改长期医嘱成功");
+        }else {
+            return R.error().message("修改长期医嘱失败");
+        }
     }
 
     /**
@@ -83,6 +99,7 @@ public class Uh04LongRecipeController  {
      * @param idList 主键结合
      * @return 删除结果
      */
+    @ApiOperation(value = "删除数据")
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
         return R.ok().data("data",this.uh04LongRecipeService.removeByIds(idList));

@@ -2,17 +2,23 @@ package com.zhongshan.controller.inpatient;
 
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zhongshan.entity.Persons;
 import com.zhongshan.entity.inpatient.PatientBase;
-import com.zhongshan.service.PatientBaseService;
+import com.zhongshan.service.inpatient.PatientBaseService;
+import com.zhongshan.service.inpatient.PayMoneyService;
+import com.zhongshan.service.PersonsService;
 import com.zhongshan.utils.result.R;
-import com.zhongshan.vo.inpatient.PatientBaseVo;
+import com.zhongshan.utils.result.ResultCodeEnum;
+import com.zhongshan.utils.result.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author jtl
@@ -20,53 +26,75 @@ import javax.annotation.Resource;
  */
 @Api(tags = "(住院管理)病人基本资料接口")
 @RestController
-@RequestMapping("/patientBase")
+@RequestMapping("/test/patientBase")
 public class PatientBaseController {
     @Resource
     private PatientBaseService patientBaseService;
+    @Resource
+    private PersonsService personsService;//人员基本资料表
+    @Resource
+    private PayMoneyService payMoneyService;//预交款资料表
 
-    @ApiOperation(value = "获取病人基本资料分页列表")
-    @PostMapping("selectByLimit")
-    public R selectByLimit(
-            @RequestBody@ApiParam(name = "patientBaseVo", value = "查询对象", required = true)
-                    PatientBaseVo patientBaseVo) {
-        //设置分页参数
-        Page<PatientBase> patientBasePage = new Page<>(patientBaseVo.getPage(), patientBaseVo.getLimit());
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>page:");
-        return R.ok().data("items", patientBasePage.getRecords()).data("total", patientBasePage.getTotal());
+    @ApiOperation(value = "获取病人基本资料列表")
+    @GetMapping("selectPatientBase")
+    public R selectPatientBase(
+            @ApiParam(name = "patientBase", value = "查询对象", required = true)
+                    PatientBase patientBase) {
+        //按条件查询 病人基本资料查询
+        //对于曾住院病人，根据其提供的住院号码自动在病案首页表中调出病人基本资料；
+        QueryWrapper<PatientBase> wrapper = new QueryWrapper<>(patientBase);
+        PatientBase result = patientBaseService.getOne(wrapper);
+        return R.ok().data("data",result);
+    }
+    @ApiOperation(value = "获取本校人员或家属基本资料")
+    @GetMapping("selectPersons")
+    public R selectPersons(
+            @ApiParam(name = "patientBase", value = "查询对象", required = true)
+                    Persons persons) {
+        //按条件查询
+        //如果此人为本校人员或家属，则根据其医疗证号码自动从“中大人员基本资料表”中提取个人基本资料，
+        //核对身份并确定个人承担住院费用的百分比。
+        QueryWrapper<Persons> wrapper = new QueryWrapper<>(persons);
+        Persons result = personsService.getOne(wrapper);
+        return R.ok().data("data",result);
     }
 
     @ApiOperation(value = "病人基本资料表录入")
     @PostMapping("add")
-    public R add(
-            @RequestBody@ApiParam(name = "patientBase", value = "添加对象", required = true)
-                    PatientBase patientBase) {
+    public ResultData add(@RequestBody @ApiParam(name = "patientBase", value = "添加对象", required = true)
+                             PatientBase patientBase) {
+        //对于劳保、自费及其他人员应预交押金，且交款数额不得低于规定的下限值，
+        if (patientBase.getPayMoney()<500 && patientBase.getCostType().equalsIgnoreCase("E")){
+            return ResultData.error(ResultCodeEnum.PARAM_ERROR).message("预交押金不得低于500元");
+        }
+        patientBase.setInDate(new Date());
+        return patientBaseService.savePatientBase(patientBase);
 
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>patientBase");
-        return R.ok().message("添加成功!!");
     }
 
     @ApiOperation(value = "病人基本资料表删除")
     @PostMapping("delete")
     public R delete(
-            @RequestBody@ApiParam(name = "patientBase", value = "添加对象", required = true)
-                    String patientNo) {
-
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>patientBase");
-        return R.ok().message("删除成功!!");
+            @RequestBody@ApiParam(name = "patientNos", value = "批量删除", required = true)
+                    List<String> patientNos) {
+        boolean byIds = patientBaseService.removeByIds(patientNos);
+        if(byIds){
+            return R.ok().message("删除成功!!");
+        }else {
+            return R.error();
+        }
     }
 
     @ApiOperation(value = "病人基本资料表修改")
     @PostMapping("update")
     public R update(
-            @RequestBody@ApiParam(name = "patientBase", value = "添加对象", required = true)
+            @RequestBody@ApiParam(name = "patientBase", value = "patientBase对象", required = true)
                     PatientBase patientBase) {
-
-
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>patientBase");
-        return R.ok().message("修改成功!!");
+        boolean updateById = patientBaseService.updateById(patientBase);
+        if (updateById) {
+            return R.ok().message("修改成功!!");
+        } else {
+            return R.error();
+        }
     }
-
 }

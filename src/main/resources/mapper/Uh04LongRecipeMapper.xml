@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhongshan.mapper.Uh04LongRecipeMapper">
 
-    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Uh04LongRecipe">
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.Uh04LongRecipe">
             <id property="patientNo" column="patient_no" jdbcType="CHAR"/>
             <result property="startTime" column="start_time" jdbcType="TIMESTAMP"/>
             <result property="stopTime" column="stop_time" jdbcType="TIMESTAMP"/>

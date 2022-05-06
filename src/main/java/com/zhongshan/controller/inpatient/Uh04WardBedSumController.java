@@ -5,8 +5,8 @@ package com.zhongshan.controller.inpatient;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhongshan.entity.Uh04WardBedSum;
-import com.zhongshan.service.Uh04WardBedSumService;
+import com.zhongshan.entity.inpatient.Uh04WardBedSum;
+import com.zhongshan.service.inpatient.Uh04WardBedSumService;
 import com.zhongshan.utils.result.R;
 import org.springframework.web.bind.annotation.*;
 

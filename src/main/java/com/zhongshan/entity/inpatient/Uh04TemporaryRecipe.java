@@ -1,4 +1,4 @@
-package com.zhongshan.entity;
+package com.zhongshan.entity.inpatient;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -10,29 +10,26 @@ import lombok.Data;
 
 /**
  * 
- * @TableName uh04_long_recipe
+ * @TableName uh04_temporary_recipe
  */
-@TableName(value ="uh04_long_recipe")
+@TableName(value ="uh04_temporary_recipe")
 @Data
-public class Uh04LongRecipe implements Serializable {
+public class Uh04TemporaryRecipe implements Serializable {
+
+    @TableId
+    private String recipeId;
     /**
      * 住院号
      */
-    @TableId
     private String patientNo;
 
     /**
-     * 开始时间
+     * 医嘱日期
      */
-    private Date startTime;
+    private Date recipeDate;
 
     /**
-     * 停止时间
-     */
-    private Date stopTime;
-
-    /**
-     * 科室代码，取自人事编码表
+     * 科室编码，取自人事编码表
      */
     private String sectionCode;
 
@@ -52,7 +49,9 @@ public class Uh04LongRecipe implements Serializable {
     private String medicineName;
 
     /**
-     * 药品用法，如：口服，静滴，静     注，肌注，皮注    心内注射等
+     * 药品用法，如：口服，静滴，静 
+    注，肌注，皮注
+    心内注射等
      */
     private String medicineUse;
 
@@ -67,7 +66,10 @@ public class Uh04LongRecipe implements Serializable {
     private String medicineGauge;
 
     /**
-     * 用药时间；字母转小写：  bid—1天两次  12h—12小时一次  tid—1天三次
+     * 用药时间；字母转小写：
+  bid—1天两次
+  12h—12小时一次
+  tid—1天三次
      */
     private String imtervalTime;
 

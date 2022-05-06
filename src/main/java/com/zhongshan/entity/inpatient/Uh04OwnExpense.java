@@ -1,4 +1,4 @@
-package com.zhongshan.entity;
+package com.zhongshan.entity.inpatient;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -48,4 +48,17 @@ public class Uh04OwnExpense implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Uh04OwnExpense(PatientBase patientBase) {
+        this.patientNo = patientBase.getPatientNo();
+        this.inHospitalDate = patientBase.getInDate();
+        this.patientName = patientBase.getPatientName();
+        this.alreadyMoney = 0.0;
+        this.payMoney = patientBase.getPayMoney();
+        this.outHospitalFlag = false;
+    }
+
+    public Uh04OwnExpense() {
+
+    }
 }

@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface PatientBaseMapper extends BaseMapper<PatientBase> {
 
-
+     public String queryMaxId();
 }
 
 

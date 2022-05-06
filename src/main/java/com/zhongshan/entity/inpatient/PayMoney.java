@@ -8,6 +8,7 @@ import java.util.Date;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -16,10 +17,11 @@ import lombok.Data;
 @TableName(value ="pay_money")
 @Data
 @ApiModel
+@NoArgsConstructor
 public class PayMoney implements Serializable {
 
 
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     @ApiModelProperty(value = "预交款号")
     private Long payId;
 
@@ -66,4 +68,13 @@ public class PayMoney implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public PayMoney(PatientBase patientBase) {
+        this.patientNo = patientBase.getPatientNo();
+        this.patientName = patientBase.getPatientName();
+        this.paydate = patientBase.getInDate();
+        this.money = patientBase.getPayMoney();
+        this.outFlag = 0;
+        this.outDate = patientBase.getOutDate();
+    }
 }

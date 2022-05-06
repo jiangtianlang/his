@@ -15,11 +15,6 @@ import lombok.Data;
 @Data
 public class Ward implements Serializable {
     @TableId
-    @ApiModelProperty(value = "流水id")
-    private Long wardId;
-    /**
-     * 床号
-     */
     @ApiModelProperty(value = "床号")
     private String bedNo;
 
@@ -29,22 +24,20 @@ public class Ward implements Serializable {
     @ApiModelProperty(value = "科别")
     private String section;
 
-    /**
-     * 姓名
-     */
-    @ApiModelProperty(value = "姓名")
-    private String patientName;
-
-    /**
-     * 性别
-     */
-    @ApiModelProperty(value = "性别")
-    private String patientSex;
-    /*逻辑删除*/
-    @TableLogic
-    @ApiModelProperty(value = "逻辑删除1(true) 0(false)")
-    private Integer isDelete;
+    /*是否空床*/
+    @ApiModelProperty(value = "是否空床1(true) 0(false)")
+    private Integer isNull;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Ward(WardUse wardUse,Integer isNull) {
+        this.bedNo = wardUse.getBedNo();
+        this.section = wardUse.getSection();
+        this.isNull = isNull;
+    }
+
+    public Ward() {
+
+    }
 }

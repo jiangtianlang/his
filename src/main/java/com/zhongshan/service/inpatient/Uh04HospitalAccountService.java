@@ -1,6 +1,6 @@
-package com.zhongshan.service;
+package com.zhongshan.service.inpatient;
 
-import com.zhongshan.entity.Uh04HospitalAccount;
+import com.zhongshan.entity.inpatient.Uh04HospitalAccount;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

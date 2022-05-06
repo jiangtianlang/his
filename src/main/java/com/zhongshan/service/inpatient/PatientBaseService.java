@@ -1,7 +1,8 @@
-package com.zhongshan.service;
+package com.zhongshan.service.inpatient;
 
 import com.zhongshan.entity.inpatient.PatientBase;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.utils.result.ResultData;
 
 /**
 * @author 13427
@@ -9,5 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-04-27 18:13:38
 */
 public interface PatientBaseService extends IService<PatientBase> {
-
+    public ResultData savePatientBase(PatientBase patientBase);
 }

@@ -5,8 +5,8 @@ package com.zhongshan.controller.inpatient;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhongshan.entity.Uh04TemporaryRecipe;
-import com.zhongshan.service.Uh04TemporaryRecipeService;
+import com.zhongshan.entity.inpatient.Uh04TemporaryRecipe;
+import com.zhongshan.service.inpatient.Uh04TemporaryRecipeService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
@@ -62,7 +62,14 @@ public class Uh04TemporaryRecipeController  {
      */
     @PostMapping
     public R insert(@RequestBody Uh04TemporaryRecipe uh04TemporaryRecipe) {
-        return R.ok().data("data",this.uh04TemporaryRecipeService.save(uh04TemporaryRecipe));
+        //当录入长期医嘱时，自动将出院标志置为“F”
+        uh04TemporaryRecipe.setOutFlag(false);
+        boolean save = this.uh04TemporaryRecipeService.save(uh04TemporaryRecipe);
+        if (save){
+            return R.ok().message("录入临时医嘱成功");
+        }else {
+            return R.error().message("录入临时医嘱失败");
+        }
     }
 
     /**
@@ -73,7 +80,12 @@ public class Uh04TemporaryRecipeController  {
      */
     @PutMapping
     public R update(@RequestBody Uh04TemporaryRecipe uh04TemporaryRecipe) {
-        return R.ok().data("data",this.uh04TemporaryRecipeService.updateById(uh04TemporaryRecipe));
+        boolean save = this.uh04TemporaryRecipeService.updateById(uh04TemporaryRecipe);
+        if (save){
+            return R.ok().message("修改临时医嘱成功");
+        }else {
+            return R.error().message("修改临时医嘱失败");
+        }
     }
 
     /**
