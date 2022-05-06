@@ -21,6 +21,11 @@ public interface PersonBaseService extends IService<PersonBase> {
         List<PersonBase> selectByMany(PersonBaseVo personBasevo);
 
         Page findByManyPage(PersonBaseVo personBaseVo, Integer page, Integer limit);
+        List<PersonBase> findByName(String personName);
 
-        List<PersonInfo> findByIdName(String personNo,String personName);
+        List<PersonBase> findByManyCondition(PersonBase personBase);
+
+        List<PersonBase> findComprehensiveQuery(String schoolName);
+
+        List<PersonBase> findAll();
 }

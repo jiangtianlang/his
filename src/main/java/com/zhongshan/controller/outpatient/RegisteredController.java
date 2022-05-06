@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(value = "登记病人test",tags = "登记病人据接口API")
+@Api(value = "登记病人test",tags = "（门诊子系统）登记病人据接口API")
 public class RegisteredController {
     @Resource
     private RegisteredService registeredService;

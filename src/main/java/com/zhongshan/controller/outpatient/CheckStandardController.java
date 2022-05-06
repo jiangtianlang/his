@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(value = "检查项目定价资料test",tags = "检查项目定价数据接口API")
+@Api(value = "检查项目定价资料test",tags = "(门诊子系统)检查项目定价数据接口API")
 public class CheckStandardController {
     @Resource
     private CheckStandardService checkStandardService;

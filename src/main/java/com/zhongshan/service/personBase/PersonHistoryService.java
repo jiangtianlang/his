@@ -15,4 +15,6 @@ public interface PersonHistoryService extends IService<PersonHistory> {
     boolean updateMany(PersonHistory personHistory);
 
     PersonHistory select(String personNo);
+
+    PersonHistory findPersonHistory(String personNo);
 }

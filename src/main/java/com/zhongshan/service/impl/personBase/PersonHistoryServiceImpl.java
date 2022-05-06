@@ -35,6 +35,12 @@ public class PersonHistoryServiceImpl extends ServiceImpl<PersonHistoryMapper, P
        PersonHistory personHistory= personHistoryMapper.selectById(personNo);
         return personHistory;
     }
+
+    @Override
+    public PersonHistory findPersonHistory(String personNo) {
+        PersonHistory personHistory= personHistoryMapper.selectById(personNo);
+        return personHistory;
+    }
 }
 
 

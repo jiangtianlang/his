@@ -159,8 +159,7 @@ public class PersonBase implements Serializable {
      * 
      */
     private String specialityDate;
-    @TableLogic
-    private Integer isDelete;
+
 
     /**
      * 

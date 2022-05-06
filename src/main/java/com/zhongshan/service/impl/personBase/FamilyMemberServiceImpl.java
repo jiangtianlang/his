@@ -6,6 +6,8 @@ import com.zhongshan.service.personBase.FamilyMemberService;
 import com.zhongshan.mapper.FamilyMemberMapper;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
 * @author 13427
 * @description 针对表【family_member】的数据库操作Service实现
@@ -14,7 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class FamilyMemberServiceImpl extends ServiceImpl<FamilyMemberMapper, FamilyMember>
     implements FamilyMemberService{
-
+    @Resource
+    private FamilyMemberMapper familyMemberMapper;
+    @Override
+    public FamilyMember findFamilyMember(String personNo) {
+        FamilyMember familyMember=familyMemberMapper.selectById(personNo);
+        return familyMember;
+    }
 }
 
 

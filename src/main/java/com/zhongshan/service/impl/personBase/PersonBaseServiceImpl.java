@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author 13427
@@ -31,33 +33,32 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
         int rows=personBaseMapper.insert(personBase);
         return rows>0?true:false;
     }
-
     @Override
     public List<PersonBase> findById(String personNo) {
-        List<PersonBase> list= new ArrayList<>();
-        PersonBase personBase=personBaseMapper.selectById(personNo);
-        list.add(personBase);
+        Map<String,Object> map=new HashMap<>();
+        map.put("person_no","personNo");
+        List<PersonBase> list=personBaseMapper.selectByMap(map);
         return list;
     }
     private QueryWrapper<PersonBase> getQueryWrapper(PersonBaseVo personBaseVo){
         //查询
         QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
-        if(StringUtils.isNotBlank(personBaseVo.getPost_no())){
-            queryWrapper.like("post_no",personBaseVo.getPost_no());
+        if(StringUtils.isNotBlank(personBaseVo.getPostNo())){
+            queryWrapper.like("post_no",personBaseVo.getPostNo());
         }
-        if(personBaseVo.getStart_in_work_date()!=null
-                && personBaseVo.getEnd_in_work_date()!=null){
+        if(personBaseVo.getStartInWorkDate()!=null
+                && personBaseVo.getEndInWorkDate()!=null){
             queryWrapper.between("Time",
-                    personBaseVo.getStart_in_work_date(),
-                    personBaseVo.getEnd_in_work_date());
+                    personBaseVo.getStartInWorkDate(),
+                    personBaseVo.getEndInWorkDate());
         }
         if(personBaseVo.getDegree()!=null){
             queryWrapper.eq("degree",personBaseVo.getDegree());
         }
-        if(personBaseVo.getTitle_no()!=null){
-            queryWrapper.like("title_no",personBaseVo.getTitle_no());
+        if(personBaseVo.getTitleNo()!=null){
+            queryWrapper.like("title_no",personBaseVo.getTitleNo());
         }
-        queryWrapper.orderByDesc("Time");
+
         return   queryWrapper;
     }
     @Override
@@ -76,12 +77,47 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
     }
 
     @Override
-    public List<PersonInfo> findByIdName(String personNo, String personName) {
-        List<PersonInfo> list= personBaseMapper.findByIdName(personNo,personName);
+    public List<PersonBase> findByName(String personName) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("person_name","personName");
+        List<PersonBase> list=personBaseMapper.selectByMap(map);
         return list;
     }
 
+    @Override
+    public List<PersonBase> findByManyCondition(PersonBase personBase) {
+        //查询
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        if(StringUtils.isNotBlank(personBase.getPostNo())){
+            queryWrapper.like("post_no",personBase.getPostNo());
+        }
+        if(personBase.getTitleNo()!=null){
+           queryWrapper.like("title_no",personBase.getTitleNo());
+        }
+        if(personBase.getDegree()!=null){
+            queryWrapper.like("degree",personBase.getDegree());
+        }
+        if(personBase.getInZsuDate()!=null){
+            queryWrapper.like("in_zsu_date",personBase.getInZsuDate());
+        }
+        List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
+        return list;
+    }
+    @Override
+    public List<PersonBase> findComprehensiveQuery(String schoolName) {
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("school_name",schoolName);
+        List<PersonBase> list=personBaseMapper.selectByMap(map);
+        return list;
+    }
+
+    @Override
+    public List<PersonBase> findAll() {
+        List<PersonBase> list=personBaseMapper.selectList(null);
+        return list;
+    }
 }
+
 
 
 

@@ -12,10 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(value = "个人简历基本资料test",tags = "个人简历数据接口API")
+@Api(value = "个人简历基本资料test",tags = "(人事管理子系统)个人简历数据接口API")
 public class PersonHistoryController {
     @Resource
     private PersonHistoryService personHistoryService;
+    @RequestMapping(value = "/test/findPersonHistory",method = RequestMethod.GET)
+    @ApiOperation(value = "查询个人简历信息接口",notes = "",httpMethod = "GET", response = String.class)
+    public R findPersonHistory(String personNo){
+        PersonHistory personHistory=personHistoryService.findPersonHistory(personNo);
+        return R.ok().data("data",personHistory).message("查询成功");
+    }
+
+
+
+
+
+
     @RequestMapping(value = "/test/addPersonHistory",method = RequestMethod.POST)
     @ApiOperation(value = "添加个人简历资料接口",notes = "",httpMethod = "POST", response = String.class)
     public R addPersonHistory(PersonHistory personHistory){

@@ -12,10 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(value = "家庭主要成员及主要社会资料test",tags = "人事数据接口API")
+@Api(value = "家庭主要成员及主要社会资料test",tags = "(人事管理子系统)人事数据接口API")
 public class FamilyMemberController {
     @Resource
     private FamilyMemberService familyMemberService;
+    @RequestMapping(value = "/test/findFamilyMember",method = RequestMethod.GET)
+    @ApiOperation(value = "查询家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    public R findFamilyMember(String personNo){
+        FamilyMember familyMember=familyMemberService.findFamilyMember(personNo);
+        return R.ok().data("data",familyMember).message("查询成功");
+    }
+
+
+
+
+
+
+
     @RequestMapping(value = "/test/addfamilyMember",method = RequestMethod.GET)
     @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R addfamilyMember(FamilyMember familyMember){

@@ -15,7 +15,7 @@ import java.util.List;
 * @Entity com.zhongshan.entity.PersonBase
 */
 public interface PersonBaseMapper extends BaseMapper<PersonBase> {
-    List<PersonInfo> findByIdName(@Param("personNo") String personNo,@Param("personName")  String personName);
+    List<PersonBase> findComprehensiveQuery(String schoolName);
 }
 
 

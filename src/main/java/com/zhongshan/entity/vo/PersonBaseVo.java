@@ -12,11 +12,11 @@ import java.util.Date;
 @NoArgsConstructor //无参构造器
 @ToString
 public class PersonBaseVo {
-    private String post_no;
-    private String title_no;
+    private String postNo;
+    private String titleNo;
     private String degree;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date start_in_work_date;
+    private Date startInWorkDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date end_in_work_date;
+    private Date endInWorkDate;
 }
