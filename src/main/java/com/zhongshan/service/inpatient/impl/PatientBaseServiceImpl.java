@@ -4,11 +4,8 @@ import cn.hutool.core.util.IdcardUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.inpatient.*;
 import com.zhongshan.mapper.PayMoneyMapper;
-import com.zhongshan.service.inpatient.PatientBaseService;
+import com.zhongshan.service.inpatient.*;
 import com.zhongshan.mapper.PatientBaseMapper;
-import com.zhongshan.service.inpatient.Uh04OwnExpenseService;
-import com.zhongshan.service.inpatient.WardService;
-import com.zhongshan.service.inpatient.WardUseService;
 import com.zhongshan.utils.ValidatorUtil;
 import com.zhongshan.utils.result.ResultCodeEnum;
 import com.zhongshan.utils.result.ResultData;
@@ -32,7 +29,7 @@ public class PatientBaseServiceImpl extends ServiceImpl<PatientBaseMapper, Patie
     @Resource
     private PatientBaseMapper patientBaseMapper;
     @Resource
-    private PayMoneyMapper payMoneyMapper;
+    private PayMoneyService payMoneyService;
     @Resource
     private WardUseService wardUseService;
     @Resource
@@ -44,6 +41,11 @@ public class PatientBaseServiceImpl extends ServiceImpl<PatientBaseMapper, Patie
             rollbackFor = {Exception.class}
     )
     public ResultData savePatientBase(PatientBase patientBase) {
+        String patientNo = patientBase.getPatientNo();
+        PatientBase selectById = patientBaseMapper.selectById(patientNo);
+        if (selectById!=null) {
+            return ResultData.error().message("重复录入").data("data",selectById);
+        }
         //数据校验
         if (!IdcardUtil.isValidCard(patientBase.getCapacityNo())) {
             //身份证不合法
@@ -55,39 +57,34 @@ public class PatientBaseServiceImpl extends ServiceImpl<PatientBaseMapper, Patie
             e.printStackTrace();
             return ResultData.error(ResultCodeEnum.PARAM_ERROR).message("身份证获取生日失败");
         }
-        if (ValidatorUtil.isMobile(patientBase.getHeTel())){
+        if (!ValidatorUtil.isMobile(patientBase.getHeTel())){
             return ResultData.error(ResultCodeEnum.PARAM_ERROR).message("手机号格式不对!");
         }
         //而对于第一次住院病人则自动为其产生住院号码，
-        if (StringUtils.isEmpty(patientBase.getPatientNo())){
-            String maxId = patientBaseMapper.queryMaxId();
-            if (maxId.substring(0,4).equals(Year.now().toString())) {
-                patientBase.setPatientNo(Long.valueOf(maxId)+1+"");
-            }else {
-                patientBase.setPatientNo(Year.now()+"0000");
-            }
+        if (StringUtils.isEmpty(patientNo)){
+            return ResultData.error(ResultCodeEnum.PARAM_ERROR).message("住院号有误!");
         }
+        PayMoney payMoney;
+
         //当病人基本资料确认无误后，即写入“病人基本资料表”中。
-        PayMoney payMoney = null;
-        try {
-            super.save(patientBase);
-            payMoney = new PayMoney(patientBase);
-            //并将交款资料自动填入“病人预交款情况登记表”及
-            payMoneyMapper.insert(payMoney);
-            //累加填入“自费病人资金使用情况表”，
-            Uh04OwnExpense ownExpense = new Uh04OwnExpense(patientBase);
-            ownExpenseService.save(ownExpense);
-            //更新床位使用表
-            WardUse wardUse = new WardUse(patientBase);
-            wardUseService.save(wardUse);
-            Ward ward = new Ward(wardUse,0);
-            wardService.updateById(ward);
-        } catch (Exception e) {
-            e.printStackTrace();
+        payMoney = new PayMoney(patientBase);
+        //并将交款资料自动填入“病人预交款情况登记表”及
+        payMoneyService.save(payMoney);
+        //累加填入“自费病人资金使用情况表”，
+        Uh04OwnExpense ownExpense = new Uh04OwnExpense(patientBase);
+        ownExpenseService.save(ownExpense);
+        //更新床位使用表
+        WardUse wardUse = new WardUse(patientBase);
+        wardUseService.save(wardUse);
+        Ward ward = new Ward(wardUse,0);
+        wardService.updateById(ward);
+
+        if (!super.save(patientBase)) {
             return ResultData.error().message("录入失败!!请稍后重试");
+        } else {
+            //同时自动打印交款单据。
+            return ResultData.ok().data("交款单据",payMoney);
         }
-        //同时自动打印交款单据。
-        return ResultData.ok().data("交款单据",payMoney);
     }
 
 }

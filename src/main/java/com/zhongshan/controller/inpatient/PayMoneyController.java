@@ -33,18 +33,18 @@ public class PayMoneyController{
         return R.ok().data("payMonies", payMonies).data("total", payMonies.size());
     }
 
-    @ApiOperation(value = "病人预交款资料录入")
-    @PostMapping("add")
-    public R add(
-            @RequestBody@ApiParam(name = "payMoney", value = "添加对象", required = true)
-                    PayMoney payMoney) {
-        boolean save = payMoneyService.save(payMoney);
-        if (save) {
-            return R.ok().message("添加成功!!");
-        } else {
-            return R.error().message("添加失败!!");
-        }
-    }
+//    @ApiOperation(value = "病人预交款资料录入")
+//    @PostMapping("add")
+//    public R add(
+//            @RequestBody@ApiParam(name = "payMoney", value = "添加对象", required = true)
+//                    PayMoney payMoney) {
+//        boolean save = payMoneyService.save(payMoney);
+//        if (save) {
+//            return R.ok().message("添加成功!!");
+//        } else {
+//            return R.error().message("添加失败!!");
+//        }
+//    }
 
     @ApiOperation(value = "病人预交款资料批量删除")
     @PostMapping("delete")

@@ -9,5 +9,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2022-04-27 18:13:38
 */
 public interface Uh04DayCureExpenseService extends IService<Uh04DayCureExpense> {
-
+    void scheduledTask();
 }

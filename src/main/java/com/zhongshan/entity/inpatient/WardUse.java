@@ -20,7 +20,7 @@ public class WardUse implements Serializable {
     /**
      * 
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private String wardId;
 
     /**

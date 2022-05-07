@@ -28,15 +28,10 @@ public class Uh04TemporaryRecipeServiceImpl extends ServiceImpl<Uh04TemporaryRec
     @Override
     public boolean save(Uh04TemporaryRecipe entity) {
         //每笔记录输入完毕后,自动将有关内容填入“分户医疗费用明细表”中。
-        try {
-            super.save(entity);
-            Uh04CrueInfoExpense infoExpense = new Uh04CrueInfoExpense(entity);
-            uh04CrueInfoExpenseMapper.insert(infoExpense);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        Uh04CrueInfoExpense infoExpense = new Uh04CrueInfoExpense(entity);
+        uh04CrueInfoExpenseMapper.insert(infoExpense);
+        return super.save(entity);
+
     }
     @Transactional(
             rollbackFor = {Exception.class}
@@ -44,19 +39,13 @@ public class Uh04TemporaryRecipeServiceImpl extends ServiceImpl<Uh04TemporaryRec
     @Override
     public boolean updateById(Uh04TemporaryRecipe entity) {
         //修改记录时，自动修改“分户医疗费用明细表”中相应记录的费用字段值。
-        try {
-            super.updateById(entity);
-            Uh04CrueInfoExpense infoExpense = new Uh04CrueInfoExpense(entity);
-            QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
-            wrapper.eq("recipe_id",entity.getRecipeId());
-            Uh04CrueInfoExpense expense = uh04CrueInfoExpenseMapper.selectOne(wrapper);
-            infoExpense.setId(expense.getId());
-            uh04CrueInfoExpenseMapper.updateById(infoExpense);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+        Uh04CrueInfoExpense infoExpense = new Uh04CrueInfoExpense(entity);
+        QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
+        wrapper.eq("recipe_id",entity.getRecipeId());
+        Uh04CrueInfoExpense expense = uh04CrueInfoExpenseMapper.selectOne(wrapper);
+        infoExpense.setId(expense.getId());
+        uh04CrueInfoExpenseMapper.updateById(infoExpense);
+        return super.updateById(entity);
     }
 }
 

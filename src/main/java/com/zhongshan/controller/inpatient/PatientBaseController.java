@@ -2,9 +2,11 @@ package com.zhongshan.controller.inpatient;
 
 
 
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zhongshan.entity.Persons;
 import com.zhongshan.entity.inpatient.PatientBase;
+import com.zhongshan.mapper.PatientBaseMapper;
 import com.zhongshan.service.inpatient.PatientBaseService;
 import com.zhongshan.service.inpatient.PayMoneyService;
 import com.zhongshan.service.PersonsService;
@@ -17,6 +19,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.Year;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +37,8 @@ public class PatientBaseController {
     private PersonsService personsService;//人员基本资料表
     @Resource
     private PayMoneyService payMoneyService;//预交款资料表
+    @Resource
+    private PatientBaseMapper patientBaseMapper;
 
     @ApiOperation(value = "获取病人基本资料列表")
     @GetMapping("selectPatientBase")
@@ -43,8 +48,18 @@ public class PatientBaseController {
         //按条件查询 病人基本资料查询
         //对于曾住院病人，根据其提供的住院号码自动在病案首页表中调出病人基本资料；
         QueryWrapper<PatientBase> wrapper = new QueryWrapper<>(patientBase);
-        PatientBase result = patientBaseService.getOne(wrapper);
-        return R.ok().data("data",result);
+        List<PatientBase> list = patientBaseService.list(wrapper);
+        if(ObjectUtil.isEmpty(list)){
+            //而对于第一次住院病人则自动为其产生住院号码，
+            String maxId = patientBaseMapper.queryMaxId();
+            if (maxId.substring(0,4).equals(Year.now().toString())) {
+                patientBase.setPatientNo(Long.valueOf(maxId)+1+"");
+            }else {
+                patientBase.setPatientNo(Year.now()+"0000");
+            }
+            return R.ok().data("data",patientBase);
+        }
+        return R.ok().data("data",list);
     }
     @ApiOperation(value = "获取本校人员或家属基本资料")
     @GetMapping("selectPersons")

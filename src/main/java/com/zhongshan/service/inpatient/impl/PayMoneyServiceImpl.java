@@ -28,21 +28,6 @@ public class PayMoneyServiceImpl extends ServiceImpl<PayMoneyMapper, PayMoney>
             rollbackFor = {Exception.class}
     )
     @Override
-    public boolean save(PayMoney entity) {
-        PatientBase patientBase = new PatientBase();
-        patientBase.setPatientNo(entity.getPatientNo());
-        patientBase.setPayMoney(entity.getMoney());
-        if (patientBaseService.save(patientBase) && super.save(entity)) {
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    @Override
     public boolean updateById(PayMoney entity) {
         PatientBase patientBase = new PatientBase();
         patientBase.setPatientNo(entity.getPatientNo());
@@ -53,12 +38,9 @@ public class PayMoneyServiceImpl extends ServiceImpl<PayMoneyMapper, PayMoney>
             return false;
         }
     }
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public boolean removeByIds(Collection<? extends Serializable> idList) {
-        try {
             List<PayMoney> payMonies = baseMapper.selectBatchIds(idList);
             for (PayMoney payMoney : payMonies) {
                 PatientBase patientBase = new PatientBase();
@@ -66,12 +48,7 @@ public class PayMoneyServiceImpl extends ServiceImpl<PayMoneyMapper, PayMoney>
                 patientBase.setPayMoney(0.0);
                 patientBaseService.updateById(patientBase);
             }
-
             return super.removeByIds(idList);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 }
 

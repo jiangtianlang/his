@@ -1,4 +1,4 @@
-package com.zhongshan.service;
+package com.zhongshan.service.inpatient;
 
 import com.zhongshan.entity.Subject;
 import com.baomidou.mybatisplus.extension.service.IService;

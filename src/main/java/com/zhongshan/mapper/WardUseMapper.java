@@ -2,6 +2,9 @@ package com.zhongshan.mapper;
 
 import com.zhongshan.entity.inpatient.WardUse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhongshan.entity.inpatient.vo.WardUseVo;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -11,6 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface WardUseMapper extends BaseMapper<WardUse> {
 
+    List<WardUseVo> totalWardUse();
 }
 
 

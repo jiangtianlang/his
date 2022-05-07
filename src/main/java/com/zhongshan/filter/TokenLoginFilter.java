@@ -92,6 +92,6 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     //3 认证失败调用的方法
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed)
             throws IOException, ServletException {
-        ResponseUtil.out(response, R.error().message("登陆失败"));
+        ResponseUtil.out(response, R.error().message("账号或密码错误!!"));
     }
 }

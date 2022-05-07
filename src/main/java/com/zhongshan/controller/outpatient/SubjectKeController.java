@@ -1,7 +1,7 @@
 package com.zhongshan.controller.outpatient;
 
 import com.zhongshan.entity.Subject;
-import com.zhongshan.service.SubjectService;
+import com.zhongshan.service.inpatient.SubjectService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

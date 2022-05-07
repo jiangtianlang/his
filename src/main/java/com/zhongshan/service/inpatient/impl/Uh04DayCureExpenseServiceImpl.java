@@ -1,10 +1,24 @@
 package com.zhongshan.service.inpatient.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhongshan.entity.inpatient.Uh04CrueInfoExpense;
 import com.zhongshan.entity.inpatient.Uh04DayCureExpense;
+import com.zhongshan.entity.inpatient.Ward;
+import com.zhongshan.entity.inpatient.vo.WardUseVo;
+import com.zhongshan.mapper.Uh04CrueInfoExpenseMapper;
+import com.zhongshan.mapper.WardUseMapper;
 import com.zhongshan.service.inpatient.Uh04DayCureExpenseService;
 import com.zhongshan.mapper.Uh04DayCureExpenseMapper;
+import com.zhongshan.service.inpatient.WardUseService;
+import com.zhongshan.utils.result.ResultData;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 
 /**
 * @author 13427
@@ -14,7 +28,38 @@ import org.springframework.stereotype.Service;
 @Service
 public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpenseMapper, Uh04DayCureExpense>
     implements Uh04DayCureExpenseService{
+    @Resource
+    private WardUseService wardUseService;
+    @Resource
+    private WardUseMapper wardUseMapper;
+    @Resource
+    private Uh04CrueInfoExpenseMapper uh04CrueInfoExpenseMapper;
 
+    //汇总产生当日分户各项医疗费用日结记录
+//    @Scheduled(cron = "* * * * * ? *")
+//    @Transactional(
+//            rollbackFor = {Exception.class}
+//    )
+    public void scheduledTask(){
+        //自动写入“分户医疗费用日结表”。统计过程中自动将自费或劳保病人当日费用开支填入“自费病人资金使用情况表”
+        //汇总产生当日住院部各项医疗费用帐目，并自动写入“总帐”及明细帐。
+        List<WardUseVo> wardUseVos = wardUseMapper.totalWardUse();
+        //拿到所有住院数据,进行处理
+        for (WardUseVo wardUseVo : wardUseVos) {
+            String patientNo = wardUseVo.getPatientNo();
+            if (patientNo !=null){
+                //今日总支出
+                double ownExpense = 0;
+                QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
+                wrapper.le("to_days(CURDATE()) - to_days(recipe_date)",1);
+                List<Uh04CrueInfoExpense> uh04CrueInfoExpenses = uh04CrueInfoExpenseMapper.selectList(wrapper);
+                for (Uh04CrueInfoExpense uh04CrueInfoExpense : uh04CrueInfoExpenses) {
+                    ownExpense += uh04CrueInfoExpense.getExponse();
+
+                }
+            }
+        }
+    }
 }
 
 

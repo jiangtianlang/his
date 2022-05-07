@@ -6,6 +6,7 @@ import com.zhongshan.utils.result.R;
 import com.zhongshan.entity.StandardExpense;
 import com.zhongshan.service.StandardExpenseService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,14 +27,14 @@ public class  StandardExpenseController{
     /**
      * 分页查询所有数据
      *
-     * @param page 分页对象
      * @param standardExpense 查询实体
      * @return 所有数据
      */
     @GetMapping
-    public R selectAll(Page<StandardExpense> page, StandardExpense standardExpense) {
-	this.standardExpenseService.page(page, new QueryWrapper<>(standardExpense));
-        return R.ok() ;
+    @ApiOperation(value = "查询所有数据")
+    public R selectAll(StandardExpense standardExpense) {
+        List<StandardExpense> standardExpenses = this.standardExpenseService.list(new QueryWrapper<>(standardExpense));
+        return R.ok().data("data",standardExpenses);
     }
 
     /**
@@ -43,9 +44,10 @@ public class  StandardExpenseController{
      * @return 单条数据
      */
     @GetMapping("{id}")
+    @ApiOperation(value = "通过主键查询单条数据")
     public R selectOne(@PathVariable Serializable id) {
-	this.standardExpenseService.getById(id);
-        return R.ok() ;
+        StandardExpense standardExpense = this.standardExpenseService.getById(id);
+        return R.ok().data("data",standardExpense);
     }
 
     /**
@@ -55,9 +57,14 @@ public class  StandardExpenseController{
      * @return 新增结果
      */
     @PostMapping
+    @ApiOperation(value = "新增数据")
     public R insert(@RequestBody StandardExpense standardExpense) {
-        this.standardExpenseService.save(standardExpense);
-	return R.ok() ;
+        boolean save = this.standardExpenseService.save(standardExpense);
+        if (save) {
+            return R.ok() ;
+        } else {
+            return R.error() ;
+        }
     }
 
     /**
@@ -67,9 +74,14 @@ public class  StandardExpenseController{
      * @return 修改结果
      */
     @PutMapping
+    @ApiOperation(value = "修改数据")
     public R update(@RequestBody StandardExpense standardExpense) {
-	this.standardExpenseService.updateById(standardExpense);
-        return R.ok() ;
+        boolean b = this.standardExpenseService.updateById(standardExpense);
+        if (b) {
+            return R.ok() ;
+        } else {
+            return R.error();
+        }
     }
 
     /**
@@ -80,7 +92,12 @@ public class  StandardExpenseController{
      */
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
-	this.standardExpenseService.removeByIds(idList);
-        return R.ok() ;
+        boolean b = this.standardExpenseService.removeByIds(idList);
+
+        if (b) {
+            return R.ok() ;
+        } else {
+            return R.error();
+        }
     }
 }

@@ -11,7 +11,7 @@ public class ResultData implements Serializable {
     private Integer code;
     private Object data;//String  List  Map  User  json
     private String msg;
-
+    HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
 
     public Boolean getSuccess() {
         return success;
@@ -154,7 +154,6 @@ public class ResultData implements Serializable {
      * @date 2020/11/16
      */
     public ResultData data(String key, Object value) {
-        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
         objectObjectHashMap.put(key, value);
         this.data=objectObjectHashMap;
         return this;

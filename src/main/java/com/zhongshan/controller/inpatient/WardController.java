@@ -9,6 +9,7 @@ import com.zhongshan.entity.inpatient.WardUse;
 import com.zhongshan.service.inpatient.WardService;
 import com.zhongshan.service.inpatient.WardUseService;
 import com.zhongshan.utils.result.R;
+import com.zhongshan.utils.result.ResultData;
 import io.swagger.annotations.Api;
 
 import io.swagger.annotations.ApiOperation;
@@ -42,13 +43,13 @@ public class WardController  {
     }
 
     @ApiOperation(value = "床位记录查询")
-    @GetMapping("selectByConditions")
-    public R selectByConditions(
-            @RequestBody @ApiParam(name = "WardUse", value = "查询对象", required = true)
-                    WardUse wardUse) {
-        QueryWrapper<WardUse> wrapper = new QueryWrapper<>(wardUse);
-        List<WardUse> wardUses = wardUseService.list(wrapper);
-        return R.ok().data("items", wardUses).data("total", wardUses.size());
+    @GetMapping("selectAll")
+    public ResultData selectAll(@ApiParam(name = "WardUse", value = "查询对象", required = true)
+                                            Ward ward) {
+
+        //床位登记表中所有项目及床位统计值（总床位数目，空床数目，实际使用率）。
+        QueryWrapper<Ward> wrapper = new QueryWrapper<>(ward);
+        return wardUseService.totalWardUse(wrapper);
     }
 
 //    @ApiOperation(value = "床位情况登记")
