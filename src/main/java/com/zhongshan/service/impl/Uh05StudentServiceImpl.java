@@ -1,10 +1,16 @@
 package com.zhongshan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh05Student;
 import com.zhongshan.service.Uh05StudentService;
 import com.zhongshan.mapper.Uh05StudentMapper;
+import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 13427
@@ -14,7 +20,62 @@ import org.springframework.stereotype.Service;
 @Service
 public class Uh05StudentServiceImpl extends ServiceImpl<Uh05StudentMapper, Uh05Student>
     implements Uh05StudentService{
+    @Resource
+    private Uh05StudentMapper uh05StudentMapper;
+    @Override
+    public R insertStudent(Uh05Student uh05Student) {
+        int row=uh05StudentMapper.insert(uh05Student);
+        if(row>0)
+        return R.ok().message("添加成功");
+        else
+            return R.ok().message("添加失败");
+    }
 
+    @Override
+    public R updateStudent(Uh05Student uh05Student) {
+        int row=uh05StudentMapper.updateById(uh05Student);
+        if(row>0)
+            return R.ok().message("修改成功");
+        else
+            return R.ok().message("修改失败");
+    }
+
+    @Override
+    public R deleteStudent(Uh05Student uh05Student) {
+        int row=uh05StudentMapper.deleteById(uh05Student);
+        if(row>0)
+            return R.ok().message("删除成功");
+        else
+            return R.ok().message("删除失败");
+    }
+
+    @Override
+    public R queryStudent(Uh05Student uh05Student) {
+        QueryWrapper<Uh05Student> queryWrapper=new QueryWrapper<>();
+        if(StringUtils.isNotBlank(uh05Student.getStudentNo())){
+            queryWrapper.like("student_no",uh05Student.getStudentNo());
+        }
+        if (StringUtils.isNotBlank(uh05Student.getSex())){
+            queryWrapper.like("sex",uh05Student.getSex());
+        }
+        if(StringUtils.isNotBlank(uh05Student.getName())){
+            queryWrapper.like("name",uh05Student.getName());
+        }
+        if(StringUtils.isNotBlank(uh05Student.getDepartmentNo())){
+            queryWrapper.like("department_no",uh05Student.getDepartmentNo());
+        }
+        if(StringUtils.isNotBlank(uh05Student.getMajorFieldNo())){
+            queryWrapper.like("major_field_no",uh05Student.getMajorFieldNo());
+        }
+        if(uh05Student.getBirthDate()!=null){
+            queryWrapper.like("birth_date",uh05Student.getBirthDate());
+        }
+        List<Uh05Student> list=uh05StudentMapper.selectList(queryWrapper);
+        if(list.size()>0)
+            return R.ok().data("date",list);
+        else
+            return R.ok().message("没有数据");
+    }
 }
 
 
