@@ -39,7 +39,7 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
         if(authRequest != null) {
             SecurityContextHolder.getContext().setAuthentication(authRequest);
         }else {
-            ResponseUtil.out(response,R.error().code(20002).message("登录失效"));
+            ResponseUtil.out(response,R.error().code(20002).message("对不起您没有请求"+request.getRequestURL()+"的权限!!登录失效"));
             return;
         }
         chain.doFilter(request,response);

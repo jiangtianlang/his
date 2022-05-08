@@ -3,8 +3,7 @@ package com.zhongshan.controller.inpatient;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhongshan.entity.Subject;
+import com.zhongshan.entity.inpatient.Subject;
 import com.zhongshan.service.inpatient.SubjectService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;

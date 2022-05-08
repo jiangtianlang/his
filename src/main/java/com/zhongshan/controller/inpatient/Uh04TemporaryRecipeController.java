@@ -9,6 +9,7 @@ import com.zhongshan.entity.inpatient.Uh04TemporaryRecipe;
 import com.zhongshan.service.inpatient.Uh04TemporaryRecipeService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,7 +23,7 @@ import java.util.List;
  * @since 2022-04-29 21:28:16
  */
 @RestController
-@RequestMapping("uh04TemporaryRecipe")
+@RequestMapping("test/uh04TemporaryRecipe")
 @Api(tags = "(住院管理)临时医嘱管理接口")
 public class Uh04TemporaryRecipeController  {
     /**
@@ -34,13 +35,14 @@ public class Uh04TemporaryRecipeController  {
     /**
      * 分页查询所有数据
      *
-     * @param page 分页对象
+
      * @param uh04TemporaryRecipe 查询实体
      * @return 所有数据
      */
+    @ApiOperation(value = "查询所有数据")
     @GetMapping
-    public R selectAll(Page<Uh04TemporaryRecipe> page, Uh04TemporaryRecipe uh04TemporaryRecipe) {
-        return R.ok().data("data",this.uh04TemporaryRecipeService.page(page, new QueryWrapper<>(uh04TemporaryRecipe)));
+    public R selectAll(Uh04TemporaryRecipe uh04TemporaryRecipe) {
+        return R.ok().data("data",this.uh04TemporaryRecipeService.list( new QueryWrapper<>(uh04TemporaryRecipe)));
     }
 
     /**
@@ -49,6 +51,7 @@ public class Uh04TemporaryRecipeController  {
      * @param id 主键
      * @return 单条数据
      */
+    @ApiOperation(value = "通过id查询单条数据")
     @GetMapping("{id}")
     public R selectOne(@PathVariable Serializable id) {
         return R.ok().data("data",this.uh04TemporaryRecipeService.getById(id));
@@ -60,6 +63,7 @@ public class Uh04TemporaryRecipeController  {
      * @param uh04TemporaryRecipe 实体对象
      * @return 新增结果
      */
+    @ApiOperation(value = "新增数据")
     @PostMapping
     public R insert(@RequestBody Uh04TemporaryRecipe uh04TemporaryRecipe) {
         //当录入长期医嘱时，自动将出院标志置为“F”
@@ -78,6 +82,7 @@ public class Uh04TemporaryRecipeController  {
      * @param uh04TemporaryRecipe 实体对象
      * @return 修改结果
      */
+    @ApiOperation(value = "修改数据")
     @PutMapping
     public R update(@RequestBody Uh04TemporaryRecipe uh04TemporaryRecipe) {
         boolean save = this.uh04TemporaryRecipeService.updateById(uh04TemporaryRecipe);
@@ -94,6 +99,7 @@ public class Uh04TemporaryRecipeController  {
      * @param idList 主键结合
      * @return 删除结果
      */
+    @ApiOperation(value = "删除数据")
     @DeleteMapping
     public R delete(@RequestParam("idList") List<Long> idList) {
         return R.ok().data("data",this.uh04TemporaryRecipeService.removeByIds(idList));

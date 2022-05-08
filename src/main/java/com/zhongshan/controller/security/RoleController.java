@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2020-01-12
  */
 @RestController
-@RequestMapping("/admin/acl/role")
+@RequestMapping("test/admin/role")
 @Api(tags = "(系统管理)角色管理接口")
 //@CrossOrigin
 public class RoleController {
@@ -31,21 +33,14 @@ public class RoleController {
     private RoleService roleService;
 
     @ApiOperation(value = "获取角色分页列表")
-    @GetMapping("{page}/{limit}")
-    public R index(
-            @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable Long page,
-
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable Long limit,
-            Role role) {
-        Page<Role> pageParam = new Page<>(page, limit);
+    @GetMapping
+    public R index(Role role) {
         QueryWrapper<Role> wrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(role.getRoleName())) {
             wrapper.like("role_name",role.getRoleName());
         }
-        roleService.page(pageParam,wrapper);
-        return R.ok().data("items", pageParam.getRecords()).data("total", pageParam.getTotal());
+        List<Role> roles = roleService.list(wrapper);
+        return R.ok().data("items", roles).data("total", roles.size());
     }
 
     @ApiOperation(value = "新增角色")

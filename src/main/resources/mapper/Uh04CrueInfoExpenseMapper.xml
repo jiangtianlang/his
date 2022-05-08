@@ -28,4 +28,17 @@
         quality,y_code,h_code,
         write_account_flag,out_flag
     </sql>
+    <select id="selectByDate" resultType="com.zhongshan.entity.vo.Income">
+        SELECT s.subject_name,sum(c.exponse) exponse FROM subject s
+            LEFT JOIN uh04_crue_info_expense c on c.cure_type=s.subject_name
+        <where>
+            <if test="month != null">
+                month(c.recipe_date) = #{month}
+            </if>
+            <if test="year != null">
+                and YEAR(c.recipe_date) = #{year}
+            </if>
+        </where>
+        GROUP BY s.subject_name;
+    </select>
 </mapper>

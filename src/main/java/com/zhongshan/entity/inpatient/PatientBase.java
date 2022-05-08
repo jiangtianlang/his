@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -27,7 +28,8 @@ public class PatientBase implements Serializable {
     /**
      * 入院日期YYYYMMDD
      */
-    @ApiModelProperty(value = "入院日期YYYYMMDD")
+    @ApiModelProperty(value = "入院日期yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date inDate;
 
     /**
@@ -46,6 +48,7 @@ public class PatientBase implements Serializable {
      * 出生日期
      */
     @ApiModelProperty(value = "出生日期")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date birthDate;
 
     /**

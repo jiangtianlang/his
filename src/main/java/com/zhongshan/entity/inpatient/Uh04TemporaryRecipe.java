@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -26,6 +29,7 @@ public class Uh04TemporaryRecipe implements Serializable {
     /**
      * 医嘱日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date recipeDate;
 
     /**
@@ -96,12 +100,12 @@ public class Uh04TemporaryRecipe implements Serializable {
     /**
      * 医生编码
      */
-    private String yCode;
+    private String ysCode;
 
     /**
      * 护士编码
      */
-    private String hCode;
+    private String hsCode;
 
     /**
      * 记账标志

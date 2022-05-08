@@ -20,7 +20,7 @@
         is_delete
     </sql>
     <select id="totalWardUse" resultType="com.zhongshan.entity.inpatient.vo.WardUseVo">
-        SELECT w.bed_no,w.section,w.is_null,wu.patient_name,wu.patient_no,wu.patient_sex
+        SELECT wu.ward_id,w.bed_no,w.section,w.is_null,wu.patient_name,wu.patient_no,wu.patient_sex
         FROM ward w LEFT JOIN `ward_use` wu ON wu.bed_no = w.bed_no and wu.is_delete=0
     </select>
 </mapper>

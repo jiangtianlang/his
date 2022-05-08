@@ -2,15 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhongshan.mapper.inpatient.SubjectMapper">
+<mapper namespace="com.zhongshan.mapper.OutpatientSubjectsMapper">
 
-    <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.Subject">
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.OutpatientSubjects">
             <id property="subjectNo" column="subject_no" jdbcType="INTEGER"/>
             <result property="subjectName" column="subject_name" jdbcType="VARCHAR"/>
             <result property="registerMoney" column="register_money" jdbcType="DOUBLE"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        subject_no,subject_name,register_money
+        subject_no,subject_name,register_money,
+        state
     </sql>
 </mapper>

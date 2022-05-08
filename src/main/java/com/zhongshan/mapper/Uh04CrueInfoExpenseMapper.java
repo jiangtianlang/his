@@ -2,6 +2,10 @@ package com.zhongshan.mapper;
 
 import com.zhongshan.entity.inpatient.Uh04CrueInfoExpense;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhongshan.entity.vo.Income;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -11,6 +15,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface Uh04CrueInfoExpenseMapper extends BaseMapper<Uh04CrueInfoExpense> {
 
+    List<Income> selectByDate(@Param("year") Integer year,@Param("month") Integer month);
 }
 
 

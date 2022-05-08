@@ -1,5 +1,6 @@
 package com.zhongshan.service.inpatient.impl;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.inpatient.Uh04CrueInfoExpense;
@@ -36,10 +37,10 @@ public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpens
     private Uh04CrueInfoExpenseMapper uh04CrueInfoExpenseMapper;
 
     //汇总产生当日分户各项医疗费用日结记录
-//    @Scheduled(cron = "* * * * * ? *")
-//    @Transactional(
-//            rollbackFor = {Exception.class}
-//    )
+    @Scheduled(cron = "0 0 0 * * ?")
+    @Transactional(
+            rollbackFor = {Exception.class}
+    )
     public void scheduledTask(){
         //自动写入“分户医疗费用日结表”。统计过程中自动将自费或劳保病人当日费用开支填入“自费病人资金使用情况表”
         //汇总产生当日住院部各项医疗费用帐目，并自动写入“总帐”及明细帐。
@@ -48,15 +49,22 @@ public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpens
         for (WardUseVo wardUseVo : wardUseVos) {
             String patientNo = wardUseVo.getPatientNo();
             if (patientNo !=null){
+                int count=1;
                 //今日总支出
                 double ownExpense = 0;
+                //床位费
+                ownExpense += wardUseVo.getPrice();
+                String subjectCode = count++ +"、床位费:"+ wardUseVo.getPrice();
                 QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
                 wrapper.le("to_days(CURDATE()) - to_days(recipe_date)",1);
                 List<Uh04CrueInfoExpense> uh04CrueInfoExpenses = uh04CrueInfoExpenseMapper.selectList(wrapper);
                 for (Uh04CrueInfoExpense uh04CrueInfoExpense : uh04CrueInfoExpenses) {
+                    //分户医疗费用明细
                     ownExpense += uh04CrueInfoExpense.getExponse();
-
+                    subjectCode += count++ +"、"+ uh04CrueInfoExpense.getCureType()+":"+ uh04CrueInfoExpense.getExponse();
                 }
+                Uh04DayCureExpense expense = new Uh04DayCureExpense(patientNo, DateUtil.yesterday(),subjectCode,ownExpense,"F");
+                baseMapper.insert(expense);
             }
         }
     }

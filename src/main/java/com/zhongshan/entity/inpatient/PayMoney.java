@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class PayMoney implements Serializable {
      * 交款日期
      */
     @ApiModelProperty(value = "交款日期")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date paydate;
 
     /**
@@ -59,6 +61,7 @@ public class PayMoney implements Serializable {
      * 出院日期
      */
     @ApiModelProperty(value = "出院日期")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date outDate;
 
     /*逻辑删除*/

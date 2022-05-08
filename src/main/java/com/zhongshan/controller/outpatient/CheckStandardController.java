@@ -1,6 +1,5 @@
 package com.zhongshan.controller.outpatient;
 
-import com.zhongshan.entity.Subject;
 import com.zhongshan.service.CheckStandardService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;

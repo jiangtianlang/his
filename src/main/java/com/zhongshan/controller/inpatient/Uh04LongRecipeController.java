@@ -24,7 +24,7 @@ import java.util.List;
  * @since 2022-04-29 21:28:16
  */
 @RestController
-@RequestMapping("uh04LongRecipe")
+@RequestMapping("test/uh04LongRecipe")
 @Api(tags = "(住院管理)长期医嘱管理接口")
 public class Uh04LongRecipeController  {
     /**
@@ -36,13 +36,15 @@ public class Uh04LongRecipeController  {
     /**
      * 分页查询所有数据
      *
-     * @param page 分页对象
+     *
      * @param uh04LongRecipe 查询实体
      * @return 所有数据
      */
+    @ApiOperation(value = "查询所有数据")
     @GetMapping
-    public R selectAll(Page<Uh04LongRecipe> page, Uh04LongRecipe uh04LongRecipe) {
-        return R.ok().data("data",this.uh04LongRecipeService.page(page, new QueryWrapper<>(uh04LongRecipe)));
+    public R selectAll(Uh04LongRecipe uh04LongRecipe) {
+        QueryWrapper<Uh04LongRecipe> wrapper = new QueryWrapper<>(uh04LongRecipe);
+        return R.ok().data("data",this.uh04LongRecipeService.list(wrapper));
     }
 
     /**
@@ -51,6 +53,7 @@ public class Uh04LongRecipeController  {
      * @param id 主键
      * @return 单条数据
      */
+    @ApiOperation(value = "通过id查询单条数据")
     @GetMapping("{id}")
     public R selectOne(@PathVariable Serializable id) {
         return R.ok().data("data",this.uh04LongRecipeService.getById(id));
@@ -65,14 +68,17 @@ public class Uh04LongRecipeController  {
     @ApiOperation(value = "新增数据")
     @PostMapping
     public R insert(@RequestBody Uh04LongRecipe uh04LongRecipe) {
+        if (uh04LongRecipe.getMedicineNum()==0 || uh04LongRecipe.getMedicineNum()==null){
+            return R.error().message("药品数量不能小于1!!");
+        }
         //当录入长期医嘱时，自动将出院标志置为“F”
         uh04LongRecipe.setOutFlag(false);
         boolean save = this.uh04LongRecipeService.save(uh04LongRecipe);
-        if (save){
-            return R.ok().message("录入长期医嘱成功");
-        }else {
+        if (!save){
             return R.error().message("录入长期医嘱失败");
         }
+
+        return R.ok().message("录入长期医嘱成功");
 
     }
 

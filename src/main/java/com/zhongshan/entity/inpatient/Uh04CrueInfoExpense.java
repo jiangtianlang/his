@@ -1,5 +1,6 @@
 package com.zhongshan.entity.inpatient;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -19,11 +20,11 @@ public class Uh04CrueInfoExpense implements Serializable {
     /**
      * 
      */
-    @TableId
+
+    @TableId(type = IdType.ASSIGN_ID)
     private String id;
 
 
-    private String recipeId;
     /**
      * 住院号
      */
@@ -94,34 +95,32 @@ public class Uh04CrueInfoExpense implements Serializable {
 
     public Uh04CrueInfoExpense(Uh04LongRecipe longRecipe) {
         this.patientNo = longRecipe.getPatientNo();
-        this.recipeId = longRecipe.getRecipeId();
-        this.recipeDate = longRecipe.getStartTime();
-        this.sectionCode = longRecipe.getSectionCode();
-        this.cureType = longRecipe.getCureType();
+        this.recipeDate = new Date();
+//        this.sectionCode = longRecipe.getSectionCode();
+//        this.cureType = longRecipe.getCureType();
         this.medicineCode = longRecipe.getMedicineCode();
         this.medicineName = longRecipe.getMedicineName();
         this.unitPrice = longRecipe.getUnitPrice();
         this.exponse = longRecipe.getExponse();
         this.quality = longRecipe.getQuality();
-        this.yCode = longRecipe.getYCode();
-        this.hCode = longRecipe.getHCode();
+        this.yCode = longRecipe.getYsCode();
+        this.hCode = longRecipe.getHsCode();
         this.writeAccountFlag = longRecipe.getWriteAccountFlag();
         this.outFlag = longRecipe.getOutFlag();
     }
 
     public Uh04CrueInfoExpense(Uh04TemporaryRecipe entity) {
         this.patientNo = entity.getPatientNo();
-        this.recipeId = entity.getRecipeId();
-        this.recipeDate = entity.getRecipeDate();
-        this.sectionCode = entity.getSectionCode();
-        this.cureType = entity.getCureType();
+        this.recipeDate = new Date();
+//        this.sectionCode = entity.getSectionCode();
+//        this.cureType = entity.getCureType();
         this.medicineCode = entity.getMedicineCode();
         this.medicineName = entity.getMedicineName();
         this.unitPrice = entity.getUnitPrice();
         this.exponse = entity.getExponse();
         this.quality = entity.getQuality();
-        this.yCode = entity.getYCode();
-        this.hCode = entity.getHCode();
+        this.yCode = entity.getYsCode();
+        this.hCode = entity.getHsCode();
         this.writeAccountFlag = entity.getWriteAccountFlag();
         this.outFlag = entity.getOutFlag();
     }

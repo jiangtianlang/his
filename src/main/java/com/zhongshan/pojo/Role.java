@@ -34,7 +34,6 @@ public class Role implements Serializable {
     private String remark;
 
     private Boolean isDeleted;
-
     @TableField(fill = FieldFill.INSERT)
     private Date gmtCreate;
 

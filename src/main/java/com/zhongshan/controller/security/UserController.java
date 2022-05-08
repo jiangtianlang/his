@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.pojo.User;
+import com.zhongshan.pojo.vo.UserVo;
 import com.zhongshan.service.security_service.RoleService;
 import com.zhongshan.service.security_service.UserService;
 import com.zhongshan.utils.MD5;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,7 +28,7 @@ import java.util.Map;
  */
 @Api(tags = "(系统管理)管理用户接口")
 @RestController
-@RequestMapping("/admin/acl/user")
+@RequestMapping("test/admin/user")
 //@CrossOrigin
 public class UserController {
 
@@ -36,25 +38,20 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @ApiOperation(value = "获取管理用户分页列表")
-    @GetMapping("{page}/{limit}")
+    @ApiOperation(value = "获取管理用户列表")
+    @GetMapping
     public R index(
-            @ApiParam(name = "page", value = "当前页码", required = true)
-            @PathVariable Long page,
-
-            @ApiParam(name = "limit", value = "每页记录数", required = true)
-            @PathVariable Long limit,
-
             @ApiParam(name = "courseQuery", value = "查询对象", required = false)
                     User userQueryVo) {
-        Page<User> pageParam = new Page<>(page, limit);
+        //用户角色
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         if(!StringUtils.isEmpty(userQueryVo.getUsername())) {
             wrapper.like("username",userQueryVo.getUsername());
         }
 
-        IPage<User> pageModel = userService.page(pageParam, wrapper);
-        return R.ok().data("items", pageModel.getRecords()).data("total", pageModel.getTotal());
+        List<UserVo> userVos = userService.selectUserAndRole();
+
+        return R.ok().data("users",userVos).data("total", userVos.size());
     }
 
     @ApiOperation(value = "新增管理用户")

@@ -23,7 +23,11 @@ public class Ward implements Serializable {
      */
     @ApiModelProperty(value = "科别")
     private String section;
-
+    /**
+     * 价格
+     */
+    @ApiModelProperty(value = "价格")
+    private Double price;
     /*是否空床*/
     @ApiModelProperty(value = "是否空床1(true) 0(false)")
     private Integer isNull;

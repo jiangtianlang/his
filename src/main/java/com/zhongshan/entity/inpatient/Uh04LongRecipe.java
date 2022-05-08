@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -18,7 +21,7 @@ public class Uh04LongRecipe implements Serializable {
     /**
      * 医嘱码
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private String recipeId;
     /**
      * 住院号
@@ -28,11 +31,13 @@ public class Uh04LongRecipe implements Serializable {
     /**
      * 开始时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date startTime;
 
     /**
      * 停止时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date stopTime;
 
     /**
@@ -103,12 +108,12 @@ public class Uh04LongRecipe implements Serializable {
     /**
      * 医生编码
      */
-    private String yCode;
+    private String ysCode;
 
     /**
      * 护士编码
      */
-    private String hCode;
+    private String hsCode;
 
     /**
      * 记账标志

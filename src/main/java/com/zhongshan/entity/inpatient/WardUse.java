@@ -60,7 +60,7 @@ public class WardUse implements Serializable {
 
     public WardUse(PatientBase patientBase) {
         this.bedNo = patientBase.getBedNo();
-        this.section = patientBase.getSection();
+        this.section = this.bedNo.substring(0,2);
         this.patientNo = patientBase.getPatientNo();
         this.patientName = patientBase.getPatientName();
         this.patientSex = patientBase.getPatientSex();

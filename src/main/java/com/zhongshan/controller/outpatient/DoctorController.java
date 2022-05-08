@@ -1,12 +1,10 @@
 package com.zhongshan.controller.outpatient;
 
 import com.zhongshan.entity.Doctor;
-import com.zhongshan.entity.Subject;
 import com.zhongshan.service.DoctorService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
