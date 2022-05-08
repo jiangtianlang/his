@@ -2,6 +2,7 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.Uh05Student;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.utils.result.R;
 
 /**
 * @author 13427
@@ -10,4 +11,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface Uh05StudentService extends IService<Uh05Student> {
 
+    R insertStudent(Uh05Student uh05Student);
+
+    R updateStudent(Uh05Student uh05Student);
+
+    R deleteStudent(Uh05Student uh05Student);
+
+    R queryStudent(Uh05Student uh05Student);
 }

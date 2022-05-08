@@ -1,10 +1,16 @@
 package com.zhongshan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh05Staff;
 import com.zhongshan.service.Uh05StaffService;
 import com.zhongshan.mapper.Uh05StaffMapper;
+import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 13427
@@ -14,7 +20,65 @@ import org.springframework.stereotype.Service;
 @Service
 public class Uh05StaffServiceImpl extends ServiceImpl<Uh05StaffMapper, Uh05Staff>
     implements Uh05StaffService{
+    @Resource
+    private Uh05StaffMapper uh05StaffMapper;
+    @Override
+    public R insertStaff(Uh05Staff uh05Staff) {
+        int row=uh05StaffMapper.insert(uh05Staff);
+        if(row>0)
+        return R.ok().message("添加成功");
+        else
+            return R.ok().message("添加失败");
+    }
 
+    @Override
+    public R updateStaff(Uh05Staff uh05Staff) {
+        int row=uh05StaffMapper.updateById(uh05Staff);
+        if(row>0)
+            return R.ok().message("修改成功");
+        else
+            return R.ok().message("修改失败");
+    }
+
+    @Override
+    public R deleteStaff(Uh05Staff uh05Staff) {
+        int row=uh05StaffMapper.deleteById(uh05Staff);
+        if(row>0)
+            return R.ok().message("删除成功");
+        else
+            return R.ok().message("删除失败");
+    }
+
+    @Override
+    public R queryStaff(Uh05Staff uh05Staff) {
+        QueryWrapper<Uh05Staff> queryWrapper=new QueryWrapper<>();
+        if(StringUtils.isNotBlank(uh05Staff.getStaffNo())){
+            queryWrapper.like("staff_no",uh05Staff.getStaffNo());
+        }
+        if(StringUtils.isNotBlank(uh05Staff.getSex())){
+            queryWrapper.like("sex",uh05Staff.getSex());
+        }
+        if(StringUtils.isNotBlank(uh05Staff.getDepartmentNo())){
+            queryWrapper.like("department_no",uh05Staff.getDepartmentNo());
+        }
+        if(StringUtils.isNotBlank(uh05Staff.getPostNo())){
+            queryWrapper.like("post_no",uh05Staff.getPostNo());
+        }
+        if(StringUtils.isNotBlank(uh05Staff.getTitleNo())){
+            queryWrapper.like("title_no",uh05Staff.getTitleNo());
+        }
+        if(StringUtils.isNotBlank(uh05Staff.getName())){
+            queryWrapper.like("name",uh05Staff.getName());
+        }
+        if(uh05Staff.getBirthDate()!=null){
+            queryWrapper.like("birth_date",uh05Staff.getBirthDate());
+        }
+        List<Uh05Staff> list=uh05StaffMapper.selectList(queryWrapper);
+        if(list.size()>0)
+            return R.ok().data("data",list);
+        else
+            return R.ok().message("没有数据");
+    }
 }
 
 

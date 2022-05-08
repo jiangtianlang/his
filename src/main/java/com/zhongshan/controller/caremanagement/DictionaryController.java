@@ -21,22 +21,22 @@ public class DictionaryController {
     @Resource
     private Sp05DiseaseCodeService sp05DiseaseCodeService;
     //疾病体症代码字典数据
-    @RequestMapping(value = "insertDiseaseBodyCode",method = RequestMethod.GET)
+    @RequestMapping(value = "/insertDiseaseBodyCode",method = RequestMethod.GET)
     @ApiOperation(value = "疾病体症代码录入",notes = "",httpMethod = "GET", response = String.class)
     public R insertDiseaseBodyCode(Sp05DiseaseCode sp05DiseaseCode){
         return sp05DiseaseCodeService.insertDiseaseBodyCode(sp05DiseaseCode);
     }
-    @RequestMapping(value = "updateDiseaseBodyCode",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateDiseaseBodyCode",method = RequestMethod.GET)
     @ApiOperation(value = "疾病体症代码修改",notes = "",httpMethod = "GET", response = String.class)
     public R updateDiseaseBodyCode(Sp05DiseaseCode sp05DiseaseCode){
         return sp05DiseaseCodeService.updateDiseaseBodyCode(sp05DiseaseCode);
     }
-    @RequestMapping(value = "deleteDiseaseBodyCode",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteDiseaseBodyCode",method = RequestMethod.GET)
     @ApiOperation(value = "疾病体症代码删除",notes = "",httpMethod = "GET", response = String.class)
     public R deleteDiseaseBodyCode(Sp05DiseaseCode sp05DiseaseCode){
         return sp05DiseaseCodeService.deleteDiseaseBodyCode(sp05DiseaseCode);
     }
-    @RequestMapping(value = "queryDiseaseBodyCode",method = RequestMethod.GET)
+    @RequestMapping(value = "/queryDiseaseBodyCode",method = RequestMethod.GET)
     @ApiOperation(value = "疾病体症代码查询",notes = "",httpMethod = "GET", response = String.class)
     public R queryDiseaseBodyCode(Sp05DiseaseCode sp05DiseaseCode){
         return sp05DiseaseCodeService.queryDiseaseBodyCode(sp05DiseaseCode);
@@ -86,22 +86,22 @@ public class DictionaryController {
     //营养标准资料字典数据
     @Resource
     private Uh05StandardNutritionStudentService uh05StandardNutritionStudentService;
-    @RequestMapping(value = "insertStandardNutrition",method = RequestMethod.GET)
+    @RequestMapping(value = "/insertStandardNutrition",method = RequestMethod.GET)
     @ApiOperation(value = "营养标准资料录入",notes = "",httpMethod = "GET", response = String.class)
     public R insertStandardNutrition(Uh05StandardNutritionStudent uh05StandardNutritionStudent){
         return uh05StandardNutritionStudentService.insertStandardNutrition(uh05StandardNutritionStudent);
     }
-    @RequestMapping(value = "updateStandardNutrition",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateStandardNutrition",method = RequestMethod.GET)
     @ApiOperation(value = "营养标准资料修改",notes = "",httpMethod = "GET", response = String.class)
     public R updateStandardNutrition(Uh05StandardNutritionStudent uh05StandardNutritionStudent){
         return uh05StandardNutritionStudentService.updateStandardNutrition(uh05StandardNutritionStudent);
     }
-    @RequestMapping(value = "deleteStandardNutrition",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteStandardNutrition",method = RequestMethod.GET)
     @ApiOperation(value = "营养标准资料删除",notes = "",httpMethod = "GET", response = String.class)
     public R deleteStandardNutrition(Uh05StandardNutritionStudent uh05StandardNutritionStudent){
         return R.ok();
     }
-    @RequestMapping(value = "queryStandardNutrition",method = RequestMethod.GET)
+    @RequestMapping(value = "/queryStandardNutrition",method = RequestMethod.GET)
     @ApiOperation(value = "营养标准资料查询",notes = "",httpMethod = "GET", response = String.class)
     public R queryStandardNutrition(Uh05StandardNutritionStudent uh05StandardNutritionStudent){
      uh05StandardNutritionStudentService.queryStandardNutrition(uh05StandardNutritionStudent);
