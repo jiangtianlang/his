@@ -28,17 +28,18 @@ public class BasicHospitalController {
     }
     @Resource
     private PersonsService personsService;
-    @RequestMapping(value = "/selectBusiness")
+    @RequestMapping(value = "/test/selectBusiness")
     @ApiOperation(value = "查询职工业务档案",notes = "",httpMethod = "GET", response = String.class)
     public R selectBusiness(PersonBase personBase){
         return R.ok();
     }
     @Resource
     private FixedAssetsService fixedAssetsService;
-    @RequestMapping(value = "/selectFixed")
+    @RequestMapping(value = "/test/selectFixed")
     @ApiOperation(value = "查询医院大型设备",notes = "",httpMethod = "GET", response = String.class)
-    public R selectFixed(FixedAssets fixedAssets){
+    public R selectFixed(){
 //        return fixedAssetsService.selectFixed();
+        FixedAssets fixedAssets=new FixedAssets();
         return  fixedAssetsService.selectFixed(fixedAssets);
 
     }

@@ -16,22 +16,22 @@ import javax.annotation.Resource;
 public class StaffManagementController {
     @Resource
     private Uh05StaffService uh05StaffService;
-    @RequestMapping(value = "/insertStaff",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/insertStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工基本信息录入",notes = "",httpMethod = "GET", response = String.class)
     public R insertStaff(Uh05Staff uh05Staff){
         return uh05StaffService.insertStaff(uh05Staff);
     }
-    @RequestMapping(value = "/updateStaff",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/updateStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工基本信息修改",notes = "",httpMethod = "GET", response = String.class)
     public R updateStaff(Uh05Staff uh05Staff){
         return uh05StaffService.updateStaff(uh05Staff);
     }
-    @RequestMapping(value = "/deleteStaff",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/deleteStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工基本信息删除",notes = "",httpMethod = "GET", response = String.class)
     public R deleteStaff(Uh05Staff uh05Staff){
         return uh05StaffService.deleteStaff(uh05Staff);
     }
-    @RequestMapping(value = "/queryStaff",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/queryStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工基本信息查询",notes = "",httpMethod = "GET", response = String.class)
     public R queryStaff(Uh05Staff uh05Staff){
         return uh05StaffService.queryStaff(uh05Staff);
