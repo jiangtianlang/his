@@ -14,7 +14,7 @@ public interface RegisteredService extends IService<Registered> {
 
     List<Registered> selectAllOutSchoolPatient();
 
-    List<Registered> selectOutSchoolPatient(String persons_no);
+    List<Registered> selectOutSchoolPatient(String name);
 
     List<Registered> selectAllInSchoolPatient();
 
@@ -24,5 +24,6 @@ public interface RegisteredService extends IService<Registered> {
 
     boolean updataOutSchoolPatient(Registered registered);
 
+    List<Registered> selectInSchoolPatientByName(String name);
 
 }

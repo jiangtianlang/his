@@ -35,7 +35,9 @@ public class OutpatientSubjectsServiceImpl extends ServiceImpl<OutpatientSubject
 
     @Override
     public List<OutpatientSubjects> selectAllSubject() {
-        List<OutpatientSubjects> list=outpatientSubjectsMapper.selectList(null);
+        QueryWrapper<OutpatientSubjects> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("isdelete",0);
+        List<OutpatientSubjects> list=outpatientSubjectsMapper.selectList(queryWrapper);
         return list;
     }
 
@@ -43,6 +45,7 @@ public class OutpatientSubjectsServiceImpl extends ServiceImpl<OutpatientSubject
     public List<OutpatientSubjects> selectSubject(String subjectName) {
         QueryWrapper<OutpatientSubjects> queryWrapper=new QueryWrapper<>();
         queryWrapper.like("subject_name ",subjectName);
+        queryWrapper.eq("isdelete",0);
         List<OutpatientSubjects> list=outpatientSubjectsMapper.selectList(queryWrapper);
         return list;
     }

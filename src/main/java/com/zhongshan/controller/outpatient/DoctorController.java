@@ -30,7 +30,7 @@ public class DoctorController {
     @RequestMapping(value = "/test/deleteDoctor",method = RequestMethod.GET)
     @ApiOperation(value = "删除医生接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteDoctor(String doctorNo){
-        return R.ok();
+        return this.doctorService.removeById(doctorNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
     @RequestMapping(value = "/test/updateDoctor",method = RequestMethod.GET)
     @ApiOperation(value = "修改医生接口",notes = "",httpMethod = "GET", response = String.class)

@@ -34,7 +34,9 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor>
 
     @Override
     public List<Doctor> selectAllDoctor() {
-        List<Doctor> list=doctorMapper.selectList(null);
+        QueryWrapper<Doctor> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("isdelete",0);
+        List<Doctor> list=doctorMapper.selectList(queryWrapper);
         return list;
     }
 
@@ -42,6 +44,7 @@ public class DoctorServiceImpl extends ServiceImpl<DoctorMapper, Doctor>
     public List<Doctor> selectDoctor(String doctorName) {
         QueryWrapper<Doctor> queryWrapper=new QueryWrapper<>();
         queryWrapper.like("doctor_name",doctorName);
+        queryWrapper.eq("isdelete",0);
         List<Doctor> list=doctorMapper.selectList(queryWrapper);
         return list;
     }

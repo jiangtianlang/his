@@ -37,7 +37,9 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
 
     @Override
     public List<Registered> selectAll() {
-       List<Registered> list=registeredMapper.selectList(null);
+        QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("isDelete",0);
+       List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
     @Override
@@ -51,17 +53,19 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
     public List<Registered> selectAllOutSchoolPatient() {
         QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("people_type","校外人员");
-        List<Registered> list=registeredMapper.selectList(null);
+        queryWrapper.eq("isDelete",0);
+        List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
 
     @Override
-    public List<Registered> selectOutSchoolPatient(String persons_no) {
+    public List<Registered> selectOutSchoolPatient(String name) {
         QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
-        if(persons_no!=null){
-            queryWrapper.eq("persons_no",persons_no);
+        if(name!=null){
+            queryWrapper.eq("name",name);
         }
         queryWrapper.eq("people_type","校外人员");
+        queryWrapper.eq("isDelete",0);
         List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
@@ -70,6 +74,7 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
     public List<Registered> selectAllInSchoolPatient() {
         QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("people_type","校内人员");
+        queryWrapper.eq("isDelete",0);
         List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
@@ -81,6 +86,7 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
             queryWrapper.eq("persons_no",persons_no);
         }
         queryWrapper.eq("people_type","校内人员");
+        queryWrapper.eq("isDelete",0);
         List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
@@ -89,6 +95,7 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
     public List<Registered> selectByPersonsNo(String personsNo) {
         QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
         queryWrapper.like("persons_no",personsNo);
+        queryWrapper.eq("isDelete",0);
         List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
@@ -99,6 +106,14 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
         return rows>0?true:false;
     }
 
+    @Override
+    public List<Registered> selectInSchoolPatientByName(String name) {
+        QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
+        queryWrapper.like("name",name);
+        queryWrapper.eq("isDelete",0);
+        List<Registered> list=registeredMapper.selectList(queryWrapper);
+        return list;
+    }
 
 
 }

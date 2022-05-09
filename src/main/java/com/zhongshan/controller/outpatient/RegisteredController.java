@@ -39,13 +39,13 @@ public class RegisteredController {
         }
     }
     @RequestMapping(value = "/test/selectOutSchoolPatient",method = RequestMethod.GET)
-    @ApiOperation(value = "查询校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
-    public R selectOutSchoolPatient(String persons_no){
-        if(persons_no==null){
+    @ApiOperation(value = "姓名查询校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
+    public R selectOutSchoolPatient(String name){
+        if(name==null){
             List<Registered> list=registeredService.selectAllOutSchoolPatient();
             return R.ok().data("data",list).message("查询成功");
         }else{
-            List<Registered> list=registeredService.selectOutSchoolPatient(persons_no);
+            List<Registered> list=registeredService.selectOutSchoolPatient(name);
             return R.ok().data("data",list).message("查询成功");
         }
     }
@@ -61,7 +61,7 @@ public class RegisteredController {
     @RequestMapping(value = "/test/deleteOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "删除校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteOutSchoolPatient(String personsNo){
-        return R.ok().message("删除成功");
+        return   this.registeredService.removeById(personsNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
     @RequestMapping(value = "/test/addInSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
@@ -74,14 +74,25 @@ public class RegisteredController {
         }
     }
     @RequestMapping(value = "/test/selectInSchoolPatient",method = RequestMethod.GET)
-    @ApiOperation(value = "查询校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
-    public R selectInSchoolPatient(String personsNo){
-        if(personsNo==null){
+    @ApiOperation(value = "卡号查询校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
+    public R selectInSchoolPatientById(String personsNo){
+//        if(personsNo==null){
+//            List<Registered> list=registeredService.selectAllInSchoolPatient();
+//            return R.ok().data("data",list).message("查询成功");
+//        }else{
+            List<Registered> list=registeredService.selectInSchoolPatient(personsNo);
+            return R.ok().data("data",list).message("查询成功");
+
+    }
+    @RequestMapping(value = "/test/selectInSchoolPatientByName",method = RequestMethod.GET)
+    @ApiOperation(value = "姓名查询校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
+    public R selectInSchoolPatientByName(String name){
+        if(name==null){
             List<Registered> list=registeredService.selectAllInSchoolPatient();
             return R.ok().data("data",list).message("查询成功");
         }else{
-            List<Registered> list=registeredService.selectInSchoolPatient(personsNo);
-            return R.ok().data("data",list).message("查询成功");
+            List<Registered> list=registeredService.selectInSchoolPatientByName(name);
+                return R.ok().data("data",list).message("查询成功");
         }
     }
     @RequestMapping(value = "/test/updataInSchoolPatient",method = RequestMethod.GET)
@@ -92,7 +103,8 @@ public class RegisteredController {
     @RequestMapping(value = "/test/deleteInSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "删除校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteInSchoolPatient(String personsNo){
-        return R.ok().message("删除成功");
+
+        return this.registeredService.removeById(personsNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
     @RequestMapping(value = "/test/selectAll",method = RequestMethod.GET)
     @ApiOperation(value = "查询所有挂号人员接口",notes = "",httpMethod = "GET", response = String.class)
