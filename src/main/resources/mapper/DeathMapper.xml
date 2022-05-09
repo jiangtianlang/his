@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.DeathMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Death">
+            <id property="unit" column="unit" jdbcType="CHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="CHAR"/>
+            <result property="birth" column="birth" jdbcType="DATE"/>
+            <result property="position" column="position" jdbcType="VARCHAR"/>
+            <result property="diagnosis" column="diagnosis" jdbcType="VARCHAR"/>
+            <result property="accidentDate" column="accident_date" jdbcType="TIMESTAMP"/>
+            <result property="deathCause" column="death_cause" jdbcType="VARCHAR"/>
+            <result property="deathDate" column="death_date" jdbcType="TIMESTAMP"/>
+            <result property="deathAdress" column="death_adress" jdbcType="VARCHAR"/>
+            <result property="adress" column="adress" jdbcType="VARCHAR"/>
+            <result property="additional" column="additional" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        unit,name,sex,
+        birth,position,diagnosis,
+        accident_date,death_cause,death_date,
+        death_adress,adress,additional
+    </sql>
+</mapper>

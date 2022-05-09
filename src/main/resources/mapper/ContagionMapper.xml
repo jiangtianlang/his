@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhongshan.mapper.ContagionMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhongshan.entity.Contagion">
+            <result property="unit" column="unit" jdbcType="CHAR"/>
+            <result property="name" column="name" jdbcType="CHAR"/>
+            <result property="sex" column="sex" jdbcType="CHAR"/>
+            <result property="birth" column="birth" jdbcType="DATE"/>
+            <result property="position" column="position" jdbcType="VARCHAR"/>
+            <result property="jobTitle" column="job_title" jdbcType="VARCHAR"/>
+            <result property="diagnosis" column="diagnosis" jdbcType="VARCHAR"/>
+            <result property="diagnosiDate" column="diagnosi_date" jdbcType="TIMESTAMP"/>
+            <result property="adress" column="adress" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        unit,name,sex,
+        birth,position,job_title,
+        diagnosis,diagnosi_date,adress
+    </sql>
+</mapper>
