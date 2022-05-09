@@ -35,9 +35,10 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
     }
     @Override
     public List<PersonBase> findById(String personNo) {
-        Map<String,Object> map=new HashMap<>();
-        map.put("person_no","personNo");
-        List<PersonBase> list=personBaseMapper.selectByMap(map);
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        queryWrapper.like("person_no",personNo);
+        List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
+        System.out.println(list);
         return list;
     }
     private QueryWrapper<PersonBase> getQueryWrapper(PersonBaseVo personBaseVo){
@@ -78,9 +79,9 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
 
     @Override
     public List<PersonBase> findByName(String personName) {
-        Map<String,Object> map=new HashMap<>();
-        map.put("person_name","personName");
-        List<PersonBase> list=personBaseMapper.selectByMap(map);
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        queryWrapper.like("person_name",personName);
+        List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
         return list;
     }
 

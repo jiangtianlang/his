@@ -2,6 +2,7 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.Contagion;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.utils.result.R;
 
 /**
 * @author 13427
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ContagionService extends IService<Contagion> {
 
+    R registrationOfContagion(Contagion contagion);
 }

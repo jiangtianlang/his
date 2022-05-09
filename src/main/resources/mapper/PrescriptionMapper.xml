@@ -25,4 +25,9 @@
         doctor_no,today_date,subject_no,
         opera,pres_number,today_total_yn
     </sql>
+    <select id="selectGetPrice" resultType="com.zhongshan.entity.vo.PrescriptionsVo">
+        select re.name,pre.persons_no,d.doctor_name,mt.medi_name,pre.quantity,pre.today_date
+        from prescription pre LEFT JOIN medicine_type mt on pre.medi_no=mt.medi_no LEFT JOIN doctor d on pre.doctor_no=d.doctor_no
+        LEFT JOIN registered re on pre.persons_no=re.persons_no
+    </select>
 </mapper>

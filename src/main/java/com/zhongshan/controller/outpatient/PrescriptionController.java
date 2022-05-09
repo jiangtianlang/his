@@ -2,6 +2,7 @@ package com.zhongshan.controller.outpatient;
 
 import com.zhongshan.entity.Prescription;
 import com.zhongshan.entity.vo.PrescriptionVo;
+import com.zhongshan.entity.vo.PrescriptionsVo;
 import com.zhongshan.service.PrescriptionService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
@@ -11,13 +12,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Date;
+import java.util.*;
 
 @RestController
-@Api(value = "收费情况test",tags = "收费情况据接口API")
+@Api(value = "收费情况test",tags = "（门诊子系统）收费情况据接口API")
 public class PrescriptionController {
     @Resource
     private PrescriptionService prescriptionService;
+    @RequestMapping(value = "/test/selectGetPrice",method = RequestMethod.GET)
+    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
+    public R selectGetPrice(PrescriptionVo prescriptionVo){
+        List<PrescriptionsVo> list=prescriptionService.selectGetPrice(prescriptionVo);
+        return R.ok().data("data",list).message("查询成功");
+    }
+
+
+
+
+
     @RequestMapping(value = "/test/selectByIdQuantity",method = RequestMethod.GET)
     @ApiOperation(value = "查询药品数量情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectByIdQuantity(Prescription prescription){
@@ -33,11 +45,7 @@ public class PrescriptionController {
     public R selectByMany(PrescriptionVo prescriptionVo){
         return R.ok();
     }
-    @RequestMapping(value = "/test/selectGetPrice",method = RequestMethod.GET)
-    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R selectGetPrice(PrescriptionVo prescriptionVo){
-        return R.ok();
-    }
+
 //    @RequestMapping(value = "/test/selectGetopera",method = RequestMethod.GET)
 //    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R selectGetopera(Date startTime,Date End){

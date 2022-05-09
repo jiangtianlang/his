@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(value = "在库药品资料test",tags = "在库药品数据接口API")
+@Api(value = "在库药品资料test",tags = "（门诊子系统）在库药品数据接口API")
 public class Uh03OnStoreCController {
     @Resource
     private Uh03OnStoreCService uh03OnStoreCService;

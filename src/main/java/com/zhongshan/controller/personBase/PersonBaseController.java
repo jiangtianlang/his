@@ -29,6 +29,7 @@ public class PersonBaseController {
     @RequestMapping(value = "/test/findByIdOrName",method = RequestMethod.GET)
     @ApiOperation(value = "单项查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findByIdOrName(String IdOrNmae){
+        System.out.println(IdOrNmae);
         if(IdOrNmae==null){
             List<PersonBase> list=personBaseService.findAll();
             return R.ok().data("data",list).message("查询成功");
@@ -49,14 +50,24 @@ public class PersonBaseController {
     @RequestMapping(value = "/test/findByManyCondition",method = RequestMethod.GET)
     @ApiOperation(value = "组合查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findByManyCondition(PersonBase personBase){
-        List<PersonBase> list=personBaseService.findByManyCondition(personBase);
-        return R.ok().data("data",list).message("查询成功");
+        if(personBase==null){
+            List<PersonBase> list=personBaseService.findAll();
+            return R.ok().data("data",list).message("查询成功");
+        }else {
+            List<PersonBase> list = personBaseService.findByManyCondition(personBase);
+            return R.ok().data("data", list).message("查询成功");
+        }
     }
     @RequestMapping(value = "/test/findComprehensiveQuery",method = RequestMethod.GET)
     @ApiOperation(value = "综合查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findComprehensiveQuery(String schoolName){
+        if(schoolName==null){
+            List<PersonBase> list=personBaseService.findAll();
+            return R.ok().data("data",list).message("查询成功");
+        }else {
         List<PersonBase> list=personBaseService.findComprehensiveQuery(schoolName);
         return R.ok().data("data",list).message("查询成功");
+        }
     }
     @RequestMapping(value = "/test/findPersonBase",method = RequestMethod.GET)
     @ApiOperation(value = "查询个人详细信息接口",notes = "",httpMethod = "GET", response = String.class)

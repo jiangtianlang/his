@@ -57,17 +57,17 @@ public class StudentsMedicalController {
     public R deleteStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM){
         return uh05HealthStudentMService.deleteStudentsMedicalGao(uh05HealthStudentM);
     }
-    @RequestMapping(value = "/updateStudentsMedicalGao")
+    @RequestMapping(value = "/test/updateStudentsMedicalGao")
     @ApiOperation(value = "修改学生高考体检信息",httpMethod = "GET")
     public R updateStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM){
         return uh05HealthStudentMService.updateStudentsMedicalGao(uh05HealthStudentM);
     }
-    @RequestMapping(value = "/queryStudentsMedicalGao")
+    @RequestMapping(value = "/test/queryStudentsMedicalGao")
     @ApiOperation(value = "查询学生高考体检信息",httpMethod = "GET")
     public R queryStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM){
-        return R.ok();
+        return uh05HealthStudentMService.queryStudentsMedicalGao(uh05HealthStudentM);
     }
-    @RequestMapping(value = "/bulkInsertStudentsMedicalGao",method = RequestMethod.POST)
+    @RequestMapping(value = "/test/bulkInsertStudentsMedicalGao",method = RequestMethod.POST)
     @ApiOperation(value = "批量录入学生高考体检信息",httpMethod = "POST")
     public R bulkInsertStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM){
         return R.ok();

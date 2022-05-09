@@ -2,6 +2,10 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.Prescription;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.entity.vo.PrescriptionVo;
+import com.zhongshan.entity.vo.PrescriptionsVo;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -10,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PrescriptionService extends IService<Prescription> {
 
+    List<PrescriptionsVo> selectGetPrice(PrescriptionVo prescriptionVo);
 }

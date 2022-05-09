@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@Api(value = "医疗卡追加流水test",tags = "医疗卡追加流水数据接口API")
+@Api(value = "医疗卡追加流水test",tags = "（门诊子系统）医疗卡追加流水数据接口API")
 public class DayMoneyController {
     @Resource
     private DayMoneyService dayMoneyService;

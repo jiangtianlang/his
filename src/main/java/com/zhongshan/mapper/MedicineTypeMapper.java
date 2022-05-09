@@ -1,5 +1,7 @@
 package com.zhongshan.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zhongshan.entity.MedicalCard;
 import com.zhongshan.entity.MedicineType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 

@@ -2,6 +2,7 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.Uh08OnDuty;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.utils.result.R;
 
 import java.util.List;
 
@@ -13,4 +14,8 @@ import java.util.List;
 public interface Uh08OnDutyService extends IService<Uh08OnDuty> {
 
     List<Uh08OnDuty> selectDepartment(String department);
+
+    R outpatientDaily();
+
+    R queryWorkload(String name, String department);
 }
