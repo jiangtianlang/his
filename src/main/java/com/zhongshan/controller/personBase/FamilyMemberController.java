@@ -29,24 +29,24 @@ public class FamilyMemberController {
 
 
 
-    @RequestMapping(value = "/test/addfamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-    public R addfamilyMember(FamilyMember familyMember){
-        return R.ok().message("添加成功");
-    }
-    @RequestMapping(value = "/test/selectfamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "根据Id查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-    public R selectfamilyMember(String personNo){
-        return R.ok().message("查询成功");
-    }
-    @RequestMapping(value = "/test/updatefamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "修改人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-    public R updatefamilyMember(FamilyMember familyMember){
-        return R.ok().message("修改成功");
-    }
-    @RequestMapping(value = "/test/delectfamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "删除人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-    public R delectfamilyMember(String personNo){
-        return R.ok().message("删除成功");
-    }
+//    @RequestMapping(value = "/test/addfamilyMember",method = RequestMethod.GET)
+//    @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R addfamilyMember(FamilyMember familyMember){
+//        return R.ok().message("添加成功");
+//    }
+//    @RequestMapping(value = "/test/selectfamilyMember",method = RequestMethod.GET)
+//    @ApiOperation(value = "根据Id查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R selectfamilyMember(String personNo){
+//        return R.ok().message("查询成功");
+//    }
+//    @RequestMapping(value = "/test/updatefamilyMember",method = RequestMethod.GET)
+//    @ApiOperation(value = "修改人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R updatefamilyMember(FamilyMember familyMember){
+//        return R.ok().message("修改成功");
+//    }
+//    @RequestMapping(value = "/test/delectfamilyMember",method = RequestMethod.GET)
+//    @ApiOperation(value = "删除人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R delectfamilyMember(String personNo){
+//        return R.ok().message("删除成功");
+//    }
 }
