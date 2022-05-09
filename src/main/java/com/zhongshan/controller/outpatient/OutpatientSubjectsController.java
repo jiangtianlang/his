@@ -27,9 +27,9 @@ public class OutpatientSubjectsController {
     }
     @RequestMapping(value = "/test/deleteSubject",method = RequestMethod.GET)
     @ApiOperation(value = "删除门诊科目代码接口",notes = "",httpMethod = "GET", response = String.class)
-    public R deleteSubject(Integer subjectNo){
-
-        return this.outpatientSubjectsService.removeById(subjectNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
+    public R deleteSubject(String subjectNo){
+        int inum = Integer.parseInt(subjectNo);
+        return this.outpatientSubjectsService.removeById(inum)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
     @RequestMapping(value = "/test/updateSubject",method = RequestMethod.GET)
     @ApiOperation(value = "修改门诊科目代码接口",notes = "",httpMethod = "GET", response = String.class)
