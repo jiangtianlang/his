@@ -16,4 +16,6 @@ public interface Uh05HealthStudentMService extends IService<Uh05HealthStudentM> 
     R deleteStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM);
 
     R updateStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM);
+
+    R queryStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM);
 }

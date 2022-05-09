@@ -55,20 +55,9 @@ public class Uh05StudentServiceImpl extends ServiceImpl<Uh05StudentMapper, Uh05S
         if(StringUtils.isNotBlank(uh05Student.getStudentNo())){
             queryWrapper.like("student_no",uh05Student.getStudentNo());
         }
-        if (StringUtils.isNotBlank(uh05Student.getSex())){
-            queryWrapper.like("sex",uh05Student.getSex());
-        }
+
         if(StringUtils.isNotBlank(uh05Student.getName())){
             queryWrapper.like("name",uh05Student.getName());
-        }
-        if(StringUtils.isNotBlank(uh05Student.getDepartmentNo())){
-            queryWrapper.like("department_no",uh05Student.getDepartmentNo());
-        }
-        if(StringUtils.isNotBlank(uh05Student.getMajorFieldNo())){
-            queryWrapper.like("major_field_no",uh05Student.getMajorFieldNo());
-        }
-        if(uh05Student.getBirthDate()!=null){
-            queryWrapper.like("birth_date",uh05Student.getBirthDate());
         }
         List<Uh05Student> list=uh05StudentMapper.selectList(queryWrapper);
         if(list.size()>0)

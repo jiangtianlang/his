@@ -1,5 +1,7 @@
 package com.zhongshan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh05HealthStudentM;
 import com.zhongshan.service.Uh05HealthStudentMService;
@@ -45,6 +47,15 @@ public class Uh05HealthStudentMServiceImpl extends ServiceImpl<Uh05HealthStudent
             return R.ok().message("修改成功");
         else
             return R.ok().message("修改失败");
+    }
+
+    @Override
+    public R queryStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM) {
+        QueryWrapper<Uh05HealthStudentM> queryWrapper=new QueryWrapper<>();
+        if(StringUtils.isNotBlank(uh05HealthStudentM.getStudentNo())){
+            queryWrapper.like("student_no",uh05HealthStudentM.getStudentNo());
+        }
+        return null;
     }
 }
 
