@@ -35,6 +35,18 @@ public class Uh08OnDuty implements Serializable {
      * 分正01常班、02值班、03早班、04中班、05晚班
      */
     private String branchOfWork;
+    /**
+     * 实际工作量
+     */
+    private Double workAmount;
+    /**
+     * 额定工作量
+     */
+    private Double exWorkAmount;
+    /**
+     * 平均工作量
+     */
+    private Double averWorkAmount;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
