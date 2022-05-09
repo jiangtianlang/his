@@ -2,6 +2,9 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.OutpatientSubjects;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.entity.inpatient.Subject;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -10,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface OutpatientSubjectsService extends IService<OutpatientSubjects> {
 
+    boolean addSubject(OutpatientSubjects outpatientSubjects);
+
+    boolean updateSubject(OutpatientSubjects outpatientSubjects);
+
+    List<OutpatientSubjects> selectAllSubject();
+
+    List<OutpatientSubjects> selectSubject(String subjectName);
 }

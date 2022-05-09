@@ -47,7 +47,7 @@ public class Doctor implements Serializable {
     /**
      * 医生状态
      */
-    private String sate;
+    private String state;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

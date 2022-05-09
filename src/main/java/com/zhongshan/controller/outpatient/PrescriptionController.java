@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @RestController
-@Api(value = "收费情况test",tags = "收费情况据接口API")
+@Api(value = "收费情况test",tags = "（门诊子系统）收费情况据接口API")
 public class PrescriptionController {
     @Resource
     private PrescriptionService prescriptionService;

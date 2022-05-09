@@ -30,11 +30,6 @@ public class OutpatientSubjects implements Serializable {
      */
     private Double registerMoney;
 
-    /**
-     * 状态（正常，维护）
-     */
-    private Integer state;
-
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
