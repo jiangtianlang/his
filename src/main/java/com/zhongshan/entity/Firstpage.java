@@ -4,7 +4,10 @@ import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.zhongshan.entity.inpatient.PatientBase;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -12,6 +15,8 @@ import lombok.Data;
  */
 @TableName(value ="firstpage")
 @Data
+@NoArgsConstructor
+
 public class Firstpage implements Serializable {
     /**
      * 非空，每个病人病案号唯一
@@ -391,4 +396,81 @@ public class Firstpage implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Firstpage(PatientBase p) {
+        this.fgNum = p.getPatientNo();
+        this.fgTimes = fgTimes;//
+        this.fgName = p.getPatientName();
+        this.fgSex = p.getPatientSex();
+        this.fgBirthday = p.getBirthDate();
+        this.fgMarriage = p.getMarry()==1?"t":"f";
+        this.fgOccupation = p.getOccupation();
+        this.fgBirthplace = p.getNativePlace();
+        this.fgNationality = p.getNationality();
+        this.fgIdNum = p.getCapacityNo();
+        this.fgUnit = p.getWorkPlace();
+//        this.fgPhonenum = fgPhonenum;
+//        this.fgUnitPostalcodet = fgUnitPostalcodet;
+        this.fgAddress = p.getHomeAdder();
+//        this.fgHomePostalcode = fgHomePostalcode;
+        this.fgLinkmanName = p.getHeName();
+        this.fgLinkmanRelation = p.getRelation();
+        this.fgLinkmanAddress = p.getHomeAdder();
+        this.fgLinkmanPhonenum = p.getHeTel();
+        this.fgDepartment = p.getSection();
+        this.fgRoom = p.getBedNo();
+        this.fgInTime = p.getInDate();
+//        this.fgInStatus = fgInStatus;
+        this.fgPayway = p.getCostType();
+//        this.fgChangedepartment = fgChangedepartment;
+        this.fgOutDepartment = p.getSection();
+        this.fgOutRoom = p.getBedNo();
+        this.fgOutDate = p.getOutDate();
+//        this.fgOutDiagnose = fgOutDiagnose;
+//        this.fgOutDiagnoseCode = fgOutDiagnoseCode;
+        this.fgInDiagnose = p.getDiagnoseName();
+        this.fgInDiagnoseCode = p.getIcd9();
+        this.fgDiagnoseDate = p.getInDate();
+//        this.fgMainDiagnose = fgMainDiagnose;
+//        this.fgMainDiagnoseCode = fgMainDiagnoseCode;
+//        this.fgSubordinationDiagnose = fgSubordinationDiagnose;
+//        this.fgSubordinationDiagnoseCode = fgSubordinationDiagnoseCode;
+//        this.fgIntercurrentDisease = fgIntercurrentDisease;
+//        this.fgIntercurrentDiseaseCode = fgIntercurrentDiseaseCode;
+//        this.fgOutStatus = fgOutStatus;
+//        this.fgNameInfect = fgNameInfect;
+//        this.fgOuterReasonMarAndToxicosis = fgOuterReasonMarAndToxicosis;
+//        this.fgPathologicDiagnose = fgPathologicDiagnose;
+//        this.fgAllergicMedicament = fgAllergicMedicament;
+//        this.fgBloodType = fgBloodType;
+//        this.fgDiseaseCaseQuality = fgDiseaseCaseQuality;
+//        this.fgTimesSave = fgTimesSave;
+//        this.fgTimesSuccess = fgTimesSuccess;
+//        this.fgFollowDiagnose = fgFollowDiagnose;
+//        this.fgFollowDiagnoseLimit = fgFollowDiagnoseLimit;
+//        this.fgAshesCheck = fgAshesCheck;
+//        this.fgTotalCharge = fgTotalCharge;
+        this.fgBedCharge = Integer.valueOf(p.getBedNo());
+//        this.fgWesternMedicineCharge = fgWesternMedicineCharge;
+//        this.fgChineseMedicineCharge = fgChineseMedicineCharge;
+//        this.fgCheckCharge = fgCheckCharge;
+//        this.fgCureCharge = fgCureCharge;
+//        this.fgRadiateCharge = fgRadiateCharge;
+//        this.fgOperationCharge = fgOperationCharge;
+//        this.fgAssayCharge = fgAssayCharge;
+//        this.fgTransfuseCharge = fgTransfuseCharge;
+//        this.fgOxygenTherapyCharge = fgOxygenTherapyCharge;
+//        this.fgAccoucheCharge = fgAccoucheCharge;
+//        this.fgRestCharge = fgRestCharge;
+//        this.fgWholeNum = fgWholeNum;
+        this.fgIndividualShares = p.getPatientCost();
+        this.fgCheckoutWay = p.getSettleType();
+        this.fgLeaveHospital = String.valueOf(p.getIsDelete());
+//        this.fgShowDiseasecase = fgShowDiseasecase;
+//        this.fgSignatureDirectorDoctor = fgSignatureDirectorDoctor;
+//        this.fgSignatureChargeDoctor = fgSignatureChargeDoctor;
+//        this.fgSignatureHouseDoctor = fgSignatureHouseDoctor;
+//        this.fgSignatureIntern = fgSignatureIntern;
+//        this.fgSignatureCoder = fgSignatureCoder;
+    }
 }

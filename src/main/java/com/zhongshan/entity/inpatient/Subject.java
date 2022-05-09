@@ -15,7 +15,7 @@ public class Subject implements Serializable {
     /**
      * 门诊科目代号(由医院编码01-99非空)
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer subjectNo;
 
     /**

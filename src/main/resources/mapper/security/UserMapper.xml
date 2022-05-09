@@ -2,13 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhongshan.mapper.security_mapper.UserMapper">
     <select id="selectUserAndRole" resultType="com.zhongshan.pojo.vo.UserVo">
-        select
-            u.*,r.role_name
-        from user u
-                 inner join user_role ur on u.id = ur.user_id
-                 inner join role r on r.id = ur.role_id
-        where  u.is_deleted = 0
-          and r.is_deleted = 0
-          and ur.is_deleted = 0;
+        select u.*,r.role_name from user u
+                                        left join user_role ur on u.id = ur.user_id
+                                        LEFT join role r on r.id = ur.role_id
     </select>
 </mapper>

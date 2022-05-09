@@ -15,4 +15,5 @@ class Uh04DayCureExpenseServiceImplTest {
     public void test01(){
         uh04DayCureExpenseService.scheduledTask();
     }
+
 }

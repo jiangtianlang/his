@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhongshan.mapper.WardUseMapper">
+<mapper namespace="com.zhongshan.mapper.inpatient.WardUseMapper">
 
     <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.WardUse">
             <id property="wardId" column="ward_id" jdbcType="CHAR"/>
@@ -20,7 +20,7 @@
         is_delete
     </sql>
     <select id="totalWardUse" resultType="com.zhongshan.entity.inpatient.vo.WardUseVo">
-        SELECT wu.ward_id,w.bed_no,w.section,w.is_null,wu.patient_name,wu.patient_no,wu.patient_sex
+        SELECT wu.ward_id,w.bed_no,w.section,w.price,w.is_null,wu.patient_name,wu.patient_no,wu.patient_sex
         FROM ward w LEFT JOIN `ward_use` wu ON wu.bed_no = w.bed_no and wu.is_delete=0
     </select>
 </mapper>

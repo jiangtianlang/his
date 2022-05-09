@@ -3,7 +3,7 @@ package com.zhongshan.service.inpatient.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.inpatient.Ward;
 import com.zhongshan.service.inpatient.WardService;
-import com.zhongshan.mapper.WardMapper;
+import com.zhongshan.mapper.inpatient.WardMapper;
 import org.springframework.stereotype.Service;
 
 /**

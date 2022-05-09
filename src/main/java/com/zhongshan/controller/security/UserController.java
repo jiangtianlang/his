@@ -58,8 +58,11 @@ public class UserController {
     @PostMapping("save")
     public R save(@RequestBody User user) {
         user.setPassword(MD5.encrypt(user.getPassword()));
-        userService.save(user);
-        return R.ok();
+        if (userService.save(user)) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
     @ApiOperation(value = "根据用户获取角色数据")
@@ -68,7 +71,28 @@ public class UserController {
         Map<String, Object> roleMap = roleService.findRoleByUserId(userId);
         return R.ok().data(roleMap);
     }
-
+    @ApiOperation(value = "根据用户ID修改用户数据")
+    @PostMapping("/update")
+    public R update(@RequestBody User user) {
+        user.setPassword(null);
+        if (userService.updateById(user)) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
+    @ApiOperation(value = "根据用户ID重置密码")
+    @PostMapping("/resetPassWord")
+    public R resetPassWord(String userId) {
+        User user = new User();
+        user.setId(userId);
+        user.setPassword(MD5.encrypt("111111"));
+        if (userService.updateById(user)) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
     @ApiOperation(value = "根据用户分配角色")
     @PostMapping("/doAssign")
     public R doAssign(@RequestParam String userId,@RequestParam String[] roleId) {

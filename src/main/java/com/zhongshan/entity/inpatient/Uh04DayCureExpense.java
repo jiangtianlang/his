@@ -23,7 +23,6 @@ public class Uh04DayCureExpense implements Serializable {
     /**
      * 住院号
      */
-    @TableId
     private String patientNo;
 
     /**

@@ -17,8 +17,8 @@ public class SymptomType implements Serializable {
     /**
      * 由医院编码1-9如1-癌症,非空
      */
-    @TableId
-    private String symptomNo;
+    @TableId(type = IdType.AUTO)
+    private Integer symptomNo;
 
     /**
      * 非空

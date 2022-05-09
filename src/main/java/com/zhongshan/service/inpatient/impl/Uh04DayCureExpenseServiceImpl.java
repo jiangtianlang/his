@@ -5,20 +5,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.inpatient.Uh04CrueInfoExpense;
 import com.zhongshan.entity.inpatient.Uh04DayCureExpense;
-import com.zhongshan.entity.inpatient.Ward;
 import com.zhongshan.entity.inpatient.vo.WardUseVo;
 import com.zhongshan.mapper.Uh04CrueInfoExpenseMapper;
-import com.zhongshan.mapper.WardUseMapper;
+import com.zhongshan.mapper.inpatient.WardUseMapper;
 import com.zhongshan.service.inpatient.Uh04DayCureExpenseService;
 import com.zhongshan.mapper.Uh04DayCureExpenseMapper;
 import com.zhongshan.service.inpatient.WardUseService;
-import com.zhongshan.utils.result.ResultData;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -53,19 +50,24 @@ public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpens
                 //今日总支出
                 double ownExpense = 0;
                 //床位费
-                ownExpense += wardUseVo.getPrice();
+                if (wardUseVo.getPrice()!=null) {
+                    ownExpense += wardUseVo.getPrice();
+                }
                 String subjectCode = count++ +"、床位费:"+ wardUseVo.getPrice();
                 QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
-                wrapper.le("to_days(CURDATE()) - to_days(recipe_date)",1);
+                wrapper.le("to_days(CURDATE()) - to_days(recipe_date)",2).eq("patient_no",patientNo);
                 List<Uh04CrueInfoExpense> uh04CrueInfoExpenses = uh04CrueInfoExpenseMapper.selectList(wrapper);
                 for (Uh04CrueInfoExpense uh04CrueInfoExpense : uh04CrueInfoExpenses) {
                     //分户医疗费用明细
-                    ownExpense += uh04CrueInfoExpense.getExponse();
+                    if (uh04CrueInfoExpense.getExponse()!=null) {
+                        ownExpense += uh04CrueInfoExpense.getExponse();
+                    }
                     subjectCode += count++ +"、"+ uh04CrueInfoExpense.getCureType()+":"+ uh04CrueInfoExpense.getExponse();
                 }
                 Uh04DayCureExpense expense = new Uh04DayCureExpense(patientNo, DateUtil.yesterday(),subjectCode,ownExpense,"F");
                 baseMapper.insert(expense);
             }
+
         }
     }
 }

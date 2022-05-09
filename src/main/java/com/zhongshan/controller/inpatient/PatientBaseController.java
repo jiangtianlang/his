@@ -49,7 +49,7 @@ public class PatientBaseController {
         //对于曾住院病人，根据其提供的住院号码自动在病案首页表中调出病人基本资料；
         QueryWrapper<PatientBase> wrapper = new QueryWrapper<>(patientBase);
         List<PatientBase> list = patientBaseService.list(wrapper);
-        if(ObjectUtil.isEmpty(list)){
+        if(ObjectUtil.isEmpty(list) && patientBase.getCapacityNo()!=null){
             //而对于第一次住院病人则自动为其产生住院号码，
             String maxId = patientBaseMapper.queryMaxId();
             if (maxId.substring(0,4).equals(Year.now().toString())) {

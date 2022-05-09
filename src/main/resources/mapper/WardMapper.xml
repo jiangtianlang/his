@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zhongshan.mapper.WardMapper">
+<mapper namespace="com.zhongshan.mapper.inpatient.WardMapper">
 
     <resultMap id="BaseResultMap" type="com.zhongshan.entity.inpatient.Ward">
             <id property="bedNo" column="bed_no" jdbcType="CHAR"/>

@@ -1,4 +1,4 @@
-package com.zhongshan.mapper;
+package com.zhongshan.mapper.inpatient;
 
 import com.zhongshan.entity.inpatient.WardUse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

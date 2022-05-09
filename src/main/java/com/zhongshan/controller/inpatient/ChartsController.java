@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author jtl
@@ -32,8 +33,15 @@ public class ChartsController {
     @GetMapping
     public R selectByDate(Integer year,Integer month) {
 
-        HashMap<String, Double> stringDoubleHashMap = crueInfoExpenseService.selectByDate(year, month);
+        HashMap<String, Double> map = crueInfoExpenseService.selectByDate(year, month);
+        Double inCome = 0.0;
+        for(Double value: map.values()) {
+            // 输出每一个value
+            if (value!=null) {
+                inCome += value;
+            }
+        }
 
-        return R.ok().data("data",stringDoubleHashMap);
+        return R.ok().data("data",map).data("inCome",inCome);
     }
 }

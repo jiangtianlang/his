@@ -11,4 +11,6 @@ import com.zhongshan.utils.result.ResultData;
 */
 public interface PatientBaseService extends IService<PatientBase> {
     public ResultData savePatientBase(PatientBase patientBase);
+
+    ResultData outHospital(String patientNo);
 }
