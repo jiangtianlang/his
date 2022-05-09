@@ -31,12 +31,12 @@ public class PrescriptionServiceImpl extends ServiceImpl<PrescriptionMapper, Pre
          }
          if(prescriptionVo.getStartTodayDate()!=null
                  && prescriptionVo.getEndTodayDate()!=null){
-             queryWrapper.between("Time",
+             queryWrapper.between("today_date",
                      prescriptionVo.getStartTodayDate(),
                      prescriptionVo.getEndTodayDate());
          }
          if(prescriptionVo.getPersonsNo()!=null){
-             queryWrapper.eq("personsNo",prescriptionVo.getPersonsNo());
+             queryWrapper.like("personsNo",prescriptionVo.getPersonsNo());
          }
          if(prescriptionVo.getMediNo()!=null){
              queryWrapper.like("mediNo",prescriptionVo.getMediNo());

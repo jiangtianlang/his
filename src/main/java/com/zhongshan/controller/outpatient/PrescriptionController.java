@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @Api(value = "收费情况test",tags = "（门诊子系统）收费情况据接口API")
@@ -24,7 +23,7 @@ public class PrescriptionController {
     @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectGetPrice(PrescriptionVo prescriptionVo){
         List<PrescriptionsVo> list=prescriptionService.selectGetPrice(prescriptionVo);
-        return R.ok();
+        return R.ok().data("data",list).message("查询成功");
     }
 
 

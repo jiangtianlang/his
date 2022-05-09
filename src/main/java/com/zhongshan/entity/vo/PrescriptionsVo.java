@@ -17,5 +17,5 @@ public class PrescriptionsVo {
     private String doctorName;
     private String mediName;
     private Integer quantity;
-    private Date today_date;
+    private Date todayDate;
 }
