@@ -5,19 +5,25 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  * @TableName uh03_store_in_c
  */
 @TableName(value ="uh03_store_in_c")
+@NoArgsConstructor
 @Data
 public class Uh03StoreInC implements Serializable {
     /**
-     * 入库单号
+     * 入库Id
      */
     @TableId(type = IdType.AUTO)
-    private Integer inNo;
+    private Integer inId;
+    /**
+     * 入库单号
+     */
+    private String inNo;
 
     /**
      * 药品代码

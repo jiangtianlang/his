@@ -43,7 +43,7 @@ public class SymptomTypeController  {
 
     @GetMapping
     public R selectAll(Page<SymptomType> page, SymptomType symptomType) {
-        return R.ok().data("data",(this.symptomTypeService.page(page, new QueryWrapper<>(symptomType))));
+        return R.ok().data("data",(this.symptomTypeService.list( new QueryWrapper<>(symptomType))));
     }
 
     /**

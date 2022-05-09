@@ -5,13 +5,17 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+
+import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  * @TableName uh03_month_balance_c
  */
 @TableName(value ="uh03_month_balance_c")
+@NoArgsConstructor
 @Data
 public class Uh03MonthBalanceC implements Serializable {
     /**
@@ -38,7 +42,7 @@ public class Uh03MonthBalanceC implements Serializable {
     /**
      * 本月入库(均价)
      */
-    private Integer inAmount;
+    private Double inAmount;
 
     /**
      * 本月出库(均价)
@@ -53,8 +57,34 @@ public class Uh03MonthBalanceC implements Serializable {
     /**
      * 月份
      */
-    private String month;
+    private Integer month;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Uh03MonthBalanceC(String mediNo, Double unitPrice, String unit, String specification) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.inAmount = unitPrice;
+    }
+
+    public Uh03MonthBalanceC(String mediNo, String specification, String unit, Double balancePrice, Double inAmount, Double outPrice, Integer outAmount, Integer month) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.balancePrice = balancePrice;
+        this.inAmount = inAmount;
+        this.outPrice = outPrice;
+        this.outAmount = outAmount;
+        this.month = month;
+    }
+
+    public Uh03MonthBalanceC(String mediNo, Double unitPrice, String unit, String specification, Integer quantity) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.outPrice = unitPrice;
+        this.outAmount=quantity;
+    }
 }

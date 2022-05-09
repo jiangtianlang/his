@@ -49,6 +49,7 @@ public class Uh03StoreW implements Serializable {
     }
 
     public Uh03StoreW(String comNo) {
+
     }
 
     public Uh03StoreW(Integer quantity) {

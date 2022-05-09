@@ -20,4 +20,27 @@
         unit,unit_price,quantity,
         out_date,department
     </sql>
+    <select id="query" resultType="com.zhongshan.entity.Uh03StoreOutC">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_store_out_c
+        ORDER BY out_date desc
+    </select>
+    <select id="findById" parameterType="com.zhongshan.entity.vo.Uh03StoreOutVo" resultType="com.zhongshan.entity.Uh03StoreOutC">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_store_out_c
+        <where>
+            <if test="startDate!=null">
+                and out_date &gt;= #{startDate}
+            </if>
+            <if test="endDate!=null">
+                and out_date &lt;#{endDate}
+            </if>
+            <if test="mediNo!=null">
+                and medi_no like concat('%',#{mediNo},'%')
+            </if>
+        </where>
+        ORDER BY out_date desc
+    </select>
 </mapper>

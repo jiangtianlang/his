@@ -20,4 +20,46 @@
         operation_name,operation_code,operation_hocus,
         operation_cut,operation_doctor_name
     </sql>
+    <select id="findAll" resultType="com.zhongshan.entity.Operation">
+        select
+        <include refid="Base_Column_List"/>
+        from operation
+        where state=0
+        order by operation_date desc
+    </select>
+    <select id="findById" resultType="com.zhongshan.entity.Operation">
+        select
+        <include refid="Base_Column_List"/>
+        from operation
+        <where>
+            <if test="operationNum">
+                operation_num=#{operationNum}
+            </if>
+            <if test="operationTimes">
+                operation_times =#{operationTimes}
+            </if>
+            <if test="operationDate">
+                operation_date &lt; #{operationDate}
+            </if>
+            <if test="operationTimes">
+                operation_times =#{operationTimes}
+            </if>
+            <if test="operationName">
+                operation_name like concat('%',#{operationName},'%')
+            </if>
+            <if test="operationCode">
+                operation_code =#{operationCode}
+            </if>
+            <if test="operationHocus">
+                operation_hocus =#{operationHocus}
+            </if>
+            <if test="operationCut">
+                operation_cut =#{operationCut}
+            </if>
+            <if test="operationDoctorName">
+                operation_doctor_name =#{operationDoctorName}
+            </if>
+        </where>
+        order by operation_date desc
+    </select>
 </mapper>

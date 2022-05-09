@@ -42,7 +42,7 @@ public class HospitalLevelController  {
     @ApiOperation(value = "分页查询所有数据")
     @GetMapping
     public R selectAll(Page<HospitalLevel> page, HospitalLevel hospitalLevel) {
-        return R.ok().data("data",(this.hospitalLevelService.page(page, new QueryWrapper<>(hospitalLevel))));
+        return R.ok().data("data",(this.hospitalLevelService.list( new QueryWrapper<>(hospitalLevel))));
     }
 
     /**

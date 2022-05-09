@@ -15,4 +15,29 @@
         disease_icd9,disease_code,disease_type,
         disease_name
     </sql>
+    <select id="queryAll" resultType="com.zhongshan.entity.Diagnose">
+        select
+        <include refid="Base_Column_List"/>
+        from diagnose
+        where state=0;
+    </select>
+    <select id="queryBy" resultType="com.zhongshan.entity.Diagnose">
+        select
+        <include refid="Base_Column_List"/>
+        from diagnose
+        <where>
+            <if test="diseaseIcd9!=null">
+                and disease_icd9=#{disease_icd9}
+            </if>
+            <if test="diseaseName!=null">
+                and disease_name like concat('%',#{diseaseName},'%')
+            </if>
+            <if test="diseaseType!=null">
+                and disease_type=#{diseaseType}
+            </if>
+            <if test="diseaseCode!=null">
+                and disease_code=#{diseaseCode}
+            </if>
+        </where>
+    </select>
 </mapper>

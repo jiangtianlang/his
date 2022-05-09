@@ -3,6 +3,8 @@ package com.zhongshan.mapper;
 import com.zhongshan.entity.CaseHistory;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author 13427
 * @description 针对表【case_history】的数据库操作Mapper
@@ -11,6 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface CaseHistoryMapper extends BaseMapper<CaseHistory> {
 
+    List<CaseHistory> queryAll();
 }
 
 

@@ -42,7 +42,7 @@ public class PersonsController  {
     @ApiOperation(value = "分页查询所有数据")
     @GetMapping
     public R selectAll(Page<Persons> page, Persons persons) {
-        return R.ok().data("data",(this.personsService.page(page, new QueryWrapper<>(persons))));
+        return R.ok().data("data",(this.personsService.list( new QueryWrapper<>(persons))));
     }
 
     /**

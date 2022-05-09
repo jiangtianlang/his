@@ -3,6 +3,8 @@ package com.zhongshan.mapper;
 import com.zhongshan.entity.Department;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author 13427
 * @description 针对表【department】的数据库操作Mapper
@@ -11,6 +13,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface DepartmentMapper extends BaseMapper<Department> {
 
+    List<Department> queryAll();
+
+    List<Department> queryById(Department department);
 }
 
 

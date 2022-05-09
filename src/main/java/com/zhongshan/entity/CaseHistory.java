@@ -1,17 +1,17 @@
 package com.zhongshan.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  * @TableName case_history
  */
 @TableName(value ="case_history")
+@NoArgsConstructor
 @Data
 public class CaseHistory implements Serializable {
     /**
@@ -99,7 +99,13 @@ public class CaseHistory implements Serializable {
      * 
      */
     private String chSignatureIntern;
+    /**
+     * 状态
+     */
+    @TableLogic
+    private Integer state;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
 }

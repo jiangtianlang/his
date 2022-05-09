@@ -42,7 +42,7 @@ public class PublicExpenseController {
     @ApiOperation(value = "分页查询所有数据")
 
     public R selectAll(Page<PublicExpense> page, PublicExpense publicExpense) {
-        return R.ok().data("data",(this.publicExpenseService.page(page, new QueryWrapper<>(publicExpense))));
+        return R.ok().data("data",(this.publicExpenseService.list( new QueryWrapper<>(publicExpense))));
     }
 
     /**

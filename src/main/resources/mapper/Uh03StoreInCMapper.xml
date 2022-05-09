@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -15,9 +16,8 @@
             <result property="comNo" column="com_no" jdbcType="CHAR"/>
             <result property="billNo" column="bill_no" jdbcType="VARCHAR"/>
     </resultMap>
-
     <sql id="Base_Column_List">
-        in_no,medi_no,specification,
+       in_id, in_no,medi_no,specification,
         unit,unit_price,quantity,
         in_date,com_no,bill_no
     </sql>
@@ -35,6 +35,41 @@
                     and in_date like #{uh03StoreInC.indate}
                 </if>
             </where>
+        ORDER BY in_date desc
 
     </select>
+    <select id="findAll" resultType="com.zhongshan.entity.Uh03StoreInC">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_store_in_c where  state=0
+        ORDER BY in_date desc
+    </select>
+
+    <select id="findById" parameterType="com.zhongshan.entity.vo.Uh03StoreInCVo" resultType="com.zhongshan.entity.Uh03StoreInC">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_store_in_c
+        <where>
+            <if test="inNo!=null">
+            and in_no like concat('%',#{inNo},'%')
+            </if>
+            <if test="startDate!=null">
+                and in_date &gt;= #{startDate}
+            </if>
+            <if test="endDate!=null">
+                and in_date &lt;#{endDate}
+            </if>
+            <if test="mediNo!=null">
+                and medi_no like concat('%',#{mediNo},'%')
+            </if>
+            <if test="comNo!=null">
+                and com_no like concat('%',#{comNo},'%')
+            </if>
+            <if test="billNo!=null">
+                and bill_no like concat('%',#{billNo},'%')
+            </if>
+        </where>
+        ORDER BY in_date desc
+    </select>
+
 </mapper>

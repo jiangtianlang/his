@@ -20,4 +20,35 @@
         balance_price,in_amount,out_price,
         out_amount,month
     </sql>
+    <update id="updateByUbc">
+        update uh03_month_balance_c set in_amount=(#{unitPrice}+in_amount)/2 where  medi_no=#{mediNo} and month=#{month};
+    </update>
+    <update id="updateByOutUbc">
+        update uh03_month_balance_c set out_price=(#{unitPrice}+out_price)/2,out_amount=#{quantity}+out_amount where  medi_no=#{mediNo} and month=#{month};
+    </update>
+    <select id="findprice" resultType="com.zhongshan.entity.Uh03MonthBalanceC">
+        select balance_price
+        from uh03_month_balance_c
+        where month-1 and medi_no=#{mediNo}
+    </select>
+    <select id="queryAll" resultType="com.zhongshan.entity.Uh03MonthBalanceC">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_month_balance_c
+        ORDER BY month asc
+    </select>
+    <select id="queryById" resultType="com.zhongshan.entity.Uh03MonthBalanceC">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_month_balance_c
+        <where>
+         <if test="mediNo!=null">
+             and medi_no like concat('%',#{mediNo},'%')
+         </if>
+          <if test="month!=null">
+              and month=#{month};
+          </if>
+        </where>
+        ORDER BY month asc
+    </select>
 </mapper>

@@ -2,6 +2,9 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.Uh03StoreOutC;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.entity.vo.Uh03StoreOutVo;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -10,4 +13,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface Uh03StoreOutCService extends IService<Uh03StoreOutC> {
 
+    int insertBatch(List<Uh03StoreOutC> uh03StoreOutCS);
+
+    List<Uh03StoreOutC> queryAll();
+
+    List<Uh03StoreOutVo> findById(Uh03StoreOutVo uh03StoreOutVo);
 }

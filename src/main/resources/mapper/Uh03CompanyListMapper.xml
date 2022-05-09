@@ -14,7 +14,18 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        com_no,com_name,com_address,
+        com_id,com_no,com_name,com_address,
         contact_tel,contact_per,com_type
     </sql>
+    <select id="queryAll" resultType="com.zhongshan.entity.Uh03CompanyList">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_company_list
+        where state=0 ORDER BY com_type asc
+    </select>
+    <select id="queryById" resultType="com.zhongshan.entity.Uh03CompanyList">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_company_list where com_no like concat('%',#{comNo},'%') and state=0 ORDER BY com_type asc
+    </select>
 </mapper>

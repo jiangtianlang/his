@@ -1,11 +1,10 @@
 package com.zhongshan.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -13,11 +12,16 @@ import lombok.Data;
  */
 @TableName(value ="uh03_company_list")
 @Data
+@NoArgsConstructor
 public class Uh03CompanyList implements Serializable {
+    /**
+     * 供应商id
+     */
+    @TableId
+    private Integer comId;
     /**
      * 供应商代码
      */
-    @TableId
     private String comNo;
 
     /**
@@ -39,13 +43,20 @@ public class Uh03CompanyList implements Serializable {
      * 联系人
      */
     private String contactPer;
-
+    /**
+     * 状态
+     */
+    @TableLogic
+    private Integer state;
     /**
      * 类别,1—供应商，
 2—领药部门
      */
     private Integer comType;
-
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
+    public Uh03CompanyList(String comNo) {
+        this.comNo = comNo;
+    }
 }

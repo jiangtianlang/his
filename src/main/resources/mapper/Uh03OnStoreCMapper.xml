@@ -13,10 +13,72 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        medi_no,specification,unit,
-        unit_price,quantity
+        mediNo,specification,unit,
+        unitPrice,quantity,state
     </sql>
-    <update id="updateBybyno" parameterType="int">
-         update uh03_on_store_c set quantity=#{quantity}+quantity where=#{medi_on};
+    <insert id="insertaa" parameterType="com.zhongshan.entity.Uh03OnStoreC"
+            keyProperty="mediNo" useGeneratedKeys="true" keyColumn="mediNo">
+insert into uh03_on_store_c(specification,unit,unit_price,quantity,medi_no)
+value(#{specification},#{unit},#{unitPrice},#{quantity},#{mediNo})
+    </insert>
+
+    <update id="updateBybyno" parameterType="com.zhongshan.entity.Uh03OnStoreC">
+         update uh03_on_store_c set quantity=#{quantity}+quantity where medi_no=#{mediNo};
     </update>
+    <update id="updateBybyOutno" parameterType="com.zhongshan.entity.Uh03OnStoreC">
+        update uh03_on_store_c set quantity=quantity-#{quantity} where medi_no=#{mediNo};
+    </update>
+    <select id="queryZ"  resultMap="com.zhongshan.mapper.Uh03OnStoreCMapper.BaseResultMap">
+     select uh_id, specification,unit,unit_price,quantity,medi_no
+from uh03_on_store_c
+where
+medi_no like 'Z%'
+and state=0 ORDER BY quantity asc
+    </select>
+    <select id="queryH" resultMap="com.zhongshan.mapper.Uh03OnStoreCMapper.BaseResultMap" >
+     select uh_id, specification,unit,unit_price,quantity,medi_no
+from uh03_on_store_c
+where
+medi_no like 'H%'
+and state=0 ORDER BY quantity asc
+    </select>
+    <select id="queryAll" resultType="com.zhongshan.entity.Uh03OnStoreC">
+        select uh_id,
+        specification,unit,unit_price,quantity,medi_no
+from uh03_on_store_c where state=0 ORDER BY quantity asc
+    </select>
+    <select id="queryMN" resultType="com.zhongshan.entity.Uh03OnStoreC">
+        select medi_no,quantity
+        from uh03_on_store_c
+        ORDER BY quantity asc
+    </select>
+    <select id="findallList" resultType="com.zhongshan.entity.Uh03OnStoreC">
+        SELECT uo.medi_no, uo.quantity,uo.unit_price,uo.unit,uo.specification
+        FROM uh03_on_store_c uo
+        INNER JOIN uh03_price_c_dbf uf
+        on uo.medi_no=uf.medi_no
+        where uo.quantity &lt; uf.store_limit
+        ORDER BY uo.quantity asc
+    </select>
+    <select id="selectByCount" parameterType="com.zhongshan.entity.Uh03OnStoreC" resultType="com.zhongshan.entity.Uh03OnStoreC">
+         select
+        specification,unit,unit_price,quantity,medi_no
+        from uh03_on_store_c
+        where quantity &lt; #{quantity} and medi_no=#{mediNo}
+    </select>
+    <select id="findSpe" resultType="string">
+     select specification
+     from uh03_on_store_c
+     where medi_no=#{mediNo}
+
+    </select>
+    <select id="findUnit" resultType="string">
+         select unit
+     from uh03_on_store_c
+     where medi_no=#{mediNo}
+    </select>
+    <select id="findSum" resultType="integer">
+        select sum(quantity)
+        from uh03_on_store_c
+    </select>
 </mapper>

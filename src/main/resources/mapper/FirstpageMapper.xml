@@ -108,4 +108,51 @@
         fg_signature_director_doctor,fg_signature_charge_doctor,fg_signature_house_doctor,
         fg_signature_intern,fg_signature_coder
     </sql>
+    <select id="queryByNum" resultType="com.zhongshan.entity.Firstpage">
+        select
+        <include refid="Base_Column_List"/>
+        from firstpage
+       <where>
+           <if test="fgNum">
+               and fg_num=#{fgNum}
+           </if>
+           <if test="fgInTime">
+               and fg_in_time >= #{fgInTime}
+           </if>
+           <if test="fgOutDate">
+               and fg_out_date >= #{fgOutDate}
+           </if>
+           <if test="fgInStatus">
+               and fg_in_status=#{fgInStatus}
+           </if>
+           <if test="fgLeaveHospital">
+               and fg_leave_hospital=#{fgLeaveHospital}
+           </if>
+           <if test="fgSignatureHouseDoctor">
+               and fg_signature_house_doctor=#{fgSignatureHouseDoctor}
+           </if>
+       </where>
+       and state=0
+    </select>
+    <select id="query" resultType="com.zhongshan.entity.Firstpage">
+        select
+        <include refid="Base_Column_List"/>
+        from firstpage where state=0
+    </select>
+    <select id="findCount" resultType="com.zhongshan.entity.Firstpage">
+        select fg_num,fg_times
+        from firstpage
+        where fg_num=#{fgNum} and state=0
+    </select>
+    <select id="findCountAll" resultType="com.zhongshan.entity.Firstpage">
+        select
+        <include refid="Base_Column_List"/>
+        from firstpage
+        where fg_num=#{fgNum} and state=0 and fg_times=#{fgTimes}
+    </select>
+    <select id="findCounta" resultType="java.lang.Integer">
+        select fg_times
+        from firstpage
+        where fg_num=#{fgNum} and state=0
+    </select>
 </mapper>

@@ -2,6 +2,10 @@ package com.zhongshan.mapper;
 
 import com.zhongshan.entity.Uh03OnStoreC;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhongshan.entity.Uh03StoreInC;
+
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author 13427
@@ -11,7 +15,30 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface Uh03OnStoreCMapper extends BaseMapper<Uh03OnStoreC> {
 
-    int updateBybyno(String dm);
+
+    int insertaa(Uh03StoreInC uh03StoreInC);
+
+    int updateBybyno(String mediNo,Integer quantity);
+
+    List<Uh03OnStoreC> queryZ();
+
+    List<Uh03OnStoreC> queryH();
+
+    List<Uh03OnStoreC> queryAll();
+
+    List<Uh03OnStoreC> queryMN();
+
+    List<Uh03OnStoreC> findallList();
+
+    void updateBybyOutno(String mediNo, Integer quantity);
+
+    List<Uh03OnStoreC> selectByCount(String mediNo,Integer quantity);
+
+    String findSpe(String mediNo);
+
+    String findUnit(String mediNo);
+
+   Integer findSum();
 }
 
 

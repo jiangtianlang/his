@@ -19,4 +19,27 @@
         unit_price,medi_name,quality,
         store_limit
     </sql>
+    <select id="queryAll" resultType="com.zhongshan.entity.Uh03PriceCDbf">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_price_c_dbf
+        ORDER BY quality asc
+    </select>
+    <select id="queryByid" parameterType="com.zhongshan.entity.Uh03PriceCDbf" resultType="com.zhongshan.entity.Uh03PriceCDbf">
+        select
+        <include refid="Base_Column_List"/>
+        from uh03_price_c_dbf
+        <where>
+            <if test="mediNo!=null">
+              and  medi_no like concat('%',#{mediNo},'%')
+            </if>
+            <if test="mediName!=null">
+                and   medi_name like concat('%',#{mediName},'%')
+            </if>
+            <if test="quality!=null">
+                and   quality=#{quality}
+            </if>
+        </where>
+        ORDER BY quality asc
+    </select>
 </mapper>

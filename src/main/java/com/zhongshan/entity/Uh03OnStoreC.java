@@ -13,6 +13,11 @@ import lombok.Data;
 @Data
 public class Uh03OnStoreC implements Serializable {
     /**
+     * id
+     */
+
+    private Integer uhId;
+    /**
      * 药品代码
      */
     @TableId
@@ -58,5 +63,23 @@ public class Uh03OnStoreC implements Serializable {
     }
 
     public Uh03OnStoreC(String mediNo, Double unitPrice, String specification, String unit, Integer quantity) {
+    }
+
+    public Uh03OnStoreC(Uh03StoreInC uh03StoreInC) {
+    }
+
+    public Uh03OnStoreC(String mediNo, Double unitPrice, String unit, Integer quantity,  String specification) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
+
+    public Uh03OnStoreC(String mediNo, Double unitPrice, String unit, String specification) {
+        this.mediNo = mediNo;
+        this.specification = specification;
+        this.unit = unit;
+        this.unitPrice = unitPrice;
     }
 }
