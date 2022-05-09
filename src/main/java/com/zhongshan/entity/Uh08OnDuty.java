@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -19,6 +20,8 @@ public class Uh08OnDuty implements Serializable {
      * 
      */
     @TableId
+    private Integer id;
+
     private String staffNo;
 
     /**
@@ -29,6 +32,7 @@ public class Uh08OnDuty implements Serializable {
     /**
      * 上班日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date workDate;
 
     /**

@@ -17,5 +17,11 @@ public interface Uh08OnDutyService extends IService<Uh08OnDuty> {
 
     R outpatientDaily();
 
-    R queryWorkload(String name, String department);
+    R queryWorkload(String name);
+
+    R workloadDaily();
+
+    R workloadMonth(String date);
+
+    R workloadYear(String date);
 }

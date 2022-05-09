@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Firstpage;
 import com.zhongshan.entity.FixedAssets;
+import com.zhongshan.entity.PersonBase;
 import com.zhongshan.mapper.FirstpageMapper;
+import com.zhongshan.mapper.personBase_mapper.PersonBaseMapper;
 import com.zhongshan.service.FixedAssetsService;
 import com.zhongshan.mapper.FixedAssetsMapper;
 import com.zhongshan.utils.result.R;
@@ -50,7 +52,25 @@ private FirstpageMapper firstpageMapper;
         if(StringUtils.isNotBlank(firstpage.getFgMainDiagnoseCode())){
             queryWrapper.like("fg_mian_diagnose_code",firstpage.getFgMainDiagnoseCode());
         }
-        return null;
+        List<Firstpage> list=firstpageMapper.selectList(queryWrapper);
+        if(list.size()>0)
+        return R.ok().data("data",list);
+        else
+            return R.ok().message("没有数据");
+    }
+@Resource
+private PersonBaseMapper personBaseMapper;
+    @Override
+    public R selectBusiness(PersonBase personBase) {
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        if(StringUtils.isNotBlank(personBase.getPersonName())){
+            queryWrapper.like("person_name",personBase.getPersonName());
+        }
+        List<PersonBase> list =personBaseMapper.selectList(queryWrapper);
+        if(list.size()>0)
+        return R.ok().data("data",list);
+        else
+            return R.ok().message("没有数据");
     }
 }
 

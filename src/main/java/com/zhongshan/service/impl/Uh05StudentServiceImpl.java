@@ -52,16 +52,20 @@ public class Uh05StudentServiceImpl extends ServiceImpl<Uh05StudentMapper, Uh05S
     @Override
     public R queryStudent(Uh05Student uh05Student) {
         QueryWrapper<Uh05Student> queryWrapper=new QueryWrapper<>();
-        if(StringUtils.isNotBlank(uh05Student.getStudentNo())){
-            queryWrapper.like("student_no",uh05Student.getStudentNo());
+        if(uh05Student.getStudentNo()!=null){
+            if (  !uh05Student.getStudentNo().equals("undefined")) {
+                queryWrapper.like("student_no",uh05Student.getStudentNo());
+            }
         }
 
-        if(StringUtils.isNotBlank(uh05Student.getName())){
-            queryWrapper.like("name",uh05Student.getName());
+        if(uh05Student.getName()!=null ){
+            if ( !uh05Student.getName().equals("undefined")) {
+                queryWrapper.like("name",uh05Student.getName());
+            }
         }
         List<Uh05Student> list=uh05StudentMapper.selectList(queryWrapper);
         if(list.size()>0)
-            return R.ok().data("date",list);
+            return R.ok().data("data",list);
         else
             return R.ok().message("没有数据");
     }

@@ -34,7 +34,9 @@ public class StudentsManagementController {
     @RequestMapping(value = "/test/queryStudent",method = RequestMethod.GET)
     @ApiOperation(value = "学生基本信息查询",notes = "",httpMethod = "GET", response = String.class)
     public R queryStudent(Uh05Student uh05Student){
+        System.out.println(uh05Student.getStudentNo());
         return uh05StudentService.queryStudent(uh05Student);
+
     }
     @RequestMapping(value = "/test/bulkInsertStudent",method = RequestMethod.POST)
     @ApiOperation(value = "学生基本信息批量录入",notes = "",httpMethod = "POST", response = String.class)

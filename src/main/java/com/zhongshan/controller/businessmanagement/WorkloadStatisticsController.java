@@ -15,12 +15,12 @@ import javax.annotation.Resource;
 public class WorkloadStatisticsController {
     @Resource
     private Uh08OnDutyService uh08OnDutyService;
-    @RequestMapping(value = "/queryWorkload",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/queryWorkload",method = RequestMethod.GET)
     @ApiOperation(value = "根据姓名和部门工作量查询",notes = "",httpMethod = "GET", response = String.class)
-    public R queryWorkload(String name, String department){
-        return uh08OnDutyService.queryWorkload(name,department);
+    public R queryWorkload(String name){
+        return uh08OnDutyService.queryWorkload(name);
     }
-    @RequestMapping(value = "/enteringWorkload",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/enteringWorkload",method = RequestMethod.GET)
     @ApiOperation(value = "工作量录入",notes = "",httpMethod = "GET", response = String.class)
     public R enteringWorkload(){
         return R.ok();

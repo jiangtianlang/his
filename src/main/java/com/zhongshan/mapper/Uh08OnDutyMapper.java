@@ -2,6 +2,10 @@ package com.zhongshan.mapper;
 
 import com.zhongshan.entity.Uh08OnDuty;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhongshan.entity.vo.MonthVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
 * @author 13427
@@ -11,6 +15,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface Uh08OnDutyMapper extends BaseMapper<Uh08OnDuty> {
 
+    List<MonthVo> workloadMonth(@Param("year") String year, @Param("month") String month);
+
+    List<MonthVo> workloadYear(@Param("year") String date);
+
+    List<MonthVo> workloadDaily(@Param("year") String year, @Param("month") String month, @Param("day") String day);
 }
 
 

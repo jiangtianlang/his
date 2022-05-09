@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -34,6 +35,7 @@ public class Uh05Student implements Serializable {
     /**
      * 出生日期
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date birthDate;
 
     /**
@@ -91,6 +93,19 @@ public class Uh05Student implements Serializable {
 'F' - 毕业)
      */
     private String status;
+    /**
+     * 时间
+     */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date date;
+    /**
+     * 事项
+     */
+    private String item;
+    /**
+     * 原因
+     */
+    private String reason;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

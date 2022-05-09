@@ -19,11 +19,12 @@ import javax.annotation.Resource;
 @Api(value = "医院基本情况查询",tags = "(医院业务管理子系统)医院基本情况查询接口API")
 public class BasicHospitalController {
     @Resource
+    private FixedAssetsService fixedAssetsService;
+    @Resource
     private PersonBaseService personBaseService;
     @RequestMapping(value = "/selectPerson",method = RequestMethod.GET)
     @ApiOperation(value = "查询科室人员信息",notes = "",httpMethod = "GET", response = String.class)
     public R selectPerson(PersonBase personBase){
-       // return personBaseService.selectPerson(sectionNo,page,limit);
         return R.ok();
     }
     @Resource
@@ -31,10 +32,9 @@ public class BasicHospitalController {
     @RequestMapping(value = "/test/selectBusiness")
     @ApiOperation(value = "查询职工业务档案",notes = "",httpMethod = "GET", response = String.class)
     public R selectBusiness(PersonBase personBase){
-        return R.ok();
+        return fixedAssetsService.selectBusiness(personBase);
     }
-    @Resource
-    private FixedAssetsService fixedAssetsService;
+
     @RequestMapping(value = "/test/selectFixed")
     @ApiOperation(value = "查询医院大型设备",notes = "",httpMethod = "GET", response = String.class)
     public R selectFixed(){

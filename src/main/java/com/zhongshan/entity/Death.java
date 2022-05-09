@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -34,6 +37,7 @@ public class Death implements Serializable {
     /**
      * 年龄
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date birth;
 
     /**
@@ -49,6 +53,7 @@ public class Death implements Serializable {
     /**
      * 发病日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date accidentDate;
 
     /**
@@ -59,6 +64,7 @@ public class Death implements Serializable {
     /**
      * 死亡日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date deathDate;
 
     /**

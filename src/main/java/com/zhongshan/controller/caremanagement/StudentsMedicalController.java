@@ -36,8 +36,8 @@ public class StudentsMedicalController {
     }
     @RequestMapping(value = "/queryStudentsMedical")
     @ApiOperation(value = "查询学生体检信息",httpMethod = "GET")
-    public R queryStudentsMedical(Uh05Student uh05Student){
-        return R.ok();
+    public R queryStudentsMedical(Uh05HealthStudent uh05HealthStudent){
+        return uh05HealthStudentService.queryStudentsMedical(uh05HealthStudent);
     }
     @RequestMapping(value = "/bulkInsertStudentsMedical",method = RequestMethod.POST)
     @ApiOperation(value = "批量录入学生体检信息",httpMethod = "POST")

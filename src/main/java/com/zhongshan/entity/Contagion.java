@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -18,6 +21,8 @@ public class Contagion implements Serializable {
     /**
      * 单位
      */
+    @TableId
+    private Integer id;
     private String unit;
 
     /**
@@ -33,6 +38,7 @@ public class Contagion implements Serializable {
     /**
      * 年龄
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date birth;
 
     /**
@@ -53,6 +59,7 @@ public class Contagion implements Serializable {
     /**
      * 诊断日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date diagnosiDate;
 
     /**

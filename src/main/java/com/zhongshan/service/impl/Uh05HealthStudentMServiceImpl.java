@@ -10,6 +10,7 @@ import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 13427
@@ -55,7 +56,11 @@ public class Uh05HealthStudentMServiceImpl extends ServiceImpl<Uh05HealthStudent
         if(StringUtils.isNotBlank(uh05HealthStudentM.getStudentNo())){
             queryWrapper.like("student_no",uh05HealthStudentM.getStudentNo());
         }
-        return null;
+        List<Uh05HealthStudentM> list=uh05HealthStudentMMapper.selectList(queryWrapper);
+        if(list.size()>0)
+            return R.ok().data("data",list);
+        else
+            return R.ok().message("没有数据");
     }
 }
 

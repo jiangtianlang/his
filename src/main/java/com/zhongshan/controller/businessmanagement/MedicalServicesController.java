@@ -19,13 +19,13 @@ import java.util.List;
 public class MedicalServicesController {
     @Resource
     private Uh08OnDutyService uh08OnDutyService;
-    @RequestMapping(value = "/selectDate",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/selectDate",method = RequestMethod.GET)
     @ApiOperation(value = "根据日期查询信息",notes = "",httpMethod = "GET", response = String.class)
     public R selectDate(String work_date){
         Date date1= DateTime.of(work_date,"YYYY-mm-dd");
         return R.ok();
     }
-    @RequestMapping(value = "/selectDepartment",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/selectDepartment",method = RequestMethod.GET)
     @ApiOperation(value = "根据部门查询值班名单",notes = "",httpMethod = "GET", response = String.class)
     public R selectDepartment(String department){
         List<Uh08OnDuty> list=uh08OnDutyService.selectDepartment(department);
