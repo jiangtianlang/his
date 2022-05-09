@@ -15,4 +15,9 @@ public class SpecialManagementController {
     public R registrationOfDeath(){
         return R.ok();
     }
+    @RequestMapping(value = "/registrationOfContagion",method = RequestMethod.POST)
+    @ApiOperation(value = "传染病登记",notes = "",httpMethod = "GET", response = String.class)
+    public R registrationOfContagion(){
+        return R.ok();
+    }
 }

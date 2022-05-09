@@ -1,6 +1,8 @@
 package com.zhongshan.controller.businessmanagement;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.zhongshan.entity.FixedAssets;
+import com.zhongshan.entity.PersonBase;
 import com.zhongshan.service.FixedAssetsService;
 import com.zhongshan.service.PersonsService;
 import com.zhongshan.service.personBase.PersonBaseService;
@@ -20,7 +22,7 @@ public class BasicHospitalController {
     private PersonBaseService personBaseService;
     @RequestMapping(value = "/selectPerson",method = RequestMethod.GET)
     @ApiOperation(value = "查询科室人员信息",notes = "",httpMethod = "GET", response = String.class)
-    public R selectPerson(){
+    public R selectPerson(PersonBase personBase){
        // return personBaseService.selectPerson(sectionNo,page,limit);
         return R.ok();
     }
@@ -28,14 +30,16 @@ public class BasicHospitalController {
     private PersonsService personsService;
     @RequestMapping(value = "/selectBusiness")
     @ApiOperation(value = "查询职工业务档案",notes = "",httpMethod = "GET", response = String.class)
-    public R selectBusiness(String personName, Integer page, Integer limit){
+    public R selectBusiness(PersonBase personBase){
         return R.ok();
     }
     @Resource
     private FixedAssetsService fixedAssetsService;
     @RequestMapping(value = "/selectFixed")
     @ApiOperation(value = "查询医院大型设备",notes = "",httpMethod = "GET", response = String.class)
-    public R selectFixed(){
-        return R.ok();
+    public R selectFixed(FixedAssets fixedAssets){
+//        return fixedAssetsService.selectFixed();
+        return  fixedAssetsService.selectFixed(fixedAssets);
+
     }
 }
