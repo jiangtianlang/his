@@ -24,4 +24,6 @@ public interface Uh08OnDutyService extends IService<Uh08OnDuty> {
     R workloadMonth(String date);
 
     R workloadYear(String date);
+
+    R selectDate(String workDate);
 }

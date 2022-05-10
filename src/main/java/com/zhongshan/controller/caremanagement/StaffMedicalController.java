@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @Api(value = "教职工体检表",tags = "(保健档案管理子系统)教职工体检表增删改查")
 public class StaffMedicalController {
+    @Resource
     private Uh05HealthStaffService uh05HealthStaffService;
     @RequestMapping(value = "/test/insertHealthStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工体检信息录入",notes = "",httpMethod = "GET", response = String.class)

@@ -53,25 +53,13 @@ public class Uh05StaffServiceImpl extends ServiceImpl<Uh05StaffMapper, Uh05Staff
     public R queryStaff(Uh05Staff uh05Staff) {
         QueryWrapper<Uh05Staff> queryWrapper=new QueryWrapper<>();
         if(StringUtils.isNotBlank(uh05Staff.getStaffNo())){
-            queryWrapper.like("staff_no",uh05Staff.getStaffNo());
+           if(!uh05Staff.getStaffNo().equals("undefined")){
+            queryWrapper.like("staff_no",uh05Staff.getStaffNo());}
         }
-        if(StringUtils.isNotBlank(uh05Staff.getSex())){
-            queryWrapper.like("sex",uh05Staff.getSex());
-        }
-        if(StringUtils.isNotBlank(uh05Staff.getDepartmentNo())){
-            queryWrapper.like("department_no",uh05Staff.getDepartmentNo());
-        }
-        if(StringUtils.isNotBlank(uh05Staff.getPostNo())){
-            queryWrapper.like("post_no",uh05Staff.getPostNo());
-        }
-        if(StringUtils.isNotBlank(uh05Staff.getTitleNo())){
-            queryWrapper.like("title_no",uh05Staff.getTitleNo());
-        }
+
         if(StringUtils.isNotBlank(uh05Staff.getName())){
-            queryWrapper.like("name",uh05Staff.getName());
-        }
-        if(uh05Staff.getBirthDate()!=null){
-            queryWrapper.like("birth_date",uh05Staff.getBirthDate());
+            if(!uh05Staff.getName().equals("undefined")){
+            queryWrapper.like("name",uh05Staff.getName());}
         }
         List<Uh05Staff> list=uh05StaffMapper.selectList(queryWrapper);
         if(list.size()>0)

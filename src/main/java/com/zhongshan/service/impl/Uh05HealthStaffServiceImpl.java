@@ -35,12 +35,14 @@ public class Uh05HealthStaffServiceImpl extends ServiceImpl<Uh05HealthStaffMappe
     public R selectHealthStaff(Uh05HealthStaff uh05HealthStaff) {
         QueryWrapper<Uh05HealthStaff> queryWrapper=new QueryWrapper<>();
         if(StringUtils.isNotBlank(uh05HealthStaff.getCheckNo())){
-            queryWrapper.like("check_no",uh05HealthStaff.getCheckNo());
+            if(uh05HealthStaff.getCheckNo().equals("undefined")){
+            queryWrapper.like("check_no",uh05HealthStaff.getCheckNo());}
         }
         if(StringUtils.isNotBlank(uh05HealthStaff.getStaffNo())){
-            queryWrapper.like("staff_no",uh05HealthStaff.getStaffNo());
+            if(uh05HealthStaff.getStaffNo().equals("undefined")){
+            queryWrapper.like("staff_no",uh05HealthStaff.getStaffNo());}
         }
-        if(StringUtils.isNotBlank(uh05HealthStaff.getStaffNo())){
+        if(uh05HealthStaff.getDate()!=null){
             queryWrapper.like("date",uh05HealthStaff.getDate());
         }
         List<Uh05HealthStaff> list=uh05HealthStaffMapper.selectList(queryWrapper);
