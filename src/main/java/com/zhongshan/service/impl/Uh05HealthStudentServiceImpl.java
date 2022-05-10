@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh05HealthStudent;
+import com.zhongshan.entity.Uh05HealthStudentM;
 import com.zhongshan.entity.Uh05Student;
+import com.zhongshan.mapper.Uh05HealthStudentMMapper;
 import com.zhongshan.service.Uh05HealthStudentService;
 import com.zhongshan.mapper.Uh05HealthStudentMapper;
 import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,6 +23,7 @@ import java.util.List;
 @Service
 public class Uh05HealthStudentServiceImpl extends ServiceImpl<Uh05HealthStudentMapper, Uh05HealthStudent>
     implements Uh05HealthStudentService{
+    @Resource
     private Uh05HealthStudentMapper uh05HealthStudentMapper;
 
     @Override
@@ -48,16 +52,22 @@ public class Uh05HealthStudentServiceImpl extends ServiceImpl<Uh05HealthStudentM
         else
             return R.ok().message("修改失败");
     }
-
+    @Resource
+    private Uh05HealthStudentMMapper uh05HealthStudentMMapper;
     @Override
     public R queryStudentsMedical(Uh05HealthStudent uh05HealthStudent) {
         QueryWrapper<Uh05HealthStudent> queryWrapper=new QueryWrapper<>();
+        QueryWrapper<Uh05HealthStudentM> queryWrapper1=new QueryWrapper<>();
         if(uh05HealthStudent.getStudentNo()!=null){
-            queryWrapper.like("student_no",uh05HealthStudent.getStudentNo());
+            if(!uh05HealthStudent.getStudentNo().equals("undefined")){
+                queryWrapper1.like("student_no",uh05HealthStudent.getStudentNo());
+               queryWrapper.like("student_no",uh05HealthStudent.getStudentNo());
+            }
         }
         List<Uh05HealthStudent> list=uh05HealthStudentMapper.selectList(queryWrapper);
-        if(list.size()>0)
-            return R.ok().data("data",list);
+        List<Uh05HealthStudentM> list1=uh05HealthStudentMMapper.selectList(queryWrapper1);
+        if(list.size()>0 || list1.size()>0)
+            return R.ok().data("data",list).data("dataGaokao",list1);
         else
             return R.ok().message("没有数据");
     }

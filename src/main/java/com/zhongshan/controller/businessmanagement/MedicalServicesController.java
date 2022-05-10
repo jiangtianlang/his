@@ -22,8 +22,7 @@ public class MedicalServicesController {
     @RequestMapping(value = "/test/selectDate",method = RequestMethod.GET)
     @ApiOperation(value = "根据日期查询信息",notes = "",httpMethod = "GET", response = String.class)
     public R selectDate(String workDate){
-        Date date1= DateTime.of(workDate,"YYYY-mm-dd");
-        return R.ok();
+        return uh08OnDutyService.selectDate(workDate);
     }
     @RequestMapping(value = "/test/selectDepartment",method = RequestMethod.GET)
     @ApiOperation(value = "根据部门查询值班名单",notes = "",httpMethod = "GET", response = String.class)

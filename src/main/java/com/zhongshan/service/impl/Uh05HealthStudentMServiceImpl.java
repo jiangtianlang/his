@@ -54,7 +54,8 @@ public class Uh05HealthStudentMServiceImpl extends ServiceImpl<Uh05HealthStudent
     public R queryStudentsMedicalGao(Uh05HealthStudentM uh05HealthStudentM) {
         QueryWrapper<Uh05HealthStudentM> queryWrapper=new QueryWrapper<>();
         if(StringUtils.isNotBlank(uh05HealthStudentM.getStudentNo())){
-            queryWrapper.like("student_no",uh05HealthStudentM.getStudentNo());
+            if(uh05HealthStudentM.getStudentNo().equals("undefined")){
+            queryWrapper.like("student_no",uh05HealthStudentM.getStudentNo());}
         }
         List<Uh05HealthStudentM> list=uh05HealthStudentMMapper.selectList(queryWrapper);
         if(list.size()>0)

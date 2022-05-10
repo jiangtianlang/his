@@ -4,23 +4,26 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhongshan.entity.Firstpage;
+import com.zhongshan.entity.Prescription;
 import com.zhongshan.entity.Uh05Staff;
 import com.zhongshan.entity.Uh08OnDuty;
+import com.zhongshan.entity.inpatient.PatientBase;
+import com.zhongshan.entity.inpatient.Uh04WardBedSum;
+import com.zhongshan.entity.vo.MappVo;
 import com.zhongshan.entity.vo.MonthVo;
 import com.zhongshan.entity.vo.Uho8OnDutyVo;
-import com.zhongshan.mapper.Uh05StaffMapper;
+import com.zhongshan.mapper.*;
 import com.zhongshan.service.Uh08OnDutyService;
-import com.zhongshan.mapper.Uh08OnDutyMapper;
 import com.zhongshan.utils.result.R;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
 * @author 13427
@@ -62,7 +65,9 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
             queryWrapper.like("department",name);
         }
         List<Uh08OnDuty> list=uh08OnDutyMapper.selectList(queryWrapper);
+
         List<Uho8OnDutyVo> list1=new ArrayList<>();
+        if(list.size()>0){
         for (Uh08OnDuty u :list) {
             Uho8OnDutyVo uho8OnDutyVo=new Uho8OnDutyVo();
             uho8OnDutyVo.setStaffNo(u.getStaffNo());
@@ -74,7 +79,7 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
             queryWrapper1.like("staff_no",u.getStaffNo());
             uho8OnDutyVo.setName(uh05StaffMapper.selectList(queryWrapper1).get(0).getName());
             list1.add(uho8OnDutyVo);
-        }
+        }}
         if(list.size()>0)
             return R.ok().data("data",list1);
         else
@@ -146,6 +151,75 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
         }
         else
             return R.ok().message("没有数据");
+    }
+    @Resource
+    private PrescriptionMapper prescriptionMapper;
+    @Resource
+    private Uh04WardBedSumMapper uh04WardBedSumMapper;
+    @Resource
+    private FirstpageMapper firstpageMapper;
+    @Override
+    public R selectDate(String workDate) {
+        Map<String,Object> map=new HashMap<>();
+        if(StringUtils.isNotBlank(workDate)){
+                MappVo mappVo=new MappVo();
+                QueryWrapper<Prescription> queryWrapper=new QueryWrapper<>();
+                queryWrapper.like("today_date",workDate);
+                List<Prescription> list=prescriptionMapper.selectList(queryWrapper);
+               // map.put("kanbing",list.size()+"");
+                //有效床位数和开放数
+                QueryWrapper<Uh04WardBedSum> queryWrapper2=new QueryWrapper<>();
+                queryWrapper2.like("total_date",workDate);
+                List<Uh04WardBedSum> list2=uh04WardBedSumMapper.selectList(queryWrapper2);
+//                if(list2.size()>0){
+//                map.put("zhanyong",list2.get(0).getUseBedNumber()+"");
+//                map.put("youxiao",list2.get(0).getValidBedNumber()+"");}
+                //出院人数
+                QueryWrapper<Firstpage> queryWrapper3=new QueryWrapper<>();
+                queryWrapper3.like("fg_out_date",workDate);
+                queryWrapper3.like("fg_leave_hospital","t");
+                List<Firstpage> list3=firstpageMapper.selectList(queryWrapper3);
+                //map.put("chuyuan",list3.size()+"");
+                QueryWrapper<Firstpage> queryWrapper4=new QueryWrapper<>();
+                queryWrapper4.like("fg_in_time",workDate);
+                List<Firstpage> list4=firstpageMapper.selectList(queryWrapper4);
+               // map.put("ruyuan",list4.size()+"");
+//                date = new SimpleDateFormat("yyyy-MM").parse(workDate);
+                QueryWrapper<Prescription> queryWrapper1=new QueryWrapper<>();
+                queryWrapper1.like("today_date",workDate.substring(0,7));
+                List<Prescription> list1=prescriptionMapper.selectList(queryWrapper);
+               // map.put("month",list1.size()+"");
+                QueryWrapper<Firstpage> queryWrapper5=new QueryWrapper<>();
+                queryWrapper5.like("fg_in_time",workDate.substring(0,7));
+                List<Firstpage> list5=firstpageMapper.selectList(queryWrapper5);
+               // map.put("ruyuanmonth",list5.size()+"");
+                QueryWrapper<Firstpage> queryWrapper6=new QueryWrapper<>();
+                queryWrapper6.like("fg_out_date",workDate);
+                queryWrapper6.like("fg_leave_hospital","t");
+                List<Firstpage> list6=firstpageMapper.selectList(queryWrapper6);
+               // map.put("liudong",(list6.size()+list5.size())+"");
+                mappVo.setKanbing(list.size());
+                mappVo.setChuyuan(list3.size());
+                mappVo.setLiudong(list6.size()+list5.size());
+                mappVo.setMonth(list1.size());
+                mappVo.setRuyuan(list4.size());
+                if(list2.size()>0){
+                mappVo.setYouxiao(list2.get(0).getValidBedNumber());
+                mappVo.setZhanyong(list2.get(0).getUseBedNumber());
+                }else {
+                    mappVo.setYouxiao(0);
+                    mappVo.setZhanyong(0);
+                }
+                mappVo.setRuyuanmonth(list5.size());
+                List<MappVo> list7=new ArrayList<>();
+                list7.add(mappVo);
+                if(list7.get(0)!=null)
+                return R.ok().data("data",list7);
+                else
+
+                    return R.ok().message("没有数据");
+        }
+        return R.ok().message("请输入时间");
     }
 }
 
