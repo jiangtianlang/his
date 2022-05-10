@@ -3,14 +3,17 @@ package com.zhongshan.service.inpatient.impl;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhongshan.entity.inpatient.PatientBase;
 import com.zhongshan.entity.inpatient.Uh04CrueInfoExpense;
 import com.zhongshan.entity.inpatient.Uh04DayCureExpense;
 import com.zhongshan.entity.inpatient.vo.WardUseVo;
 import com.zhongshan.mapper.Uh04CrueInfoExpenseMapper;
 import com.zhongshan.mapper.inpatient.WardUseMapper;
+import com.zhongshan.service.inpatient.PatientBaseService;
 import com.zhongshan.service.inpatient.Uh04DayCureExpenseService;
 import com.zhongshan.mapper.Uh04DayCureExpenseMapper;
 import com.zhongshan.service.inpatient.WardUseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +27,7 @@ import java.util.List;
 * @createDate 2022-04-27 18:13:38
 */
 @Service
+@Slf4j
 public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpenseMapper, Uh04DayCureExpense>
     implements Uh04DayCureExpenseService{
     @Resource
@@ -32,6 +36,8 @@ public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpens
     private WardUseMapper wardUseMapper;
     @Resource
     private Uh04CrueInfoExpenseMapper uh04CrueInfoExpenseMapper;
+    @Resource
+    private PatientBaseService patientBaseService;
 
     //汇总产生当日分户各项医疗费用日结记录
     @Scheduled(cron = "0 0 0 * * ?")
@@ -57,6 +63,13 @@ public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpens
                 QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
                 wrapper.le("to_days(CURDATE()) - to_days(recipe_date)",2).eq("patient_no",patientNo);
                 List<Uh04CrueInfoExpense> uh04CrueInfoExpenses = uh04CrueInfoExpenseMapper.selectList(wrapper);
+                //
+                PatientBase patientBase = patientBaseService.getById(patientNo);
+                Uh04CrueInfoExpense crueInfoExpense = new Uh04CrueInfoExpense(patientBase);
+                crueInfoExpense.setExponse(wardUseVo.getPrice());
+                crueInfoExpense.setSectionCode(wardUseVo.getSection());
+                crueInfoExpense.setUnitPrice(wardUseVo.getPrice());
+                uh04CrueInfoExpenseMapper.insert(crueInfoExpense);
                 for (Uh04CrueInfoExpense uh04CrueInfoExpense : uh04CrueInfoExpenses) {
                     //分户医疗费用明细
                     if (uh04CrueInfoExpense.getExponse()!=null) {
@@ -66,6 +79,7 @@ public class Uh04DayCureExpenseServiceImpl extends ServiceImpl<Uh04DayCureExpens
                 }
                 Uh04DayCureExpense expense = new Uh04DayCureExpense(patientNo, DateUtil.yesterday(),subjectCode,ownExpense,"F");
                 baseMapper.insert(expense);
+                log.info(DateUtil.yesterday()+":"+subjectCode);
             }
 
         }

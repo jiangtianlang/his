@@ -3,6 +3,8 @@ package com.zhongshan.mapper;
 import com.zhongshan.entity.inpatient.PatientBase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author 13427
 * @description 针对表【patient_base】的数据库操作Mapper
@@ -11,7 +13,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface PatientBaseMapper extends BaseMapper<PatientBase> {
 
-     public String queryMaxId();
+      String queryMaxId();
+
+    List<PatientBase> getIsDelete();
 }
 
 

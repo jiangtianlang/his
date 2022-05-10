@@ -122,6 +122,7 @@ xss:
 
 # 日志配置
 logging:
+  config: classpath:logback-spring.xml
   level:
     com.sunews: debug
     org.springframework: warn

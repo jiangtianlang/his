@@ -7,7 +7,8 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.apache.ibatis.annotations.Param;
+import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
  */
 @TableName(value ="persons")
 @Data
+@Accessors(chain = true)
 public class Persons implements Serializable {
     /**
      * 非空
@@ -71,13 +73,9 @@ public class Persons implements Serializable {
     /**
      * 
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT)
     private Date registerDate;
-
-    /**
-     * 
-     */
-    private String cardMark;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

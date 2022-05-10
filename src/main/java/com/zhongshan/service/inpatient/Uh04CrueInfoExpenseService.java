@@ -3,7 +3,9 @@ package com.zhongshan.service.inpatient;
 import com.zhongshan.entity.inpatient.Uh04CrueInfoExpense;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
 * @author 13427
@@ -13,4 +15,6 @@ import java.util.HashMap;
 public interface Uh04CrueInfoExpenseService extends IService<Uh04CrueInfoExpense> {
 
     HashMap<String, Double> selectByDate(Integer year, Integer month);
+
+    List<Uh04CrueInfoExpense> queryCrueInfo(String patientNo, Date inDate, Date outDate);
 }

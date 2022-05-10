@@ -8,10 +8,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @MapperScan("com.zhongshan.mapper")
-public class HisystemApplication {
+public class HisystemApplicationDve {
 
     public static void main(String[] args) {
-        SpringApplication.run(HisystemApplication.class, args);
+        SpringApplication.run(HisystemApplicationDve.class, args);
     }
 
 }

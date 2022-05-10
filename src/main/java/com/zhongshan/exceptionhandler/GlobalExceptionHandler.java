@@ -14,6 +14,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody //为了返回数据
     public R error(Exception e) {
+        log.error(e.getMessage());
         e.printStackTrace();
         return R.error().message("参数不合法,执行了全局异常处理..");
     }
@@ -22,6 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ArithmeticException.class)
     @ResponseBody //为了返回数据
     public R error(ArithmeticException e) {
+        log.error(e.getMessage());
         e.printStackTrace();
         return R.error().message("执行了ArithmeticException异常处理..");
     }

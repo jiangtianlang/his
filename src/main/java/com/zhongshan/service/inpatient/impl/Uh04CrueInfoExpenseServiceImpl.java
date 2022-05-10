@@ -10,6 +10,7 @@ import com.zhongshan.mapper.Uh04CrueInfoExpenseMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,6 +37,12 @@ public class Uh04CrueInfoExpenseServiceImpl extends ServiceImpl<Uh04CrueInfoExpe
             map.replace(income.getSubjectName(),income.getExponse());
         }
         return map;
+    }
+
+    @Override
+    public List<Uh04CrueInfoExpense> queryCrueInfo(String patientNo, Date inDate, Date outDate) {
+        return baseMapper.queryCrueInfo( patientNo,  inDate,  outDate);
+
     }
 }
 

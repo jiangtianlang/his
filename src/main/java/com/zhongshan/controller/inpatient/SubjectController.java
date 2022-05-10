@@ -50,8 +50,8 @@ public class SubjectController {
      * @return 单条数据
      */
     @ApiOperation(value = "通过id查询单条数据")
-    @GetMapping("{id}")
-    public R selectOne(@PathVariable Serializable id) {
+    @GetMapping("/selectById")
+    public R selectOne( Integer id) {
         return R.ok().data("data",this.subjectService.getById(id));
     }
 

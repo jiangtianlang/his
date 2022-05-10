@@ -1,6 +1,7 @@
 package com.zhongshan.config;
 
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,27 +28,23 @@ import java.util.List;
 @EnableSwagger2
 public class SwaggerConfig {
     /**
-     * 系统基础配置
-     */
-
-
-    /**
      * 是否开启swagger
      */
     //@Value("${swagger.enabled}")
     private boolean enabled = true;
 
     /**
-     * 设置请求的统一前缀
-     */
-    //@Value("${swagger.pathMapping}")
-    //private String pathMapping = "/prod-api";
-
-    /**
      * 创建API
      */
     @Bean
     public Docket createRestApi() {
+        //添加header参数
+        ParameterBuilder ticketPar = new ParameterBuilder();
+        List<Parameter> pars = new ArrayList<>();
+        ticketPar.name("token").description("user token")
+                .modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).build(); //header中的ticket参数非必填，传空也可以
+        pars.add(ticketPar.build());    //根据每个方法名也知道当前方法在设置什么参数
         return new Docket(DocumentationType.SWAGGER_2)
                 // 是否启用Swagger
                 .enable(enabled)
@@ -65,53 +62,9 @@ public class SwaggerConfig {
                 /* 设置安全模式，swagger可以设置访问token */
                 //.securitySchemes(securitySchemes())
                 //.securityContexts(securityContexts())
-                .globalOperationParameters(this.pars());
+                .globalOperationParameters(pars);
     }
 
-    private List<Parameter> pars() {
-        //添加header参数
-        ParameterBuilder ticketPar = new ParameterBuilder();
-        List<Parameter> pars = new ArrayList<>();
-        ticketPar.name("token").description("user token")
-                .modelRef(new ModelRef("string")).parameterType("static/header")
-                .required(false).build(); //header中的ticket参数非必填，传空也可以
-        pars.add(ticketPar.build());//根据每个方法名也知道当前方法在设置什么参数
-        return pars;
-    }
-
-
-    /**
-     * 安全模式，这里指定token通过Authorization头请求头传递
-     */
-    private List<ApiKey> securitySchemes() {
-        List<ApiKey> apiKeyList = new ArrayList<ApiKey>();
-        apiKeyList.add(new ApiKey("Authorization", "Authorization", "static/header"));
-        return apiKeyList;
-    }
-
-    /**
-     * 安全上下文
-     */
-    private List<SecurityContext> securityContexts() {
-        List<SecurityContext> securityContexts = new ArrayList<>();
-        securityContexts.add(
-                SecurityContext.builder()
-                        .securityReferences(defaultAuth())
-                        .forPaths(PathSelectors.regex("^(?!auth).*$"))
-                        .build());
-        return securityContexts;
-    }
-    /**
-     * 默认的安全上引用
-     */
-    private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        List<SecurityReference> securityReferences = new ArrayList<>();
-        securityReferences.add(new SecurityReference("Authorization", authorizationScopes));
-        return securityReferences;
-    }
     /**
      * 添加摘要信息
      */

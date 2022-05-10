@@ -17,12 +17,12 @@ public class StandardExpense implements Serializable {
     /**
      * 收费项目
      */
-    @TableId
     private String expenseItem;
 
     /**
      * 收费编号
      */
+    @TableId(type = IdType.AUTO)
     private String expenseCode;
 
     /**

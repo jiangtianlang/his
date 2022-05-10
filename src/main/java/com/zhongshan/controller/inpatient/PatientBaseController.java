@@ -45,6 +45,9 @@ public class PatientBaseController {
     public R selectPatientBase(
             @ApiParam(name = "patientBase", value = "查询对象", required = true)
                     PatientBase patientBase) {
+        if (patientBase.getIsDelete() == 1){
+            return R.ok().data("data",patientBaseService.getIsDelete());
+        }
         //按条件查询 病人基本资料查询
         //对于曾住院病人，根据其提供的住院号码自动在病案首页表中调出病人基本资料；
         QueryWrapper<PatientBase> wrapper = new QueryWrapper<>(patientBase);

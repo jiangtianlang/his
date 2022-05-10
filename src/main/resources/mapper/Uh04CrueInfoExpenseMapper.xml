@@ -41,4 +41,8 @@
         </where>
         GROUP BY s.subject_name;
     </select>
+    <select id="queryCrueInfo" resultType="com.zhongshan.entity.inpatient.Uh04CrueInfoExpense">
+        SELECT <include refid="Base_Column_List"></include> FROM uh04_crue_info_expense
+        WHERE patient_no = #{patientNo} AND recipe_date &gt;= #{inDate} and recipe_date &lt;= #{outDate} AND out_flag =1
+    </select>
 </mapper>

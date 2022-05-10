@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhongshan.entity.vo.Income;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +17,8 @@ import java.util.List;
 public interface Uh04CrueInfoExpenseMapper extends BaseMapper<Uh04CrueInfoExpense> {
 
     List<Income> selectByDate(@Param("year") Integer year,@Param("month") Integer month);
+
+    List<Uh04CrueInfoExpense> queryCrueInfo(@Param("patientNo")String patientNo, @Param("inDate")Date inDate, @Param("outDate")Date outDate);
 }
 
 

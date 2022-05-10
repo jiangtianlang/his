@@ -4,14 +4,15 @@ import cn.hutool.core.util.IdcardUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zhongshan.entity.CaseHistory;
 import com.zhongshan.entity.Firstpage;
 import com.zhongshan.entity.inpatient.*;
-import com.zhongshan.mapper.FirstpageMapper;
-import com.zhongshan.mapper.PayMoneyMapper;
+import com.zhongshan.service.CaseHistoryService;
 import com.zhongshan.service.FirstpageService;
 import com.zhongshan.service.inpatient.*;
 import com.zhongshan.mapper.PatientBaseMapper;
 import com.zhongshan.utils.ValidatorUtil;
+import com.zhongshan.utils.result.R;
 import com.zhongshan.utils.result.ResultCodeEnum;
 import com.zhongshan.utils.result.ResultData;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,7 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
-import java.util.Date;
+import java.util.List;
 
 /**
 * @author 13427
@@ -48,6 +48,8 @@ public class PatientBaseServiceImpl extends ServiceImpl<PatientBaseMapper, Patie
     private Uh04TemporaryRecipeService uh04TemporaryRecipeService;
     @Resource
     private FirstpageService firstpageService;
+    @Resource
+    private CaseHistoryService caseHistoryService;
 
     @Transactional(
             rollbackFor = {Exception.class}
@@ -105,14 +107,11 @@ public class PatientBaseServiceImpl extends ServiceImpl<PatientBaseMapper, Patie
     public ResultData outHospital(String patientNo) {
         //病历归档处理
         PatientBase base =baseMapper.selectById(patientNo);
-        base.setPatientNo(patientNo);
-        base.setOutDate(new Date());
-        base.setIsDelete(1);
         //自动将病人出院日期及出院标志填入“入院病人基本资料表”中；
-        baseMapper.updateById(base);
+        baseMapper.deleteById(patientNo);
         //自动将病人出院标志填入“病人预交款情况登记表”、“自费病人资金使用表” 、“长期医嘱登记表” 及“临时医嘱登记表”中相应记录；
         payMoneyService.update(new UpdateWrapper<PayMoney>().set("out_flag",1).and(i -> i.eq("patient_no",patientNo)));
-        ownExpenseService.update(new UpdateWrapper<Uh04OwnExpense>().set("out_flag",1).and(i -> i.eq("patient_no",patientNo)));
+        ownExpenseService.update(new UpdateWrapper<Uh04OwnExpense>().set("out_hospital_flag",1).and(i -> i.eq("patient_no",patientNo)));
         longRecipeService.update(new UpdateWrapper<Uh04LongRecipe>().set("out_flag",1).and(i -> i.eq("patient_no",patientNo)));
         uh04TemporaryRecipeService.update(new UpdateWrapper<Uh04TemporaryRecipe>().set("out_flag",1).and(i -> i.eq("patient_no",patientNo)));
         //自动将“床位登记表”中相应记录的科别、姓名及性别字段清空；
@@ -132,7 +131,18 @@ public class PatientBaseServiceImpl extends ServiceImpl<PatientBaseMapper, Patie
             firstpage.setFgTimes(1);
             firstpageService.save(firstpage);
         }
+        //将出院病人病历资料写入“病例表”。
+        caseHistoryService.save(new CaseHistory(firstpage));
         return ResultData.ok();
+    }
+
+    @Override
+    public R getIsDelete() {
+        List<PatientBase> list = baseMapper.getIsDelete();
+        if (list.size()>0){
+            return R.ok().data("data",list);
+        }
+        return R.ok().message("暂无数据");
     }
 
 }

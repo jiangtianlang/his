@@ -17,7 +17,7 @@ public class ChargeType implements Serializable {
     /**
      * 收费类型代号(由医院编码01-99非空)
      */
-    @TableId
+    @TableId(type = IdType.ASSIGN_ID)
     private Integer chargeNo;
 
     /**

@@ -1,11 +1,14 @@
 package com.zhongshan.entity.inpatient;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +19,7 @@ import lombok.NoArgsConstructor;
 @TableName(value ="uh04_crue_info_expense")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Uh04CrueInfoExpense implements Serializable {
     /**
      * 
@@ -123,5 +127,19 @@ public class Uh04CrueInfoExpense implements Serializable {
         this.hCode = entity.getHsCode();
         this.writeAccountFlag = entity.getWriteAccountFlag();
         this.outFlag = entity.getOutFlag();
+    }
+
+    public Uh04CrueInfoExpense(PatientBase p) {
+        this.patientNo = p.getPatientNo();
+        this.recipeDate = DateUtil.yesterday();
+//        this.sectionCode = longRecipe.getSectionCode();
+        this.cureType = "床位费";
+        //this.unitPrice = longRecipe.getUnitPrice();
+        //this.exponse = longRecipe.getExponse();
+        //this.quality = longRecipe.getQuality();
+        //this.yCode = longRecipe.getYsCode();
+        //this.hCode = longRecipe.getHsCode();
+        //this.writeAccountFlag = longRecipe.getWriteAccountFlag();
+        this.outFlag = false;
     }
 }

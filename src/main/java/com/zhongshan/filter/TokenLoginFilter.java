@@ -82,7 +82,7 @@ public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
         //认证成功，得到认证成功之后用户信息
         SecurityUser user = (SecurityUser)authResult.getPrincipal();
         //根据用户名生成token
-        String token = tokenManager.createToken(user.getCurrentUserInfo().getUsername());
+        String token = tokenManager.createToken(user.getCurrentUserInfo().getId(),user.getCurrentUserInfo().getUsername());
         //把用户名称和用户权限列表放到redis
         redisTemplate.opsForValue().set(user.getCurrentUserInfo().getUsername(),user.getPermissionValueList());
         //返回token

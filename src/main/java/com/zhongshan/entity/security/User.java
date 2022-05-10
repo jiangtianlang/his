@@ -13,7 +13,8 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @ApiModelProperty(value = "编号")
+    private String id;
     @ApiModelProperty(value = "职工编号")
     private String username;
 

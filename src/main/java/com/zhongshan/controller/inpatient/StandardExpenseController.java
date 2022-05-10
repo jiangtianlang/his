@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("standardExpense")
+@RequestMapping("test/standardExpense")
 @Api(tags = "(住院管理)收费标准接口")
 public class  StandardExpenseController{
     /**

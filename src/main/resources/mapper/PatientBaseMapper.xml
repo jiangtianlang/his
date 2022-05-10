@@ -48,4 +48,8 @@
     <select id="queryMaxId" resultType="java.lang.String">
         select Max(patient_no) from patient_base;
     </select>
+
+    <select id="getIsDelete" resultType="com.zhongshan.entity.inpatient.PatientBase">
+       select <include refid="Base_Column_List"></include> from  patient_base where is_delete = 1;
+    </select>
 </mapper>

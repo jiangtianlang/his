@@ -192,6 +192,7 @@ public class PatientBase implements Serializable {
      * 出院日期，病人出院结算时自动填入
      */
     @ApiModelProperty(value = "出院日期，病人出院结算时自动填入")
+    @TableField(fill = FieldFill.UPDATE)
     private Date outDate;
     @TableLogic
     @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")

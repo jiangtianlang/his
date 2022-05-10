@@ -2,6 +2,7 @@ package com.zhongshan.service.inpatient;
 
 import com.zhongshan.entity.inpatient.PatientBase;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.utils.result.R;
 import com.zhongshan.utils.result.ResultData;
 
 /**
@@ -10,7 +11,9 @@ import com.zhongshan.utils.result.ResultData;
 * @createDate 2022-04-27 18:13:38
 */
 public interface PatientBaseService extends IService<PatientBase> {
-    public ResultData savePatientBase(PatientBase patientBase);
+     ResultData savePatientBase(PatientBase patientBase);
 
     ResultData outHospital(String patientNo);
+
+    R getIsDelete();
 }

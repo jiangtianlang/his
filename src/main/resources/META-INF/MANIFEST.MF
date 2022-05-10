@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Main-Class: com.zhongshan.HisystemApplication
+Main-Class: com.zhongshan.HisystemApplicationDve
 Class-Path: jjwt-0.9.1.jar commons-pool2-2.8.1.jar fastjson-1.2.70.jar h
  utool-all-5.3.7.jar spring-jdbc-5.2.8.RELEASE.jar jakarta.el-3.0.3.jar 
  mysql-connector-java-8.0.21.jar jackson-databind-2.11.2.jar netty-buffe

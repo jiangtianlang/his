@@ -14,7 +14,7 @@
             <result property="chargeForBed" column="charge_for_bed" jdbcType="DOUBLE"/>
             <result property="otherCharge" column="Other_charge" jdbcType="DOUBLE"/>
             <result property="levelNo" column="Level_no" jdbcType="CHAR"/>
-            <result property="symptomNo" column="Symptom _no" jdbcType="CHAR"/>
+            <result property="symptomNo" column="Symptom_no" jdbcType="CHAR"/>
             <result property="orgaTotal" column="orga_total" jdbcType="DOUBLE"/>
             <result property="personTotal" column="person_total" jdbcType="DOUBLE"/>
             <result property="submitDate" column="submit_date" jdbcType="TIMESTAMP"/>

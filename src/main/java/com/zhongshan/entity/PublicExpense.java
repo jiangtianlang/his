@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -18,17 +20,19 @@ public class PublicExpense implements Serializable {
     /**
      * 非空
      */
-    @TableId
+    @TableId(type = IdType.NONE)
     private String personNo;
-
+    private String personName;
     /**
      * 
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date beginDate;
 
     /**
      * 
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     /**
@@ -79,6 +83,7 @@ public class PublicExpense implements Serializable {
     /**
      * 非空
      */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date submitDate;
 
     /**

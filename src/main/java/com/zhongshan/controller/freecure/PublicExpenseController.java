@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Random;
 
 /**
  * (PublicExpense)表控制层
@@ -68,6 +69,7 @@ public class PublicExpenseController {
     @ApiOperation(value = "新增数据")
 
     public R insert(@RequestBody PublicExpense publicExpense) {
+        publicExpense.setPersonNo(String.valueOf((int)(Math.random()*1000000000)));
         return R.ok().data("data",(this.publicExpenseService.save(publicExpense)));
     }
 
