@@ -20,6 +20,12 @@ public interface Uh08OnDutyMapper extends BaseMapper<Uh08OnDuty> {
     List<MonthVo> workloadYear(@Param("year") String date);
 
     List<MonthVo> workloadDaily(@Param("year") String year, @Param("month") String month, @Param("day") String day);
+
+    List<Uh08OnDuty> selectDepartment(@Param("year") String year,
+                                      @Param("month") String month,
+                                      @Param("day") String day,
+                                      @Param("branchOfWork") String branchOfWork,
+                                      @Param("department") String department);
 }
 
 

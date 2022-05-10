@@ -3,6 +3,7 @@ package com.zhongshan.mapper.personBase_mapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.zhongshan.entity.PersonBase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhongshan.entity.vo.HeathVo;
 import com.zhongshan.entity.vo.PersonInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,6 +20,7 @@ public interface PersonBaseMapper extends BaseMapper<PersonBase> {
 
     String query(String chSignatureChargeDoctor);
 
+    List<HeathVo> healthPersonnel();
 }
 
 

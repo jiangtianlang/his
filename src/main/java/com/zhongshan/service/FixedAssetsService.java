@@ -18,4 +18,6 @@ public interface FixedAssetsService extends IService<FixedAssets> {
     R selectCaseHealthCare(Firstpage firstpage);
 
     R selectBusiness(PersonBase personBase);
+
+    R healthPersonnel();
 }

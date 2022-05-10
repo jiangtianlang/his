@@ -1,6 +1,7 @@
 package com.zhongshan.controller.businessmanagement;
 
 import com.zhongshan.entity.PersonBase;
+import com.zhongshan.service.FixedAssetsService;
 import com.zhongshan.service.Uh08OnDutyService;
 import com.zhongshan.service.personBase.PersonBaseService;
 import com.zhongshan.utils.result.R;
@@ -65,11 +66,13 @@ public class NumericalStatementController {
 //        return R.ok();
 //    }
 //
-//    @RequestMapping(value = "/healthPersonnel",method = RequestMethod.GET)
-//    @ApiOperation(value = "卫生人员数",notes = "",httpMethod = "GET", response = String.class)
-//    public R healthPersonnel(){
-//        return R.ok();
-//    }
+    @Resource
+    private FixedAssetsService fixedAssetsService;
+    @RequestMapping(value = "/test/healthPersonnel",method = RequestMethod.GET)
+    @ApiOperation(value = "卫生人员数",notes = "",httpMethod = "GET", response = String.class)
+    public R healthPersonnel(){
+        return fixedAssetsService.healthPersonnel();
+    }
 //    @Resource
 //    private PersonBaseService personBaseService;
 //    @RequestMapping(value = "/professionalTitles",method = RequestMethod.GET)

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Firstpage;
 import com.zhongshan.entity.FixedAssets;
 import com.zhongshan.entity.PersonBase;
+import com.zhongshan.entity.vo.HeathVo;
 import com.zhongshan.mapper.FirstpageMapper;
 import com.zhongshan.mapper.personBase_mapper.PersonBaseMapper;
 import com.zhongshan.service.FixedAssetsService;
@@ -58,8 +59,8 @@ private FirstpageMapper firstpageMapper;
         else
             return R.ok().message("没有数据");
     }
-@Resource
-private PersonBaseMapper personBaseMapper;
+    @Resource
+    private PersonBaseMapper personBaseMapper;
     @Override
     public R selectBusiness(PersonBase personBase) {
         QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
@@ -71,6 +72,12 @@ private PersonBaseMapper personBaseMapper;
         return R.ok().data("data",list);
         else
             return R.ok().message("没有数据");
+    }
+
+    @Override
+    public R healthPersonnel() {
+       List<HeathVo> list=personBaseMapper.healthPersonnel();
+        return R.ok().data("data",list);
     }
 }
 

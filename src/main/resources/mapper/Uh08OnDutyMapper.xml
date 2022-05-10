@@ -54,4 +54,27 @@
         </where>
         GROUP BY d.staff_no;
     </select>
+    <select id="selectDepartment" resultType="com.zhongshan.entity.vo.MonthVo">
+        select SUM(d.ex_work_amount) ex,SUM(d.aver_work_amount) average,SUM(d.work_amount) work,
+        d.department department,s.name from uh08_on_duty d LEFT JOIN uh05_staff s ON d.staff_no=s.staff_no
+        <where>
+            <if test="day != null">
+                day(d.work_date) = #{day}
+            </if>
+            <if test="month != null">
+                and month(d.work_date) = #{month}
+            </if>
+            <if test="year != null">
+                and YEAR(d.work_date) = #{year}
+            </if>
+            <if test="branchOfWork != null">
+                and d.branch_of_work = #{branchOfWork}
+            </if>
+            <if test="department != null">
+                and d.department = #{department}
+            </if>
+
+        </where>
+        GROUP BY d.staff_no;
+    </select>
 </mapper>

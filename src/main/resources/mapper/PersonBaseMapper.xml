@@ -76,5 +76,8 @@
         from person_base
         where person_no=#{personName}
     </select>
+    <select id="healthPersonnel" resultType="com.zhongshan.entity.vo.HeathVo">
+        select post_no,count(person_no) cou from person_base GROUP BY post_no;
+    </select>
 
 </mapper>

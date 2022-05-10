@@ -34,16 +34,14 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
     private Uh08OnDutyMapper uh08OnDutyMapper;
     @Override
     public List<Uh08OnDuty> selectDepartment(String department) {
-      // uh08OnDutyMapper.selectList();
         Date date=new Date();
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String date1=dateFormat.format(date);
+        String year=date1.substring(0,4);
+        String month=date1.substring(5,7);
+        String day=date1.substring(8);
         String branchOfWork="02";
-        QueryWrapper<Uh08OnDuty> queryWrapper=new QueryWrapper<>();
-        queryWrapper.like("branch_of_work",branchOfWork);
-        queryWrapper.like("work_date",date.toString());
-        if(StringUtils.isNotBlank(department)){
-            queryWrapper.like("department",department);
-        }
-        return uh08OnDutyMapper.selectList(queryWrapper);
+        return uh08OnDutyMapper.selectDepartment(year,month,day,branchOfWork,department);
     }
 
     @Override
