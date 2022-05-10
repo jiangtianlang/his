@@ -7,6 +7,7 @@ import com.zhongshan.mapper.PersonHistoryMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @author 13427
@@ -40,6 +41,12 @@ public class PersonHistoryServiceImpl extends ServiceImpl<PersonHistoryMapper, P
     public PersonHistory findPersonHistory(String personNo) {
         PersonHistory personHistory= personHistoryMapper.selectById(personNo);
         return personHistory;
+    }
+
+    @Override
+    public List<PersonHistory> selectAllPersonHistory() {
+        List<PersonHistory> list=personHistoryMapper.selectList(null);
+        return list;
     }
 }
 

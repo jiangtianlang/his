@@ -117,6 +117,14 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
         List<PersonBase> list=personBaseMapper.selectList(null);
         return list;
     }
+
+    @Override
+    public List<PersonBase> findByIdName(String personNo) {
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        queryWrapper.like("person_no",personNo);
+        List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
+        return list;
+    }
 }
 
 

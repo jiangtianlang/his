@@ -23,6 +23,18 @@ public class FamilyMemberServiceImpl extends ServiceImpl<FamilyMemberMapper, Fam
         FamilyMember familyMember=familyMemberMapper.selectById(personNo);
         return familyMember;
     }
+
+    @Override
+    public boolean addFamilyMember(FamilyMember familyMember) {
+        int rows=familyMemberMapper.insert(familyMember);
+        return rows>0?true:false;
+    }
+
+    @Override
+    public boolean updataFamilyMember(FamilyMember familyMember) {
+        int rows=familyMemberMapper.updateById(familyMember);
+        return rows>0?true:false;
+    }
 }
 
 

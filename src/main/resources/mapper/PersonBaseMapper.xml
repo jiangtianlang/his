@@ -52,23 +52,11 @@
         fm member_birth_date,fm member_party,fm member_work_unit,
         fm relation
     </sql>
-    <select id="findByIdName" resultType="com.zhongshan.entity.vo.PersonInfo">
+    <select id="findComprehensiveQuery" resultType="com.zhongshan.entity.PersonBase">
         select
         <include refid="Base_Column_List"/>
-        from person_base pb,person_history ph,family_member fm
-        <where>
-            <if test="pb.personNo!=null">
-                and person_base like #{personNo}
-            </if>
-            <if test="pb.personName!=null">
-                and person_base like #{personName}
-            </if>
-        </where>
-        order by empCreateTime desc
-        <if test="start!=null and limit!=null">
-            limit #{start},#{limit}
-        </if>
-
+        from person_base
+        where school_name=#{school_name}
     </select>
 
     <select id="query" resultType="java.lang.String">

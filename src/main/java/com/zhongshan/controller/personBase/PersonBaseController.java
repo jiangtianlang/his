@@ -113,43 +113,49 @@ public class PersonBaseController {
             }
             return R.error();
         }
+    }
+         @RequestMapping(value = "/test/findById",method = RequestMethod.GET)
+         @ApiOperation(value = "根据Id查询人事资料接口",notes = "人事Id(personNo)",httpMethod = "GET", response = String.class)
+        public R findById(String personNo){
+             List<PersonBase> list=personBaseService.findById(personNo);
+             if(list.size()==0){
+                 return R.ok().data("data",list).message("没有数据");
+             }else{
+                 return R.ok().data("data",list).message("查询成功");
+             }
         }
-////        @RequestMapping(value = "/test/select",method = RequestMethod.GET)
-//////        @ApiOperation(value = "多条件查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//////        public List<PersonBase> selectByMany(PersonBaseVo personBaseVo){
-//////                return personBaseService.selectByMany(personBaseVo);
-//////        }
-//        @RequestMapping(value = "/test/findByManyPage",method = RequestMethod.GET)
+        @RequestMapping(value = "/test/findByIdName",method = RequestMethod.GET)
+        @ApiOperation(value = "根据编号查询人事资料接口",notes = "人事Id(personNo)",httpMethod = "GET", response = String.class)
+        public  R findByIdName(String personNo){
+            List<PersonBase> list=personBaseService.findByIdName(personNo);
+            if(list.size()!=0){
+                return R.ok().data("data",list).message("查询成功");
+            }else{
+                return R.ok().message("没有数据");
+            }
+        }
+        @RequestMapping(value = "/test/updateById",method = RequestMethod.GET)
+        @ApiOperation(value = "修改人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+        public R updateById(PersonBase personBase){
+            boolean b = personBaseService.updateById(personBase);
+            if(b){
+            return R.ok().message("修改成功");
+            }else{
+                return R.error().message("修改失败");
+            }
+        }
+
+//            @RequestMapping(value = "/test/findByManyPage",method = RequestMethod.GET)
 //        @ApiOperation(value = "多条件分页查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
 //        public R findByManyPage(PersonBaseVo personBaseVo, Integer page, Integer limit){
 //                Page page1=personBaseService.findByManyPage(personBaseVo,page,limit);
 //            return   R.ok().data("data",page1).message("查询成功");
 //        }
-//         @RequestMapping(value = "/test/findById",method = RequestMethod.GET)
-//         @ApiOperation(value = "根据Id查询人事资料接口",notes = "人事Id(personNo)",httpMethod = "GET", response = String.class)
-//        public R findById(String personNo){
-//             List<PersonBase> list=personBaseService.findById(personNo);
-//             if(list.size()==0){
-//                 return R.ok().data("data",list).message("没有数据");
-//             }else{
-//                 return R.ok().data("data",list).message("查询成功");
-//             }
-//        }
-//        @RequestMapping(value = "/test/findByIdName",method = RequestMethod.GET)
-//        @ApiOperation(value = "根据编号和姓名查询人事资料接口",notes = "人事Id(personNo)和人事姓名(person_name)",httpMethod = "GET", response = String.class)
-//        public  R findByIdName(String personNo,String personName){
-//            List<PersonInfo> list=personBaseService.findByIdName(personNo,personName);
-//            if(list.size()!=0){
-//                return R.ok().data("data",list).message("查询成功");
-//            }else{
-//                return R.ok().message("没有数据");
-//            }
-//        }
-//        @RequestMapping(value = "/test/updateById",method = RequestMethod.GET)
-//        @ApiOperation(value = "修改人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//        public R updateById(PersonBase personBase){
-//            boolean b = personBaseService.updateById(personBase);
-//            return R.ok().message("修改成功");
+            //        @RequestMapping(value = "/test/select",method = RequestMethod.GET)
+//      @ApiOperation(value = "多条件查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+//      public List<PersonBase> selectByMany(PersonBaseVo personBaseVo){
+//               return personBaseService.selectByMany(personBaseVo);
+//       }
 //        }
 //        @RequestMapping(value = "/test/GroupByMany",method = RequestMethod.GET)
 //        @ApiOperation(value = "统计各种级别各种层次人数资料接口",notes = "",httpMethod = "GET", response = String.class)

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhongshan.entity.PersonBase;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhongshan.entity.vo.PersonBaseVo;
+import com.zhongshan.entity.vo.PersonInfo;
 
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface PersonBaseService extends IService<PersonBase> {
         List<PersonBase> findComprehensiveQuery(String schoolName);
 
         List<PersonBase> findAll();
+
+        List<PersonBase> findByIdName(String personNo);
 }

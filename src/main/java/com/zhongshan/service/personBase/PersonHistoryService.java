@@ -4,6 +4,8 @@ import com.zhongshan.entity.PersonBase;
 import com.zhongshan.entity.PersonHistory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author 13427
 * @description 针对表【person_history】的数据库操作Service
@@ -17,4 +19,6 @@ public interface PersonHistoryService extends IService<PersonHistory> {
     PersonHistory select(String personNo);
 
     PersonHistory findPersonHistory(String personNo);
+
+    List<PersonHistory> selectAllPersonHistory();
 }

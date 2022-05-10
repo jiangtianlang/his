@@ -17,36 +17,39 @@ public class FamilyMemberController {
     @Resource
     private FamilyMemberService familyMemberService;
     @RequestMapping(value = "/test/findFamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "查询家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    @ApiOperation(value = "根据Id查询家庭主要成员及主要社会关系信息接口",notes = "personNo",httpMethod = "GET", response = String.class)
     public R findFamilyMember(String personNo){
         FamilyMember familyMember=familyMemberService.findFamilyMember(personNo);
-        return R.ok().data("data",familyMember).message("查询成功");
+        if(familyMember!=null){
+            return R.ok().data("data",familyMember).message("查询成功");
+        }else{
+            return R.ok().data("data",familyMember).message("无数据");
+        }
+
     }
-
-
-
-
-
-
-
-//    @RequestMapping(value = "/test/addfamilyMember",method = RequestMethod.GET)
-//    @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//    public R addfamilyMember(FamilyMember familyMember){
-//        return R.ok().message("添加成功");
-//    }
-//    @RequestMapping(value = "/test/selectfamilyMember",method = RequestMethod.GET)
-//    @ApiOperation(value = "根据Id查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//    public R selectfamilyMember(String personNo){
-//        return R.ok().message("查询成功");
-//    }
-//    @RequestMapping(value = "/test/updatefamilyMember",method = RequestMethod.GET)
-//    @ApiOperation(value = "修改人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//    public R updatefamilyMember(FamilyMember familyMember){
-//        return R.ok().message("修改成功");
-//    }
-//    @RequestMapping(value = "/test/delectfamilyMember",method = RequestMethod.GET)
-//    @ApiOperation(value = "删除人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//    public R delectfamilyMember(String personNo){
-//        return R.ok().message("删除成功");
-//    }
+    @RequestMapping(value = "/test/addFamilyMember",method = RequestMethod.GET)
+    @ApiOperation(value = "新增家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    public R addFamilyMember(FamilyMember familyMember){
+        boolean b=familyMemberService.addFamilyMember(familyMember);
+        if(b){
+            return R.ok().message("新增成功");
+        }else{
+            return R.error().message("新增失败");
+        }
+    }
+    @RequestMapping(value = "/test/updataFamilyMember",method = RequestMethod.GET)
+    @ApiOperation(value = "新增家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    public R updataFamilyMember(FamilyMember familyMember){
+        boolean b=familyMemberService.updataFamilyMember(familyMember);
+        if(b){
+            return R.ok().message("修改成功");
+        }else{
+            return R.error().message("修改失败");
+        }
+    }
+    @RequestMapping(value = "/test/deleteFamilyMember",method = RequestMethod.GET)
+    @ApiOperation(value = "新增家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    public R deleteFamilyMember(String personNo){
+       return this.familyMemberService.removeById(personNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
+    }
 }

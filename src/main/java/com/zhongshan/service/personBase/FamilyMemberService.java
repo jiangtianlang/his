@@ -11,4 +11,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface FamilyMemberService extends IService<FamilyMember> {
 
     FamilyMember findFamilyMember(String personNo);
+
+    boolean addFamilyMember(FamilyMember familyMember);
+
+    boolean updataFamilyMember(FamilyMember familyMember);
 }
