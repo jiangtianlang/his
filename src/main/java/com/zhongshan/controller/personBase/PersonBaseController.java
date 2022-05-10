@@ -86,7 +86,7 @@ public class PersonBaseController {
     public R CountPeopleByAge(CountPeople countPeople){
         return R.ok();
     }
-    @RequestMapping(value = "/test/addpersonBase",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/addPersonBase",method = RequestMethod.GET)
     @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "sectionNo",value = "科室编号",paramType = "query",dataType = "String",required = true),
@@ -95,7 +95,7 @@ public class PersonBaseController {
             @ApiImplicitParam(name = "personSex",value = "性别",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "marry",value = "婚否",paramType = "query",dataType = "String",required = true)
     })
-    public R addpersonBase(PersonBase personBase){
+    public R addPersonBase(PersonBase personBase){
         String section=personBase.getSectionNo();
         System.out.println("section========="+section);
         Random a=new Random();
@@ -103,7 +103,7 @@ public class PersonBaseController {
         personNo=section+personNo;
         System.out.println(personNo);
         personBase.setPersonNo(personNo);
-        List<PersonBase> list=personBaseService.findById(personBase.getPersonNo());
+        List<PersonBase> list=personBaseService.addPersonBase(personBase);
         if(list.size()!=0){
             return R.error().message("添加失败，请重新添加");
         }else{

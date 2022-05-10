@@ -125,6 +125,11 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
         List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
         return list;
     }
+
+    @Override
+    public List<PersonBase> addPersonBase(PersonBase personBase) {
+        return null;
+    }
 }
 
 

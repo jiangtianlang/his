@@ -89,9 +89,10 @@ public class PrescriptionServiceImpl extends ServiceImpl<PrescriptionMapper, Pre
         //修改在库药品数量（out_no	 出库单号，medi_no	 药品代码，specification	 规格，unit	 单位，unit_price	 单价，quantity	 数量
         //out_date	 出库日期，department	 部门）
         UpdateWrapper<Uh03OnStoreC> updateWrapper=new UpdateWrapper<>();
-        updateWrapper.set("medi_no",uh03PriceCDbf.getMediNo());
+        System.out.println(uh03PriceCDbf.getMediNo());
+        updateWrapper.eq("medi_no",uh03PriceCDbf.getMediNo());
+        //updateWrapper.set("medi_no",uh03PriceCDbf.getMediNo());
         updateWrapper.set("quantity",list1.get(0).getQuantity()-prescription.getQuantity());
-        System.out.println("33333333333333");
         boolean b=uh03OnStoreCService.update(updateWrapper);
         //添加出库药品信息
         Uh03StoreOutC uh03StoreOutC=new Uh03StoreOutC();
@@ -117,8 +118,19 @@ public class PrescriptionServiceImpl extends ServiceImpl<PrescriptionMapper, Pre
     }
 
     @Override
+//    @Transactional(
+//            rollbackFor = {Exception.class}
+//    )
     public boolean updateGetPrice(Prescription prescription) {
          int rows=prescriptionMapper.updateById(prescription);
+        //修改在库药品数量（out_no	 出库单号，medi_no	 药品代码，specification	 规格，unit	 单位，unit_price	 单价，quantity	 数量
+        //out_date	 出库日期，department	 部门）
+        //先根据药品名称查到药品Id
+//        Uh03PriceCDbf uh03PriceCDbf=uh03PriceCDbfService.selectQuantity(prescription.getMedi_name());
+//        List<Uh03OnStoreC> list1=uh03OnStoreCService.selectQuantity(uh03PriceCDbf.getMediNo());
+//        UpdateWrapper<Uh03OnStoreC> updateWrapper=new UpdateWrapper<>();
+//        updateWrapper.set("medi_no",uh03PriceCDbf.getMediNo());
+//        updateWrapper.set("quantity",list1.get(0).getQuantity()-prescription.getQuantity()-prescription.getQuantity());
         return rows>0?true:false;
     }
 
