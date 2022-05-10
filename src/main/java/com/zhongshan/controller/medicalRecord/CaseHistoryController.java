@@ -40,21 +40,6 @@ public class CaseHistoryController {
                 return R.ok().data("data",caseHistoryService.findByChNum(chNum)).message("查询成功");
         }
 
-        @RequestMapping(value = "insert", method = RequestMethod.POST)
-        @ApiOperation(value = "添加信息接口", notes = "添加信息", httpMethod = "POST", response = String.class)
-        public R insert(@RequestBody CaseHistory caseHistory) {
-                int row =caseHistoryService.insert(caseHistory);
-                if (row>0) {
-                        return R.ok().message("添加成功");
-                }
-                else if(row==-4){
-                        return R.ok().message("该病历已存在");
-                }
-                else {
-                        return R.ok().message("添加失败");
-                }
-        }
-
         @RequestMapping(value = "update", method = RequestMethod.POST)
         @ApiOperation(value = "修改信息接口", notes = "修改信息", httpMethod = "POST", response = String.class)
         public R update(@RequestBody CaseHistory caseHistory) {

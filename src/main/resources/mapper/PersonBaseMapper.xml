@@ -70,6 +70,7 @@
         </if>
 
     </select>
+
     <select id="query" resultType="java.lang.String">
         select title_no
         from person_base

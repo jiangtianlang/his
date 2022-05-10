@@ -12,6 +12,7 @@ import com.zhongshan.mapper.Uh03StoreWMapper;
 import com.zhongshan.service.Uh03StoreOutCService;
 import com.zhongshan.mapper.Uh03StoreOutCMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -37,7 +38,9 @@ Uh03StoreOutCMapper uh03StoreOutCMapper;
     Calendar calendar = Calendar.getInstance();
     //记得要+1
     int month = calendar.get(Calendar.MONTH) + 1;
+
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public int insertBatch(List<Uh03StoreOutC> uh03StoreOutCS) {
         if (CollectionUtils.isEmpty(uh03StoreOutCS)) {
             return 0;

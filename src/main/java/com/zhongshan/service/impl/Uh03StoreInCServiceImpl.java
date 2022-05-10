@@ -66,6 +66,7 @@ public class Uh03StoreInCServiceImpl extends ServiceImpl<Uh03StoreInCMapper, Uh0
         return list;
     }
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public int insertBatch(List<Uh03StoreInC> uh03StoreInCS) {
 
         if (CollectionUtils.isEmpty(uh03StoreInCS)) {

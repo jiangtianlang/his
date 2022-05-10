@@ -32,16 +32,7 @@ public class FirstpageController {
         return R.ok().message("修改失败");
     }
 }
-    @RequestMapping(value = "insert",method = RequestMethod.POST)
-    @ApiOperation(value = "病案首页添加接口",notes = "输入信息",httpMethod = "POST")
-    public R insert(@RequestBody Firstpage firstpage){
-    int row =firstpageService.insert(firstpage);
-    if (row>0) {
-        return R.ok().message("添加成功");
-    }else {
-        return R.ok().message("添加失败");
-    }
-    }
+
 
     @RequestMapping(value = "findByfgNum",method = RequestMethod.POST)
     @ApiOperation(value = "病案首页多条件查询接口",notes = "",httpMethod = "POST")
@@ -64,7 +55,7 @@ public class FirstpageController {
         }
     }
     @RequestMapping(value = "findall",method = RequestMethod.POST)
-    @ApiOperation(value = "病案首页全部查询号查询接口",notes = "",httpMethod = "POST",response = String.class)
+    @ApiOperation(value = "病案首页全部查询接口",notes = "",httpMethod = "POST",response = String.class)
     public R findall(){
     List<Firstpage> list=firstpageService.queryAll();
         if (list.size()>0){
