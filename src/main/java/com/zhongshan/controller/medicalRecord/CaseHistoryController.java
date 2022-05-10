@@ -46,7 +46,11 @@ public class CaseHistoryController {
                 int row =caseHistoryService.insert(caseHistory);
                 if (row>0) {
                         return R.ok().message("添加成功");
-                }else {
+                }
+                else if(row==-4){
+                        return R.ok().message("该病历已存在");
+                }
+                else {
                         return R.ok().message("添加失败");
                 }
         }

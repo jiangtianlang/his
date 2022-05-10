@@ -38,4 +38,10 @@
         from case_history
         where state=0
     </select>
+    <select id="query" resultType="com.zhongshan.entity.CaseHistory">
+        select
+        <include refid="Base_Column_List"/>
+        from case_history
+        where ch_num=#{chNum} and ch_times=#{chTimes} and state=0
+    </select>
 </mapper>

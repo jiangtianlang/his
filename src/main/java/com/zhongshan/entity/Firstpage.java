@@ -473,4 +473,15 @@ public class Firstpage implements Serializable {
 //        this.fgSignatureIntern = fgSignatureIntern;
 //        this.fgSignatureCoder = fgSignatureCoder;
     }
+
+    public Firstpage(String chInStatus, String chOutStatus, String chSignatureDirectorDoctor, String chSignatureChargeDoctor, String chSignatureHouseDoctor, String chSignatureIntern, String chNum, Integer chTimes) {
+        this.fgSignatureDirectorDoctor = chSignatureDirectorDoctor;
+        this.fgSignatureChargeDoctor = chSignatureChargeDoctor;
+        this.fgSignatureHouseDoctor = chSignatureHouseDoctor;
+        this.fgSignatureIntern = chSignatureIntern;
+        this.fgNum = chNum;
+        this.fgTimes = chTimes;
+        this.fgOutStatus = chOutStatus;
+        this.fgInStatus = chInStatus;
+    }
 }

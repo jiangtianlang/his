@@ -2,6 +2,7 @@ package com.zhongshan.mapper;
 
 import com.zhongshan.entity.Firstpage;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,6 +23,10 @@ public interface FirstpageMapper extends BaseMapper<Firstpage> {
     List<Firstpage> findCountAll(String fgNum, Integer fgTimes);
 
     Integer findCounta(String fgNum);
+
+    List<Firstpage> queryC(String chNum, Integer chTimes);
+
+    int updatel(Firstpage firstpage);
 }
 
 

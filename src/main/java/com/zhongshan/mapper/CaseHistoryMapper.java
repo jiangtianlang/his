@@ -14,6 +14,8 @@ import java.util.List;
 public interface CaseHistoryMapper extends BaseMapper<CaseHistory> {
 
     List<CaseHistory> queryAll();
+
+    List<CaseHistory> query(String chNum, Integer chTimes);
 }
 
 

@@ -108,6 +108,30 @@
         fg_signature_director_doctor,fg_signature_charge_doctor,fg_signature_house_doctor,
         fg_signature_intern,fg_signature_coder
     </sql>
+    <update id="updatel" parameterType="com.zhongshan.entity.Firstpage">
+        update firstpage
+        <set>
+            <if test="fgInStatus!=null">
+                fg_in_status=#{fgInStatus},
+            </if>
+            <if test="fgOutStatus!=null">
+                fg_out_status=#{fgOutStatus},
+            </if>
+            <if test="fgSignatureDirectorDoctor!=null">
+                fg_signature_director_doctor=#{fgSignatureDirectorDoctor},
+            </if>
+            <if test="fgSignatureChargeDoctor!=null">
+                fg_signature_charge_doctor=#{fgSignatureChargeDoctor},
+            </if>
+            <if test="fgSignatureHouseDoctor!=null">
+                fg_signature_house_doctor=#{fgSignatureHouseDoctor},
+            </if>
+            <if test="fgSignatureIntern!=null">
+                fg_signature_intern=#{fgSignatureIntern},
+            </if>
+        </set>
+         where fg_num=#{fgNum} and fg_times=#{fgTimes} and state=0;
+    </update>
     <select id="queryByNum" resultType="com.zhongshan.entity.Firstpage">
         select
         <include refid="Base_Column_List"/>
@@ -154,5 +178,11 @@
         select fg_times
         from firstpage
         where fg_num=#{fgNum} and state=0
+    </select>
+    <select id="queryC" parameterType="com.zhongshan.entity.CaseHistory" resultType="com.zhongshan.entity.Firstpage">
+        select
+        <include refid="Base_Column_List"/>
+        from firstpage
+        where fg_num=#{chNum} and fg_times=#{chTimes} and state=0
     </select>
 </mapper>

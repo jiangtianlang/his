@@ -16,8 +16,10 @@ import java.util.List;
 */
 public interface PersonBaseMapper extends BaseMapper<PersonBase> {
     List<PersonBase> findComprehensiveQuery(String schoolName);
-}
 
+    String query(String chSignatureChargeDoctor);
+
+}
 
 
 

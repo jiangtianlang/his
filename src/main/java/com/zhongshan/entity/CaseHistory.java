@@ -107,5 +107,16 @@ public class CaseHistory implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
+    public CaseHistory(Firstpage f) {
+        this.chSignatureDirectorDoctor =f.getFgSignatureDirectorDoctor();
+        this.chSignatureChargeDoctor = f.getFgSignatureChargeDoctor();
+        this.chSignatureHouseDoctor = f.getFgSignatureHouseDoctor();
+        this.chSignatureIntern = f.getFgSignatureIntern();
+        this.chNum =f.getFgNum();
+        this.chTimes =f.getFgTimes();
+        this.chOutStatus = f.getFgOutStatus();
+        this.chInStatus = f.getFgInStatus();
+        this.chName=f.getFgName();
+        this.chDepartment=f.getFgDepartment();
+    }
 }
