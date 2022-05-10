@@ -1,5 +1,6 @@
 package com.zhongshan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh03OnStoreC;
 import com.zhongshan.entity.Uh03PriceCDbf;
@@ -54,6 +55,19 @@ Uh03PriceCDbfMapper uh03PriceCDbfMapper;
 
         List<Uh03PriceCDbf> list=uh03PriceCDbfMapper.queryByid(uh03PriceCDbf);
         return list;
+    }
+
+    @Override
+    public List<Uh03PriceCDbf> selectAllMedicine() {
+        return uh03PriceCDbfMapper.selectList(null);
+    }
+
+    @Override
+    public Uh03PriceCDbf selectQuantity(String medi_name) {
+        QueryWrapper<Uh03PriceCDbf> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("medi_name",medi_name);
+        Uh03PriceCDbf uh03PriceCDbf=uh03PriceCDbfMapper.selectOne(queryWrapper);
+        return uh03PriceCDbf;
     }
 }
 

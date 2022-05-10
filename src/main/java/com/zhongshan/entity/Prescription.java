@@ -21,9 +21,9 @@ public class Prescription implements Serializable {
     private String personsNo;
 
     /**
-     * 药品代号
+     * 药品名称
      */
-    private String mediNo;
+    private String medi_name;
 
     /**
      * 数量
@@ -46,9 +46,9 @@ public class Prescription implements Serializable {
     private String unit;
 
     /**
-     * 医生代号
+     * 医生名称
      */
-    private String doctorNo;
+    private String doctor_name;
 
     /**
      * 计价日期

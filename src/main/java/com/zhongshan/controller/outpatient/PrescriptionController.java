@@ -1,9 +1,15 @@
 package com.zhongshan.controller.outpatient;
 
+import com.zhongshan.entity.MedicalCard;
 import com.zhongshan.entity.Prescription;
+import com.zhongshan.entity.Uh03OnStoreC;
+import com.zhongshan.entity.Uh03PriceCDbf;
 import com.zhongshan.entity.vo.PrescriptionVo;
 import com.zhongshan.entity.vo.PrescriptionsVo;
 import com.zhongshan.service.PrescriptionService;
+import com.zhongshan.service.Uh03OnStoreCService;
+import com.zhongshan.service.Uh03PriceCDbfService;
+import com.zhongshan.service.personBase.MedicalCardService;
 import com.zhongshan.utils.result.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,11 +25,48 @@ import java.util.*;
 public class PrescriptionController {
     @Resource
     private PrescriptionService prescriptionService;
+    @Resource
+    private MedicalCardService medicalCardService;
+    @Resource
+    private Uh03PriceCDbfService uh03PriceCDbfService;
+    @Resource
+    private Uh03OnStoreCService uh03OnStoreCService;
     @RequestMapping(value = "/test/selectGetPrice",method = RequestMethod.GET)
-    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
+    @ApiOperation(value = "查询计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectGetPrice(PrescriptionVo prescriptionVo){
         List<PrescriptionsVo> list=prescriptionService.selectGetPrice(prescriptionVo);
         return R.ok().data("data",list).message("查询成功");
+    }
+    @RequestMapping(value = "/test/addGetPrice",method = RequestMethod.GET)
+    @ApiOperation(value = "新增计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
+    public R addGetPrice(Prescription prescription){
+        String personsNo=prescription.getPersonsNo();
+        List<MedicalCard> list=medicalCardService.selectmedicalCard(personsNo);
+        if(list.size()==0){
+            return R.error().message("还没有该医疗卡信息，请重新输入");
+        }
+        Uh03PriceCDbf uh03PriceCDbf=uh03PriceCDbfService.selectQuantity(prescription.getMedi_name());
+        System.out.println(uh03PriceCDbf.getMediNo());
+       Uh03OnStoreC uh03OnStoreC=uh03OnStoreCService.selectQuantity(uh03PriceCDbf.getMediNo());
+        if(prescription.getQuantity()>uh03OnStoreC.getQuantity()||uh03OnStoreC.getQuantity()<1){
+            return R.error().message("库存不足");
+        }
+        boolean b=prescriptionService.addGetPrice(prescription);
+        if(b){
+            return R.ok().message("添加成功");
+        }else{
+            return R.error().message("添加失败");
+        }
+    }
+    @RequestMapping(value = "/test/updateGetPrice",method = RequestMethod.GET)
+    @ApiOperation(value = "修改计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
+    public R updateGetPrice(Prescription Prescription){
+        boolean b=prescriptionService.updateGetPrice(Prescription);
+        if(b){
+            return R.ok().message("修改成功");
+        }else{
+            return R.error().message("修改失败");
+        }
     }
 
 

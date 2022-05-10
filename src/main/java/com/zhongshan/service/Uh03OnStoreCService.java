@@ -24,4 +24,8 @@ public interface Uh03OnStoreCService extends IService<Uh03OnStoreC> {
     List<Uh03OnStoreC> findallList();
 
     Integer findSum();
+
+    List<Uh03OnStoreC> selectMedical();
+
+    Uh03OnStoreC selectQuantity(String mediNo);
 }

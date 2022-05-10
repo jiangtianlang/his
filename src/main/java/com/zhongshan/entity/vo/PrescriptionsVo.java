@@ -16,6 +16,7 @@ public class PrescriptionsVo {
     private String personsNo;
     private String doctorName;
     private String mediName;
+    private String mediNo;
     private Integer quantity;
     private Date todayDate;
 }

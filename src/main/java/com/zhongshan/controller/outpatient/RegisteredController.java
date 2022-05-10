@@ -52,6 +52,7 @@ public class RegisteredController {
     @RequestMapping(value = "/test/updataOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "修改校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public  R updataOutSchoolPatient(Registered registered){
+
         boolean b=registeredService.updataOutSchoolPatient(registered);
         if(b){
             return R.ok().message("修改成功");
@@ -83,6 +84,7 @@ public class RegisteredController {
             List<Registered> list=registeredService.selectInSchoolPatient(personsNo);
             return R.ok().data("data",list).message("查询成功");
 
+
     }
     @RequestMapping(value = "/test/selectInSchoolPatientByName",method = RequestMethod.GET)
     @ApiOperation(value = "姓名查询校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
@@ -94,11 +96,6 @@ public class RegisteredController {
             List<Registered> list=registeredService.selectInSchoolPatientByName(name);
                 return R.ok().data("data",list).message("查询成功");
         }
-    }
-    @RequestMapping(value = "/test/updataInSchoolPatient",method = RequestMethod.GET)
-    @ApiOperation(value = "修改校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
-    public  R updataInSchoolPatient(Registered registered){
-        return R.ok().message("修改成功");
     }
     @RequestMapping(value = "/test/deleteInSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "删除校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)

@@ -15,4 +15,8 @@ import java.util.List;
 public interface PrescriptionService extends IService<Prescription> {
 
     List<PrescriptionsVo> selectGetPrice(PrescriptionVo prescriptionVo);
+
+    boolean addGetPrice(Prescription prescription);
+
+    boolean updateGetPrice(Prescription prescription);
 }

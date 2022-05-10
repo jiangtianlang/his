@@ -6,12 +6,12 @@
 
     <resultMap id="BaseResultMap" type="com.zhongshan.entity.Prescription">
             <id property="personsNo" column="persons_no" jdbcType="VARCHAR"/>
-            <result property="mediNo" column="medi_no" jdbcType="VARCHAR"/>
+            <result property="medi_name" column="medi_no" jdbcType="VARCHAR"/>
             <result property="quantity" column="quantity" jdbcType="INTEGER"/>
             <result property="pay" column="pay" jdbcType="DOUBLE"/>
             <result property="mediMoney" column="medi_money" jdbcType="DOUBLE"/>
             <result property="unit" column="unit" jdbcType="VARCHAR"/>
-            <result property="doctorNo" column="doctor_no" jdbcType="VARCHAR"/>
+            <result property="doctor_name" column="doctor_no" jdbcType="VARCHAR"/>
             <result property="todayDate" column="today_date" jdbcType="TIMESTAMP"/>
             <result property="subjectNo" column="subject_no" jdbcType="VARCHAR"/>
             <result property="opera" column="opera" jdbcType="VARCHAR"/>
@@ -25,9 +25,27 @@
         doctor_no,today_date,subject_no,
         opera,pres_number,today_total_yn
     </sql>
-    <select id="selectGetPrice" resultType="com.zhongshan.entity.vo.PrescriptionsVo">
-        select re.name,pre.persons_no,d.doctor_name,mt.medi_name,pre.quantity,pre.today_date
-        from prescription pre LEFT JOIN medicine_type mt on pre.medi_no=mt.medi_no LEFT JOIN doctor d on pre.doctor_no=d.doctor_no
+    <select id="selectGetPrice" resultType="com.zhongshan.entity.vo.PrescriptionsVo" parameterType="com.zhongshan.entity.vo.PrescriptionVo">
+        select re.name,pre.persons_no,pre.doctor_name,pre.medi_name,pre.quantity,pre.today_date
+        from prescription pre
         LEFT JOIN registered re on pre.persons_no=re.persons_no
+        <where>
+            <if test="name !=null">
+                re.name like concat('%',#{name},'%')
+            </if>
+            <if test="startTodayDate!=null">
+                and pre.todayDate ge #{startTodayDate}
+            </if>
+            <if test="endTodayDate!=null">
+                and pre.todayDate le #{endTodayDate}
+            </if>
+            <if test="personsNo!=null">
+               and pre.personsNo= #{personsNo}
+            </if>
+            <if test="mediNo!=null">
+               and pre.mediNo = #{mediNo}
+            </if>
+        </where>
     </select>
+
 </mapper>

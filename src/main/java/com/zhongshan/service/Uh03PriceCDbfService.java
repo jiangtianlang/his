@@ -1,5 +1,6 @@
 package com.zhongshan.service;
 
+import com.zhongshan.entity.Uh03OnStoreC;
 import com.zhongshan.entity.Uh03PriceCDbf;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -17,4 +18,8 @@ public interface Uh03PriceCDbfService extends IService<Uh03PriceCDbf> {
     List<Uh03PriceCDbf> queryAll();
 
     List<Uh03PriceCDbf> queryByid(Uh03PriceCDbf uh03PriceCDbf);
+
+    List<Uh03PriceCDbf> selectAllMedicine();
+
+    Uh03PriceCDbf selectQuantity(String medi_name);
 }

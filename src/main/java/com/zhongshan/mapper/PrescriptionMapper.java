@@ -1,10 +1,13 @@
 package com.zhongshan.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.zhongshan.entity.Prescription;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhongshan.entity.vo.PrescriptionVo;
 import com.zhongshan.entity.vo.PrescriptionsVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,7 +19,9 @@ import java.util.List;
 */
 public interface PrescriptionMapper extends BaseMapper<Prescription> {
 
-    List<PrescriptionsVo> selectGetPrice(QueryWrapper<PrescriptionVo> queryWrapper);
+    List<PrescriptionsVo> selectGetPrice(PrescriptionVo prescriptionVo);
+
+
 }
 
 

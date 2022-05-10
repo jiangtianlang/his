@@ -25,25 +25,40 @@ public class PrescriptionServiceImpl extends ServiceImpl<PrescriptionMapper, Pre
      private PrescriptionMapper prescriptionMapper;
      @Override
      public List<PrescriptionsVo> selectGetPrice(PrescriptionVo prescriptionVo) {
-         QueryWrapper<PrescriptionVo> queryWrapper=new QueryWrapper<>();
-         if(StringUtils.isNotBlank(prescriptionVo.getName())){
-             queryWrapper.like("name",prescriptionVo.getName());
-         }
-         if(prescriptionVo.getStartTodayDate()!=null
-                 && prescriptionVo.getEndTodayDate()!=null){
-             queryWrapper.between("today_date",
-                     prescriptionVo.getStartTodayDate(),
-                     prescriptionVo.getEndTodayDate());
-         }
-         if(prescriptionVo.getPersonsNo()!=null){
-             queryWrapper.like("personsNo",prescriptionVo.getPersonsNo());
-         }
-         if(prescriptionVo.getMediNo()!=null){
-             queryWrapper.like("mediNo",prescriptionVo.getMediNo());
-         }
-         List<PrescriptionsVo> list=prescriptionMapper.selectGetPrice(queryWrapper);
+//         QueryWrapper<PrescriptionVo> queryWrapper=new QueryWrapper<>();
+//         if(StringUtils.isNotBlank(prescriptionVo.getName())){
+//             queryWrapper.like("name",prescriptionVo.getName());
+//         }
+//         if(prescriptionVo.getStartTodayDate()!=null
+//                 && prescriptionVo.getEndTodayDate()!=null){
+//             queryWrapper.between("today_date",
+//                     prescriptionVo.getStartTodayDate(),
+//                     prescriptionVo.getEndTodayDate());
+//         }
+//         if(prescriptionVo.getPersonsNo()!=null){
+//             queryWrapper.like("personsNo",prescriptionVo.getPersonsNo());
+//         }
+//         if(prescriptionVo.getMediNo()!=null){
+//             queryWrapper.like("mediNo",prescriptionVo.getMediNo());
+//         }
+//         System.out.println(queryWrapper);
+         List<PrescriptionsVo> list=prescriptionMapper.selectGetPrice(prescriptionVo);
         return list;
     }
+
+    @Override
+    public boolean addGetPrice(Prescription prescription) {
+         int rows=prescriptionMapper.insert(prescription);
+        return rows>0?true:false;
+    }
+
+    @Override
+    public boolean updateGetPrice(Prescription prescription) {
+         int rows=prescriptionMapper.updateById(prescription);
+        return rows>0?true:false;
+    }
+
+
 }
 
 

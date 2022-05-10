@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Api(value = "在库药品资料test",tags = "（门诊子系统）在库药品数据接口API")
@@ -21,5 +22,10 @@ public class Uh03OnStoreCController {
     public  R updateCount(String mediNo,Integer quantity){
         return R.ok();
     }
-
+    @RequestMapping(value = "/test/selectMedical",method = RequestMethod.GET)
+    @ApiOperation(value = "查看药品库存接口",notes = "",httpMethod = "GET", response = String.class)
+    public  R selectMedical(){
+        List<Uh03OnStoreC> list=uh03OnStoreCService.selectMedical();
+        return R.ok().data("data",list).message("查询成功");
+    }
 }

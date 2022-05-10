@@ -1,5 +1,6 @@
 package com.zhongshan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh03OnStoreC;
 import com.zhongshan.service.Uh03OnStoreCService;
@@ -53,6 +54,19 @@ Uh03OnStoreCMapper uh03OnStoreCMapper;
     @Override
     public Integer findSum() {
      Integer uh03OnStoreC=uh03OnStoreCMapper.findSum();
+        return uh03OnStoreC;
+    }
+
+    @Override
+    public List<Uh03OnStoreC> selectMedical() {
+        QueryWrapper<Uh03OnStoreC> queryWrapper=new QueryWrapper<>();
+        List<Uh03OnStoreC> list=uh03OnStoreCMapper.selectList(null);
+        return list;
+    }
+
+    @Override
+    public Uh03OnStoreC selectQuantity(String mediNo) {
+        Uh03OnStoreC uh03OnStoreC=uh03OnStoreCMapper.selectById(mediNo);
         return uh03OnStoreC;
     }
 }
