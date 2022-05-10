@@ -73,16 +73,13 @@ public class PrescriptionServiceImpl extends ServiceImpl<PrescriptionMapper, Pre
         String personsNo=prescription.getPersonsNo();
         //查询就诊卡号是否存在
         List<MedicalCard> list=medicalCardService.selectmedicalCard(personsNo);
-        System.out.println("------1--------");
         if(list.size()==0){
             return R.ok().message("还没有该医疗卡信息，请重新输入");
         }
         //查询药品价格表（medi_no	 药品代码，specification	 规格，unit	 单位，unit_price	 单价，medi_name	 药品名，quality	 性质，store_limit	 库存下限）
         Uh03PriceCDbf uh03PriceCDbf=uh03PriceCDbfService.selectQuantity(prescription.getMedi_name());
         System.out.println(uh03PriceCDbf.getMediNo());
-        System.out.println("66666666666");
         List<Uh03OnStoreC> list1=uh03OnStoreCService.selectQuantity(uh03PriceCDbf.getMediNo());
-        System.out.println("22222222222222");
         if(prescription.getQuantity()>list1.get(0).getQuantity()||list1.get(0).getQuantity()<1){
             return R.ok().message("库存不足");
         }
@@ -106,7 +103,6 @@ public class PrescriptionServiceImpl extends ServiceImpl<PrescriptionMapper, Pre
         Doctor doctor=doctorMapper.selectOne(queryWrapper1);
         uh03StoreOutC.setDepartment(doctorMapper.selectOne(queryWrapper1).getSubjectName());
         uh03StoreOutC.setQuantity(prescription.getQuantity());
-        System.out.println("444444444444");
          int rows=uh03StoreOutCMapper.insert(uh03StoreOutC);
          if(rows>0){
              return R.ok().message("新增成功");

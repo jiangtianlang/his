@@ -52,7 +52,6 @@ public class RegisteredController {
     @RequestMapping(value = "/test/updataOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "修改校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public  R updataOutSchoolPatient(Registered registered){
-
         boolean b=registeredService.updataOutSchoolPatient(registered);
         if(b){
             return R.ok().message("修改成功");

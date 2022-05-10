@@ -93,7 +93,8 @@ public class PersonBaseController {
             @ApiImplicitParam(name = "personNo",value = "职工编号",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "personName",value = "姓名",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "personSex",value = "性别",paramType = "query",dataType = "String",required = true),
-            @ApiImplicitParam(name = "marry",value = "婚否",paramType = "query",dataType = "String",required = true)
+            @ApiImplicitParam(name = "marry",value = "婚否",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "schoolName",value = "部门",paramType = "query",dataType = "String",required = true)
     })
     public R addPersonBase(PersonBase personBase){
         String section=personBase.getSectionNo();
@@ -103,13 +104,13 @@ public class PersonBaseController {
         personNo=section+personNo;
         System.out.println(personNo);
         personBase.setPersonNo(personNo);
-        List<PersonBase> list=personBaseService.addPersonBase(personBase);
+        List<PersonBase> list=personBaseService.findById(personNo);
         if(list.size()!=0){
-            return R.error().message("添加失败，请重新添加");
+            return R.error().message("网络异常，请重新添加");
         }else{
             boolean b=personBaseService.add(personBase);
             if(b){
-                return R.ok().message("添加成功");
+                return R.ok().message("添加成功，您的职工号是："+personBase.getPersonNo());
             }
             return R.error();
         }

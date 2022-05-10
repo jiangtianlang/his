@@ -32,5 +32,4 @@ public interface PersonBaseService extends IService<PersonBase> {
 
         List<PersonBase> findByIdName(String personNo);
 
-        List<PersonBase> addPersonBase(PersonBase personBase);
 }

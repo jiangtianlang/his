@@ -114,7 +114,9 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
 
     @Override
     public List<PersonBase> findAll() {
-        List<PersonBase> list=personBaseMapper.selectList(null);
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("school_name","住院部");
+        List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
         return list;
     }
 
@@ -126,10 +128,7 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
         return list;
     }
 
-    @Override
-    public List<PersonBase> addPersonBase(PersonBase personBase) {
-        return null;
-    }
+
 }
 
 

@@ -38,7 +38,7 @@ public class FamilyMemberController {
         }
     }
     @RequestMapping(value = "/test/updataFamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "新增家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    @ApiOperation(value = "修改家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R updataFamilyMember(FamilyMember familyMember){
         boolean b=familyMemberService.updataFamilyMember(familyMember);
         if(b){
@@ -48,7 +48,7 @@ public class FamilyMemberController {
         }
     }
     @RequestMapping(value = "/test/deleteFamilyMember",method = RequestMethod.GET)
-    @ApiOperation(value = "新增家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
+    @ApiOperation(value = "删除家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteFamilyMember(String personNo){
        return this.familyMemberService.removeById(personNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }

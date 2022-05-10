@@ -51,6 +51,5 @@ public class OutpatientSubjectsController {
             List<OutpatientSubjects> list=outpatientSubjectsService.selectSubject(subjectName);
             return R.ok().data("data",list).message("查询成功");
         }
-
     }
 }
