@@ -25,12 +25,6 @@ import java.util.*;
 public class PrescriptionController {
     @Resource
     private PrescriptionService prescriptionService;
-    @Resource
-    private MedicalCardService medicalCardService;
-    @Resource
-    private Uh03PriceCDbfService uh03PriceCDbfService;
-    @Resource
-    private Uh03OnStoreCService uh03OnStoreCService;
     @RequestMapping(value = "/test/selectGetPrice",method = RequestMethod.GET)
     @ApiOperation(value = "查询计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectGetPrice(PrescriptionVo prescriptionVo){
@@ -40,23 +34,8 @@ public class PrescriptionController {
     @RequestMapping(value = "/test/addGetPrice",method = RequestMethod.GET)
     @ApiOperation(value = "新增计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R addGetPrice(Prescription prescription){
-        String personsNo=prescription.getPersonsNo();
-        List<MedicalCard> list=medicalCardService.selectmedicalCard(personsNo);
-        if(list.size()==0){
-            return R.error().message("还没有该医疗卡信息，请重新输入");
-        }
-        Uh03PriceCDbf uh03PriceCDbf=uh03PriceCDbfService.selectQuantity(prescription.getMedi_name());
-        System.out.println(uh03PriceCDbf.getMediNo());
-       Uh03OnStoreC uh03OnStoreC=uh03OnStoreCService.selectQuantity(uh03PriceCDbf.getMediNo());
-        if(prescription.getQuantity()>uh03OnStoreC.getQuantity()||uh03OnStoreC.getQuantity()<1){
-            return R.error().message("库存不足");
-        }
-        boolean b=prescriptionService.addGetPrice(prescription);
-        if(b){
-            return R.ok().message("添加成功");
-        }else{
-            return R.error().message("添加失败");
-        }
+        return prescriptionService.addGetPrice(prescription);
+
     }
     @RequestMapping(value = "/test/updateGetPrice",method = RequestMethod.GET)
     @ApiOperation(value = "修改计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
@@ -73,21 +52,21 @@ public class PrescriptionController {
 
 
 
-    @RequestMapping(value = "/test/selectByIdQuantity",method = RequestMethod.GET)
-    @ApiOperation(value = "查询药品数量情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R selectByIdQuantity(Prescription prescription){
-        return R.ok();
-    }
-    @RequestMapping(value = "/test/getPrice",method = RequestMethod.GET)
-    @ApiOperation(value = "收费情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R getPrice(PrescriptionVo prescriptionVo){
-        return R.ok();
-    }
-    @RequestMapping(value = "/test/selectByMany",method = RequestMethod.GET)
-    @ApiOperation(value = "处方详情接口",notes = "",httpMethod = "GET", response = String.class)
-    public R selectByMany(PrescriptionVo prescriptionVo){
-        return R.ok();
-    }
+//    @RequestMapping(value = "/test/selectByIdQuantity",method = RequestMethod.GET)
+//    @ApiOperation(value = "查询药品数量情况接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R selectByIdQuantity(Prescription prescription){
+//        return R.ok();
+//    }
+//    @RequestMapping(value = "/test/getPrice",method = RequestMethod.GET)
+//    @ApiOperation(value = "收费情况接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R getPrice(PrescriptionVo prescriptionVo){
+//        return R.ok();
+//    }
+//    @RequestMapping(value = "/test/selectByMany",method = RequestMethod.GET)
+//    @ApiOperation(value = "处方详情接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R selectByMany(PrescriptionVo prescriptionVo){
+//        return R.ok();
+//    }
 
 //    @RequestMapping(value = "/test/selectGetopera",method = RequestMethod.GET)
 //    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
@@ -99,24 +78,24 @@ public class PrescriptionController {
 //    public R selectGetopera(Date startTime,Date End){
 //        return R.ok();
 //    }
-    @RequestMapping(value = "/test/subjectMedicalAttention",method = RequestMethod.GET)
-    @ApiOperation(value = "各科室查询看病情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R subjectMedicalAttention(Date startTime,Date endTime){
-        return  R.ok();
-    }
-    @RequestMapping(value = "/test/operaMedicalAttention",method = RequestMethod.GET)
-    @ApiOperation(value = "操作人员工作情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R operaMedicalAttention(Date startTime,Date endTime){
-        return R.ok();
-    }
-    @RequestMapping(value = "/test/doctorMedicalAttention",method = RequestMethod.GET)
-    @ApiOperation(value = "医生工作情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R doctorMedicalAttention(Date startTime,Date endTime){
-        return R.ok();
-    }
-    @RequestMapping(value = "/test/registeredMedicalAttention",method = RequestMethod.GET)
-    @ApiOperation(value = "挂号和计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
-    public R registeredMedicalAttention(Date startTime,Date endTime){
-        return R.ok();
-    }
+//    @RequestMapping(value = "/test/subjectMedicalAttention",method = RequestMethod.GET)
+//    @ApiOperation(value = "各科室查询看病情况接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R subjectMedicalAttention(Date startTime,Date endTime){
+//        return  R.ok();
+//    }
+//    @RequestMapping(value = "/test/operaMedicalAttention",method = RequestMethod.GET)
+//    @ApiOperation(value = "操作人员工作情况接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R operaMedicalAttention(Date startTime,Date endTime){
+//        return R.ok();
+//    }
+//    @RequestMapping(value = "/test/doctorMedicalAttention",method = RequestMethod.GET)
+//    @ApiOperation(value = "医生工作情况接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R doctorMedicalAttention(Date startTime,Date endTime){
+//        return R.ok();
+//    }
+//    @RequestMapping(value = "/test/registeredMedicalAttention",method = RequestMethod.GET)
+//    @ApiOperation(value = "挂号和计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
+//    public R registeredMedicalAttention(Date startTime,Date endTime){
+//        return R.ok();
+//    }
 }

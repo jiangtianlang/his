@@ -81,45 +81,39 @@ public class PersonBaseController {
     public R CountPeopleByMany(CountPeople countPeople){
         return R.ok();
     }
-//    @RequestMapping(value = "/test/CountPeopleByAge",method = RequestMethod.GET)
-//    @ApiOperation(value = "统计各年龄段人数接口",notes = "",httpMethod = "GET", response = String.class)
-//    public R CountPeopleByAge(CountPeople countPeople){
-//        return R.ok();
-//    }
-
-
-
-
-
-//
-//    @RequestMapping(value = "/test/addpersonBase",method = RequestMethod.GET)
-//    @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "sectionNo",value = "科室编号",paramType = "query",dataType = "String",required = true),
-//            @ApiImplicitParam(name = "personNo",value = "职工编号",paramType = "query",dataType = "String",required = true),
-//            @ApiImplicitParam(name = "personName",value = "姓名",paramType = "query",dataType = "String",required = true),
-//            @ApiImplicitParam(name = "personSex",value = "性别",paramType = "query",dataType = "String",required = true),
-//            @ApiImplicitParam(name = "marry",value = "婚否",paramType = "query",dataType = "String",required = true)
-//    })
-//    public R addpersonBase(PersonBase personBase){
-//        String section=personBase.getSectionNo();
-//        System.out.println("section========="+section);
-//        Random a=new Random();
-//        String personNo=Integer.toString(a.nextInt(100000));
-//        personNo=section+personNo;
-//        System.out.println(personNo);
-//        personBase.setPersonNo(personNo);
-//        List<PersonBase> list=personBaseService.findById(personBase.getPersonNo());
-//        if(list.size()!=0){
-//            return R.error().message("添加失败，请重新添加");
-//        }else{
-//            boolean b=personBaseService.add(personBase);
-//            if(b){
-//                return R.ok().message("添加成功");
-//            }
-//            return R.error();
-//        }
-//        }
+    @RequestMapping(value = "/test/CountPeopleByAge",method = RequestMethod.GET)
+    @ApiOperation(value = "统计各年龄段人数接口",notes = "",httpMethod = "GET", response = String.class)
+    public R CountPeopleByAge(CountPeople countPeople){
+        return R.ok();
+    }
+    @RequestMapping(value = "/test/addpersonBase",method = RequestMethod.GET)
+    @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "sectionNo",value = "科室编号",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "personNo",value = "职工编号",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "personName",value = "姓名",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "personSex",value = "性别",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "marry",value = "婚否",paramType = "query",dataType = "String",required = true)
+    })
+    public R addpersonBase(PersonBase personBase){
+        String section=personBase.getSectionNo();
+        System.out.println("section========="+section);
+        Random a=new Random();
+        String personNo=Integer.toString(a.nextInt(100000));
+        personNo=section+personNo;
+        System.out.println(personNo);
+        personBase.setPersonNo(personNo);
+        List<PersonBase> list=personBaseService.findById(personBase.getPersonNo());
+        if(list.size()!=0){
+            return R.error().message("添加失败，请重新添加");
+        }else{
+            boolean b=personBaseService.add(personBase);
+            if(b){
+                return R.ok().message("添加成功");
+            }
+            return R.error();
+        }
+        }
 ////        @RequestMapping(value = "/test/select",method = RequestMethod.GET)
 //////        @ApiOperation(value = "多条件查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
 //////        public List<PersonBase> selectByMany(PersonBaseVo personBaseVo){

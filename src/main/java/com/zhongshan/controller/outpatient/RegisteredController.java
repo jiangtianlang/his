@@ -103,7 +103,7 @@ public class RegisteredController {
 
         return this.registeredService.removeById(personsNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
-    @RequestMapping(value = "/test/selectAll",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/selectByPersonsNo",method = RequestMethod.GET)
     @ApiOperation(value = "查询所有挂号人员接口",notes = "",httpMethod = "GET", response = String.class)
     public  R selectByPersonsNo(String personsNo){
         if(personsNo==null){

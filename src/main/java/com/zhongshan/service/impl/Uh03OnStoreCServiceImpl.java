@@ -65,9 +65,11 @@ Uh03OnStoreCMapper uh03OnStoreCMapper;
     }
 
     @Override
-    public Uh03OnStoreC selectQuantity(String mediNo) {
-        Uh03OnStoreC uh03OnStoreC=uh03OnStoreCMapper.selectById(mediNo);
-        return uh03OnStoreC;
+    public List<Uh03OnStoreC> selectQuantity(String mediNo) {
+        QueryWrapper<Uh03OnStoreC> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("medi_no",mediNo);
+        List<Uh03OnStoreC> list=uh03OnStoreCMapper.selectList(queryWrapper);
+        return list;
     }
 }
 
