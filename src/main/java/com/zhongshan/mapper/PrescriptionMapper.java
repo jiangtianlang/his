@@ -19,7 +19,7 @@ import java.util.List;
 */
 public interface PrescriptionMapper extends BaseMapper<Prescription> {
 
-    List<PrescriptionsVo> selectGetPrice(PrescriptionVo prescriptionVo);
+
 
 
 }

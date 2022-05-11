@@ -5,17 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Date;
-
 @Data   //自动 产生 getset
 @AllArgsConstructor  //所以参数的构造器
 @NoArgsConstructor //无参构造器
 @ToString
-public class PrescriptionsVo {
-    private String name;
+public class GetPrescription {
     private String personsNo;
-    private String doctorName;
-    private String mediName;
-    private String mediNo;
+    private String name;
+    private String doctorNo;
     private Integer quantity;
+    private String mediNo;
+
 }

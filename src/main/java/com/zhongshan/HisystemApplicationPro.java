@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class HisystemApplicationPro {
 
     public static void main(String[] args) {
+
         SpringApplication.run(HisystemApplicationPro.class, args);
     }
 

@@ -19,11 +19,12 @@ public class Prescription implements Serializable {
      */
     @TableId
     private String personsNo;
+    private String name;
 
     /**
      * 药品名称
      */
-    private String medi_name;
+    private String mediName;
 
     /**
      * 数量
@@ -48,7 +49,7 @@ public class Prescription implements Serializable {
     /**
      * 医生名称
      */
-    private String doctor_name;
+    private String doctorName;
 
     /**
      * 计价日期

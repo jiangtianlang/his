@@ -50,12 +50,19 @@ public class MedicalCardServiceImpl extends ServiceImpl<MedicalCardMapper,Medica
     }
 
     @Override
-    @Transactional(
-            rollbackFor = {Exception.class}
-    )
-    public boolean addGetPrice(PrescriptionsVo prescriptionsVo) {
+    public List<MedicalCard> selectMedicalCardById(String personsNo) {
+        QueryWrapper<MedicalCard> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("persons_no",personsNo);
+        List<MedicalCard> list=medicalCardMapper.selectList(queryWrapper);
+        return list;
+    }
 
-        return false;
+    @Override
+    public List<MedicalCard> selectMedicalCardByName(String personsNo) {
+        QueryWrapper<MedicalCard> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("name",personsNo);
+        List<MedicalCard> list=medicalCardMapper.selectList(queryWrapper);
+        return list;
     }
 }
 

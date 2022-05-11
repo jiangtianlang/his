@@ -89,17 +89,21 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
     public List<PersonBase> findByManyCondition(PersonBase personBase) {
         //查询
         QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
-        if(StringUtils.isNotBlank(personBase.getPostNo())){
+        if(personBase.getPostNo()!=null){
+            if(!personBase.getPostNo().equals("undefined"))
             queryWrapper.like("post_no",personBase.getPostNo());
         }
         if(personBase.getTitleNo()!=null){
+            if(!personBase.getTitleNo().equals("undefined"))
            queryWrapper.like("title_no",personBase.getTitleNo());
         }
-        if(personBase.getDegree()!=null){
-            queryWrapper.like("degree",personBase.getDegree());
+        if(personBase.getHighSchooling()!=null){
+            if(!personBase.getHighSchooling().equals("undefined"))
+            queryWrapper.like("high_schooling",personBase.getHighSchooling());
         }
-        if(personBase.getInZsuDate()!=null){
-            queryWrapper.like("in_zsu_date",personBase.getInZsuDate());
+        if(personBase.getInWorkDate()!=null){
+            if(!personBase.getInWorkDate().equals("undefined"))
+            queryWrapper.like("in_work_date",personBase.getInWorkDate());
         }
         List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
         return list;
@@ -125,6 +129,12 @@ public class PersonBaseServiceImpl extends ServiceImpl<PersonBaseMapper, PersonB
         QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
         queryWrapper.like("person_no",personNo);
         List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
+        return list;
+    }
+
+    @Override
+    public List<PersonBase> selectAll() {
+        List<PersonBase> list=personBaseMapper.selectList(null);
         return list;
     }
 

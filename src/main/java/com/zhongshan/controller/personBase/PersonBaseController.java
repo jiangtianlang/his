@@ -50,12 +50,36 @@ public class PersonBaseController {
     @RequestMapping(value = "/test/findByManyCondition",method = RequestMethod.GET)
     @ApiOperation(value = "组合查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findByManyCondition(PersonBase personBase){
+        System.out.println(personBase.getInWorkDate());
+        System.out.println("personBase.getInWorkDate()"+personBase.getInWorkDate());
+        System.out.println("personBase.getPostNo()"+personBase.getPostNo());
+        System.out.println("personBase.getTitleNo()"+personBase.getTitleNo());
+        System.out.println("personBase.getHighSchooling()"+personBase.getHighSchooling());
         if(personBase==null){
             List<PersonBase> list=personBaseService.findAll();
-            return R.ok().data("data",list).message("查询成功");
-        }else {
-            List<PersonBase> list = personBaseService.findByManyCondition(personBase);
-            return R.ok().data("data", list).message("查询成功");
+            if(list.size()>0){
+                return R.ok().data("data",list).message("查询成功");
+            }else{
+                return R.error().message("没有数据");
+            }
+        }else{
+            if(personBase.getInWorkDate()!=null){
+                personBase.setInWorkDate(personBase.getInWorkDate().replace("-", ""));
+                System.out.println(personBase.getInWorkDate());
+                List<PersonBase> list = personBaseService.findByManyCondition(personBase);
+                if(list.size()>0){
+                    return R.ok().data("data",list).message("查询成功");
+                }else{
+                    return R.error().message("没有数据");
+                }
+            }else{
+                List<PersonBase> list = personBaseService.findByManyCondition(personBase);
+                if(list.size()>0){
+                    return R.ok().data("data",list).message("查询成功");
+                }else{
+                    return R.error().message("没有数据");
+                }
+            }
         }
     }
     @RequestMapping(value = "/test/findComprehensiveQuery",method = RequestMethod.GET)
@@ -90,7 +114,6 @@ public class PersonBaseController {
     @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "sectionNo",value = "科室编号",paramType = "query",dataType = "String",required = true),
-            @ApiImplicitParam(name = "personNo",value = "职工编号",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "personName",value = "姓名",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "personSex",value = "性别",paramType = "query",dataType = "String",required = true),
             @ApiImplicitParam(name = "marry",value = "婚否",paramType = "query",dataType = "String",required = true),
@@ -118,6 +141,10 @@ public class PersonBaseController {
          @RequestMapping(value = "/test/findById",method = RequestMethod.GET)
          @ApiOperation(value = "根据Id查询人事资料接口",notes = "人事Id(personNo)",httpMethod = "GET", response = String.class)
         public R findById(String personNo){
+            if(personNo==null){
+                List<PersonBase> list=personBaseService.selectAll();
+                return R.ok().data("data",list).message("查询成功");
+            }
              List<PersonBase> list=personBaseService.findById(personNo);
              if(list.size()==0){
                  return R.ok().data("data",list).message("没有数据");

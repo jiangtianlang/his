@@ -2,6 +2,7 @@ package com.zhongshan.service;
 
 import com.zhongshan.entity.Prescription;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.entity.vo.GetPrescription;
 import com.zhongshan.entity.vo.PrescriptionVo;
 import com.zhongshan.entity.vo.PrescriptionsVo;
 import com.zhongshan.utils.result.R;
@@ -15,9 +16,11 @@ import java.util.List;
 */
 public interface PrescriptionService extends IService<Prescription> {
 
-    List<PrescriptionsVo> selectGetPrice(PrescriptionVo prescriptionVo);
+    List<Prescription> selectGetPrice(Prescription prescription);
 
-    R addGetPrice(Prescription prescription);
+    R addGetPrice(GetPrescription getPrescription);
 
     boolean updateGetPrice(Prescription prescription);
+
+    List<Prescription> selectAll(Prescription prescription);
 }

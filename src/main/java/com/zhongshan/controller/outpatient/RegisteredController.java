@@ -102,14 +102,14 @@ public class RegisteredController {
 
         return this.registeredService.removeById(personsNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
-    @RequestMapping(value = "/test/selectByPersonsNo",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/selectByName",method = RequestMethod.GET)
     @ApiOperation(value = "查询所有挂号人员接口",notes = "",httpMethod = "GET", response = String.class)
-    public  R selectByPersonsNo(String personsNo){
-        if(personsNo==null){
+    public  R selectByName(String name){
+        if(name==null){
             List<Registered> list=registeredService.selectAll();
             return R.ok().data("data",list).message("查询成功");
         }else{
-            List<Registered> list=registeredService.selectByPersonsNo(personsNo);
+            List<Registered> list=registeredService.selectByPersonsNo(name);
             return R.ok().data("data",list).message("查询成功");
         }
     }

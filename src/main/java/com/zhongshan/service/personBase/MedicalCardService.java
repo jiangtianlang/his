@@ -16,5 +16,8 @@ public interface MedicalCardService extends IService<MedicalCard> {
 
     List<MedicalCard> selectmedicalCard(String personsNo);
 
-    boolean addGetPrice(PrescriptionsVo prescriptionsVo);
+
+    List<MedicalCard> selectMedicalCardById(String personsNo);
+
+    List<MedicalCard> selectMedicalCardByName(String personsNo);
 }

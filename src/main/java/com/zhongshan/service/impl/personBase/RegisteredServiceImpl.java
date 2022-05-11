@@ -87,9 +87,9 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
     }
 
     @Override
-    public List<Registered> selectByPersonsNo(String personsNo) {
+    public List<Registered> selectByPersonsNo(String name) {
         QueryWrapper<Registered> queryWrapper=new QueryWrapper<>();
-        queryWrapper.like("persons_no",personsNo);
+        queryWrapper.eq("name",name);
         List<Registered> list=registeredMapper.selectList(queryWrapper);
         return list;
     }
@@ -106,6 +106,12 @@ public class RegisteredServiceImpl extends ServiceImpl<RegisteredMapper, Registe
         queryWrapper.like("name",name);
         queryWrapper.eq("people_type","校内人员");
         List<Registered> list=registeredMapper.selectList(queryWrapper);
+        return list;
+    }
+
+    @Override
+    public List<Registered> selectPatientById() {
+        List<Registered> list=registeredMapper.selectList(null);
         return list;
     }
 
