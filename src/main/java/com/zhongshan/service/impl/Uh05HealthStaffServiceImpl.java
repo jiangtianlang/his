@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Uh05HealthStaff;
+import com.zhongshan.entity.Uh05Staff;
+import com.zhongshan.mapper.Uh05StaffMapper;
 import com.zhongshan.service.Uh05HealthStaffService;
 import com.zhongshan.mapper.Uh05HealthStaffMapper;
 import com.zhongshan.utils.result.R;
@@ -28,6 +30,12 @@ public class Uh05HealthStaffServiceImpl extends ServiceImpl<Uh05HealthStaffMappe
     )
     @Override
     public R insertHealthStaff(Uh05HealthStaff uh05HealthStaff) {
+        QueryWrapper<Uh05Staff> queryWrapper5=new QueryWrapper<>();
+        queryWrapper5.eq("staff_no",uh05HealthStaff.getStaffNo());
+        List<Uh05Staff> list5=uh05StaffMapper.selectList(queryWrapper5);
+        if(list5.size()==0){
+            return  R.ok().message("没有该教职工");
+        }
         QueryWrapper<Uh05HealthStaff> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("check_no",uh05HealthStaff.getCheckNo());
         List<Uh05HealthStaff> list=uh05HealthStaffMapper.selectList(queryWrapper);
@@ -75,6 +83,14 @@ public class Uh05HealthStaffServiceImpl extends ServiceImpl<Uh05HealthStaffMappe
             return R.ok().message("修改成功");
         else
             return R.ok().message("修改失败");
+    }
+    @Resource
+    private Uh05StaffMapper uh05StaffMapper;
+    @Override
+    public R bulkInsertHealthStaff() {
+        QueryWrapper<Uh05Staff> queryWrapper=new QueryWrapper<>();
+        List<Uh05Staff> list=uh05StaffMapper.selectList(queryWrapper);
+        return R.ok().message("");
     }
 }
 

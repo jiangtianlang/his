@@ -57,6 +57,7 @@ public class Uh05HealthStudentMServiceImpl extends ServiceImpl<Uh05HealthStudent
             if(uh05HealthStudentM.getStudentNo().equals("undefined")){
             queryWrapper.like("student_no",uh05HealthStudentM.getStudentNo());}
         }
+        queryWrapper.orderByDesc("student_no");
         List<Uh05HealthStudentM> list=uh05HealthStudentMMapper.selectList(queryWrapper);
         if(list.size()>0)
             return R.ok().data("data",list);

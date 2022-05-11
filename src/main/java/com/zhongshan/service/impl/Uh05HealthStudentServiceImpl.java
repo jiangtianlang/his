@@ -79,6 +79,7 @@ public class Uh05HealthStudentServiceImpl extends ServiceImpl<Uh05HealthStudentM
                 queryWrapper.like("check_no",uh05HealthStudent.getCheckNo());
             }
         }
+        queryWrapper.orderByDesc("student_no");
         List<Uh05HealthStudent> list=uh05HealthStudentMapper.selectList(queryWrapper);
 //        List<Uh05HealthStudentM> list1=uh05HealthStudentMMapper.selectList(queryWrapper1);
         if(list.size()>0)

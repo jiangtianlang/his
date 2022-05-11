@@ -72,6 +72,7 @@ public class Uh05StudentServiceImpl extends ServiceImpl<Uh05StudentMapper, Uh05S
                 queryWrapper.like("name",uh05Student.getName());
             }
         }
+        queryWrapper.orderByDesc("student_no");
         List<Uh05Student> list=uh05StudentMapper.selectList(queryWrapper);
         if(list.size()>0)
             return R.ok().data("data",list);

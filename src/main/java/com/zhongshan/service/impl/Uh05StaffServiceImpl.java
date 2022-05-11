@@ -73,6 +73,7 @@ public class Uh05StaffServiceImpl extends ServiceImpl<Uh05StaffMapper, Uh05Staff
             if(!uh05Staff.getName().equals("undefined")){
             queryWrapper.like("name",uh05Staff.getName());}
         }
+        queryWrapper.orderByDesc("staff_no");
         List<Uh05Staff> list=uh05StaffMapper.selectList(queryWrapper);
         if(list.size()>0)
             return R.ok().data("data",list);

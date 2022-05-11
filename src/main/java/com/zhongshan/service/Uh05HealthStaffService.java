@@ -18,4 +18,6 @@ public interface Uh05HealthStaffService extends IService<Uh05HealthStaff> {
     R deleteHealthStaff(Uh05HealthStaff uh05HealthStaff);
 
     R updateHealthStaff(Uh05HealthStaff uh05HealthStaff);
+
+    R bulkInsertHealthStaff();
 }

@@ -22,9 +22,9 @@ public class StaffMedicalController {
         return uh05HealthStaffService.insertHealthStaff(uh05HealthStaff);
     }
     @RequestMapping(value = "/test/bulkInsertHealthStaff",method = RequestMethod.GET)
-    @ApiOperation(value = "教职工体检信息批量录入",notes = "",httpMethod = "GET", response = String.class)
-    public R bulkInsertHealthStaff(Uh05HealthStaff uh05HealthStaff){
-        return R.ok();
+    @ApiOperation(value = "教职工体检号生成",notes = "",httpMethod = "GET", response = String.class)
+    public R bulkInsertHealthStaff(){
+        return uh05HealthStaffService.bulkInsertHealthStaff();
     }
     @RequestMapping(value = "/test/updateHealthStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工体检信息修改",notes = "",httpMethod = "GET", response = String.class)
