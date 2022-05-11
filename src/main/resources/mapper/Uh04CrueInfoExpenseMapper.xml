@@ -16,7 +16,7 @@
             <result property="exponse" column="exponse" jdbcType="DOUBLE"/>
             <result property="quality" column="quality" jdbcType="CHAR"/>
             <result property="yCode" column="y_code" jdbcType="CHAR"/>
-            <result property="hCode" column="h_code" jdbcType="CHAR"/>
+            <result property="hsCode" column="h_code" jdbcType="CHAR"/>
             <result property="writeAccountFlag" column="write_account_flag" jdbcType="BIT"/>
             <result property="outFlag" column="out_flag" jdbcType="BIT"/>
     </resultMap>
@@ -25,7 +25,7 @@
         id,patient_no,recipe_date,
         section_code,cure_type,medicine_code,
         medicine_name,unit_price,exponse,
-        quality,y_code,h_code,
+        quality,y_code,hs_code,
         write_account_flag,out_flag
     </sql>
     <select id="selectByDate" resultType="com.zhongshan.entity.vo.Income">

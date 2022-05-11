@@ -32,6 +32,24 @@
         ch_out_doctor_advice,ch_signature_director_doctor,ch_signature_charge_doctor,
         ch_signature_house_doctor,ch_signature_intern
     </sql>
+    <update id="updatea" parameterType="com.zhongshan.entity.CaseHistory">
+        update case_history
+        <set>
+            <if test="chSignatureDirectorDoctor!=null">
+                ch_signature_director_doctor=#{chSignatureDirectorDoctor},
+            </if>
+            <if test="chSignatureChargeDoctor!=null">
+                ch_signature_charge_doctor=#{chSignatureChargeDoctor},
+            </if>
+            <if test="chSignatureHouseDoctor!=null">
+                ch_signature_house_doctor=#{chSignatureHouseDoctor},
+            </if>
+            <if test="chSignatureIntern!=null">
+                ch_signature_intern=#{chSignatureIntern},
+            </if>
+        </set>
+        where ch_num=#{chNum} and ch_times=#{chTimes}
+    </update>
     <select id="queryAll" resultType="com.zhongshan.entity.CaseHistory">
         select
         <include refid="Base_Column_List"/>
@@ -43,5 +61,11 @@
         <include refid="Base_Column_List"/>
         from case_history
         where ch_num=#{chNum} and ch_times=#{chTimes} and state=0
+    </select>
+    <select id="queryC" parameterType="com.zhongshan.entity.Firstpage" resultType="com.zhongshan.entity.CaseHistory">
+        select
+        <include refid="Base_Column_List"/>
+        from case_history
+        where ch_num=#{fgNum} and ch_times=#{fgTimes} and state=0
     </select>
 </mapper>

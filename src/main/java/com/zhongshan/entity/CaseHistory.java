@@ -119,4 +119,13 @@ public class CaseHistory implements Serializable {
         this.chName=f.getFgName();
         this.chDepartment=f.getFgDepartment();
     }
+
+    public CaseHistory(Integer fgTimes, String fgNum,String fgSignatureDirectorDoctor, String fgSignatureChargeDoctor, String fgSignatureHouseDoctor, String fgSignatureIntern) {
+        this.chSignatureDirectorDoctor =fgSignatureDirectorDoctor;
+        this.chSignatureChargeDoctor = fgSignatureChargeDoctor;
+        this.chSignatureHouseDoctor = fgSignatureHouseDoctor;
+        this.chSignatureIntern =fgSignatureIntern;
+        this.chNum=fgNum;
+        this.chTimes=fgTimes;
+    }
 }

@@ -6,6 +6,9 @@ import com.zhongshan.service.PublicExpenseService;
 import com.zhongshan.mapper.PublicExpenseMapper;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 /**
 * @author 13427
 * @description 针对表【public_expense】的数据库操作Service实现
@@ -14,7 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class PublicExpenseServiceImpl extends ServiceImpl<PublicExpenseMapper, PublicExpense>
     implements PublicExpenseService{
-
+@Resource
+PublicExpenseMapper publicExpenseMapper;
+    @Override
+    public List<PublicExpense> findByDate(PublicExpense publicExpense) {
+        List<PublicExpense> list=publicExpenseMapper.findByDate(publicExpense);
+        return list;
+    }
 }
 
 

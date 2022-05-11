@@ -2,6 +2,7 @@ package com.zhongshan.controller.medicalRecord;
 
 import com.zhongshan.entity.Diagnose;
 import com.zhongshan.entity.Operation;
+import com.zhongshan.entity.vo.OperationVo;
 import com.zhongshan.service.DiagnoseService;
 import com.zhongshan.service.OperationService;
 import com.zhongshan.utils.result.R;
@@ -38,8 +39,8 @@ public class OperationController {
 
         @RequestMapping(value = "findByIcd", method = RequestMethod.POST)
         @ApiOperation(value = "查询信息接口", notes = "根据条件查询信息", httpMethod = "POST", response = String.class)
-         public R findByIcd(@RequestBody Operation operation) {
-            List<Operation> list=operationService.findId(operation);
+         public R findByIcd(@RequestBody OperationVo operationVo) {
+            List<OperationVo> list=operationService.findId(operationVo);
             if (list.size()>0) {
                 return R.ok().data("data",list).message("查询成功");
             }else {
@@ -63,19 +64,17 @@ public class OperationController {
                    public R update(@RequestBody Operation operation) {
             int row =operationService.updateBy(operation);
             if (row>0){
-                return R.ok().message("添加成功");
+                return R.ok().message("修改成功");
             }else {
-                return R.ok().message("添加失败");
+                return R.ok().message("修改失败");
             }
         }
 
 
     @RequestMapping(value = "deleteByfgNum", method = RequestMethod.POST)
-    @ApiOperation(value = "手术情况删除接口", notes = "输入病案号", httpMethod = "POST", response = String.class)
-    @ApiImplicitParam(name = "operationNum", value = "病案号", paramType = "query", dataType = "String", required = true)
-
-    public R deleteBychNum(String operationNum) {
-        return   this.operationService.removeById(operationNum)?R.ok().message("删除成功"):R.ok().message("删除失败");
+    @ApiOperation(value = "手术情况删除接口", notes = "根据id删除", httpMethod = "POST", response = String.class)
+    public R deleteBychNum(Integer oId) {
+        return   this.operationService.removeById(oId)?R.ok().message("删除成功"):R.ok().message("删除失败");
 
     }
 }

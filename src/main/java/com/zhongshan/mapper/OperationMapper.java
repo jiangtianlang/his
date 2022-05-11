@@ -2,6 +2,7 @@ package com.zhongshan.mapper;
 
 import com.zhongshan.entity.Operation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhongshan.entity.vo.OperationVo;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface OperationMapper extends BaseMapper<Operation> {
 
     List<Operation> findAll();
 
-    List<Operation> findById(Operation operation);
+    List<OperationVo> findById(OperationVo operationVo);
 }
 
 

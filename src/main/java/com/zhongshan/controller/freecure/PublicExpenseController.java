@@ -87,6 +87,17 @@ public class PublicExpenseController {
     }
 
     /**
+     * 时间查询"
+     * @param publicExpense
+     * @return
+     */
+    @RequestMapping(value = "findDate" ,method = RequestMethod.POST)
+    @ApiOperation(value = "查询药品出库接口",notes = "",httpMethod = "POST")
+    public R findDate(@RequestBody PublicExpense publicExpense){
+        List<PublicExpense> list=publicExpenseService.findByDate(publicExpense);
+        return R.ok().data("data",list).message("查询成功");
+    }
+    /**
      * 删除数据
      *
      * @param idList 主键结合

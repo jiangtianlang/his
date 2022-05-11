@@ -16,7 +16,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        out_no,medi_no,specification,
+       out_id, out_no,medi_no,specification,
         unit,unit_price,quantity,
         out_date,department
     </sql>
@@ -24,6 +24,7 @@
         select
         <include refid="Base_Column_List"/>
         from uh03_store_out_c
+         where state=0
         ORDER BY out_date desc
     </select>
     <select id="findById" parameterType="com.zhongshan.entity.vo.Uh03StoreOutVo" resultType="com.zhongshan.entity.Uh03StoreOutC">
@@ -41,6 +42,7 @@
                 and medi_no like concat('%',#{mediNo},'%')
             </if>
         </where>
+        where state=0
         ORDER BY out_date desc
     </select>
 </mapper>

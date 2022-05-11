@@ -13,9 +13,13 @@ import lombok.Data;
 @Data
 public class Diagnose implements Serializable {
     /**
-     * 非空
+     * id
      */
     @TableId
+    private Integer diseaseId;
+    /**
+     * 非空
+     */
     private String diseaseIcd9;
 
     /**

@@ -3,6 +3,7 @@ package com.zhongshan.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.Diagnose;
 import com.zhongshan.entity.Operation;
+import com.zhongshan.entity.vo.OperationVo;
 import com.zhongshan.service.OperationService;
 import com.zhongshan.mapper.OperationMapper;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,8 @@ OperationMapper operationMapper;
     }
 
     @Override
-    public List<Operation> findId(Operation operation) {
-        List<Operation> list=operationMapper.findById(operation);
+    public List<OperationVo> findId(OperationVo operationVo) {
+        List<OperationVo> list=operationMapper.findById(operationVo);
         return list;
     }
 

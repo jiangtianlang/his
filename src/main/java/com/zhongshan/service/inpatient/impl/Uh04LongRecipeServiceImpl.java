@@ -75,14 +75,16 @@ public class Uh04LongRecipeServiceImpl extends ServiceImpl<Uh04LongRecipeMapper,
         super.updateById(entity);
         Uh04CrueInfoExpense infoExpense = new Uh04CrueInfoExpense(entity);
         QueryWrapper<Uh04CrueInfoExpense> wrapper = new QueryWrapper<>();
-        wrapper.eq("recipe_id",entity.getRecipeId());
+        wrapper.eq("id",entity.getRecipeId());
         Uh04CrueInfoExpense expense = uh04CrueInfoExpenseMapper.selectOne(wrapper);
         infoExpense.setId(expense.getId());
         SectionCode sectionCode = sectionCodeMapper.selectById(entity.getSectionCode());
         infoExpense.setSectionCode(sectionCode.getSectionName());
         Subject subject = subjectMapper.selectById(entity.getCureType());
         infoExpense.setCureType(subject.getSubjectName());
+        System.out.println("==================1======================="+infoExpense);
         uh04CrueInfoExpenseMapper.updateById(infoExpense);
+        System.out.println("=====================2===================");
         return super.updateById(entity);
     }
 }

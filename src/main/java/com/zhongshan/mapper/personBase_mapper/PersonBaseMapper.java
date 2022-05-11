@@ -8,6 +8,7 @@ import com.zhongshan.entity.vo.PersonInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
 * @author 13427
@@ -18,7 +19,7 @@ import java.util.List;
 public interface PersonBaseMapper extends BaseMapper<PersonBase> {
     List<PersonBase> findComprehensiveQuery(String schoolName);
 
-    String query(String chSignatureChargeDoctor);
+    List<PersonBase> query(String chSignatureChargeDoctor);
 
     List<HeathVo> healthPersonnel();
 }

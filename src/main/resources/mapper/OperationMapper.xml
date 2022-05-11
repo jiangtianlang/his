@@ -16,7 +16,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        operation_num,operation_times,operation_date,
+       o_id, operation_num,operation_times,operation_date,
         operation_name,operation_code,operation_hocus,
         operation_cut,operation_doctor_name
     </sql>
@@ -27,37 +27,37 @@
         where state=0
         order by operation_date desc
     </select>
-    <select id="findById" resultType="com.zhongshan.entity.Operation">
+    <select id="findById" parameterType="com.zhongshan.entity.vo.OperationVo" resultType="com.zhongshan.entity.Operation">
         select
         <include refid="Base_Column_List"/>
         from operation
         <where>
-            <if test="operationNum">
-                operation_num=#{operationNum}
+            <if test="operationNum!=null">
+              and  operation_num=#{operationNum}
             </if>
-            <if test="operationTimes">
-                operation_times =#{operationTimes}
+            <if test="operationTimes!=null">
+                and operation_times =#{operationTimes}
             </if>
-            <if test="operationDate">
-                operation_date &lt; #{operationDate}
+            <if test="startDate!=null">
+                and  operation_date >= #{startDate}
             </if>
-            <if test="operationTimes">
-                operation_times =#{operationTimes}
+            <if test="endDate!=null">
+                and operation_date &lt;#{endDate}
             </if>
-            <if test="operationName">
-                operation_name like concat('%',#{operationName},'%')
+            <if test="operationName!=null">
+                and  operation_name like concat('%',#{operationName},'%')
             </if>
-            <if test="operationCode">
-                operation_code =#{operationCode}
+            <if test="operationCode!=null">
+                and  operation_code =#{operationCode}
             </if>
-            <if test="operationHocus">
-                operation_hocus =#{operationHocus}
+            <if test="operationHocus!=null">
+                and operation_hocus =#{operationHocus}
             </if>
-            <if test="operationCut">
-                operation_cut =#{operationCut}
+            <if test="operationCut!=null">
+                and operation_cut =#{operationCut}
             </if>
-            <if test="operationDoctorName">
-                operation_doctor_name =#{operationDoctorName}
+            <if test="operationDoctorName!=null">
+                and operation_doctor_name =#{operationDoctorName}
             </if>
         </where>
         order by operation_date desc

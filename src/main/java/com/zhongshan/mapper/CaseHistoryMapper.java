@@ -16,6 +16,10 @@ public interface CaseHistoryMapper extends BaseMapper<CaseHistory> {
     List<CaseHistory> queryAll();
 
     List<CaseHistory> query(String chNum, Integer chTimes);
+
+    List<CaseHistory> queryC(String fgNum, Integer fgTimes);
+
+    int updatea(CaseHistory caseHistory);
 }
 
 

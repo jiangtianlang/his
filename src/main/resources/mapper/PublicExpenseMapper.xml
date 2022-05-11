@@ -24,11 +24,17 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        person_no,begin_date,end_date,
+        person_no,begin_date,end_date,person_name,
         in_days,charge_for_medicine,charge_for_check,
         charge_for_bed,Other_charge,Level_no,
-        Symptom _no,orga_total,person_total,
+        Symptom_no,orga_total,person_total,
         submit_date,remarks,sequence_no,
         charge_standard
     </sql>
+    <select id="findByDate" resultType="com.zhongshan.entity.PublicExpense">
+        select
+        <include refid="Base_Column_List"/>
+        from public_expense
+        where begin_date > #{beginDate}
+    </select>
 </mapper>

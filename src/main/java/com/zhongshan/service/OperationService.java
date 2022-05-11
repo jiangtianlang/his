@@ -3,6 +3,7 @@ package com.zhongshan.service;
 import com.zhongshan.entity.Diagnose;
 import com.zhongshan.entity.Operation;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhongshan.entity.vo.OperationVo;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface OperationService extends IService<Operation> {
 
     List<Operation> findAll();
 
-    List<Operation> findId(Operation operation);
+    List<OperationVo> findId(OperationVo operationVo);
 
     int insert(Operation operation);
 

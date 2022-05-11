@@ -28,7 +28,16 @@ public class FirstpageController {
     int row =firstpageService.updateBy(firstpage);
     if (row>0) {
         return R.ok().message("修改成功");
-    }else {
+    }else if (row==-1){
+        return R.ok().message("该人员不是主任医师");
+    }else if (row==-2){
+        return R.ok().message("该人员不是主治医师");
+    }else if (row==-3){
+        return R.ok().message("该人员不是住院医师");
+    }else if (row==-4){
+        return R.ok().message("该人员不是实习医师");
+    }
+    else {
         return R.ok().message("修改失败");
     }
 }

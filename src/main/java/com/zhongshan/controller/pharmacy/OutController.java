@@ -83,7 +83,7 @@ Uh03StoreOutCService uh03StoreOutCService;
 
     @RequestMapping(value = "delete",method = RequestMethod.GET)
     @ApiOperation(value = "入库单删除接口",notes = "条件删除入库单",httpMethod = "GET",response = String.class)
-    public R delete(Integer id){
-        return   this.uh03StoreOutCService.removeById(id)?R.ok().message("删除成功"):R.ok().message("删除失败");
+    public R delete(Integer outId){
+        return   this.uh03StoreOutCService.removeById(outId)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
 }

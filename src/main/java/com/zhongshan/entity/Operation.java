@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -14,9 +16,14 @@ import lombok.Data;
 @Data
 public class Operation implements Serializable {
     /**
-     * 非空，每个病人病案号唯一
+     * id
      */
     @TableId
+    private Integer oId;
+    /**
+     * 非空，每个病人病案号唯一
+     */
+
     private String operationNum;
 
     /**
@@ -27,6 +34,7 @@ public class Operation implements Serializable {
     /**
      * 
      */
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date operationDate;
 
     /**

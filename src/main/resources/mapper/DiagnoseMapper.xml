@@ -12,7 +12,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        disease_icd9,disease_code,disease_type,
+       disease_id, disease_icd9,disease_code,disease_type,
         disease_name
     </sql>
     <select id="queryAll" resultType="com.zhongshan.entity.Diagnose">

@@ -27,7 +27,7 @@ public class InternationaDisease {
     public R findAll() {
         List<Diagnose> list=diagnoseService.queryAll();
         if (list.size()>0) {
-            return R.ok().message("查询成功");
+            return R.ok().data("data",list).message("查询成功");
         }else {
             return R.ok().message("没有数据");
         }
@@ -38,7 +38,7 @@ public class InternationaDisease {
      public R findByIcd(@RequestBody Diagnose diagnose) {
         List<Diagnose> list=diagnoseService.findById(diagnose);
         if (list.size()>0) {
-            return R.ok().message("查询成功");
+            return R.ok().data("data",list).message("查询成功");
         }else {
             return R.ok().message("没有数据");
         }
@@ -67,7 +67,7 @@ public class InternationaDisease {
 
     @RequestMapping(value = "deleteByfgNum",method = RequestMethod.POST)
     @ApiOperation(value = "疾病删除接口",notes = "输入icd-9编码",httpMethod = "POST",response = String.class)
-    public R deleteByfgNum(String diseaseIcd9){
-        return   this.diagnoseService.removeById(diseaseIcd9)?R.ok().message("删除成功"):R.ok().message("删除失败");
+    public R deleteByfgNum(Integer diseaseId){
+        return   this.diagnoseService.removeById(diseaseId)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
 }

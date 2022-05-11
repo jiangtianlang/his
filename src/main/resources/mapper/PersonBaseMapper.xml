@@ -59,10 +59,10 @@
         where school_name=#{school_name}
     </select>
 
-    <select id="query" resultType="java.lang.String">
+    <select id="query" resultType="com.zhongshan.entity.PersonBase">
         select title_no
         from person_base
-        where person_no=#{personName}
+        where person_name=#{personName}
     </select>
     <select id="healthPersonnel" resultType="com.zhongshan.entity.vo.HeathVo">
         select post_no,count(person_no) cou from person_base GROUP BY post_no;

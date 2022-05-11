@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhongshan.entity.CaseHistory;
 import com.zhongshan.entity.Firstpage;
 import com.zhongshan.mapper.CaseHistoryMapper;
+import com.zhongshan.mapper.personBase_mapper.PersonBaseMapper;
 import com.zhongshan.service.FirstpageService;
 import com.zhongshan.mapper.FirstpageMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -23,6 +26,8 @@ public class FirstpageServiceImpl extends ServiceImpl<FirstpageMapper, Firstpage
     FirstpageMapper firstpageMapper;
     @Resource
     CaseHistoryMapper caseHistoryMapper;
+    @Resource
+    PersonBaseMapper personBaseMapper;
     @Override
     public int insert(Firstpage firstpage) {
         if (firstpageMapper.findCounta(firstpage.getFgNum())==firstpage.getFgTimes()){
@@ -46,8 +51,29 @@ public class FirstpageServiceImpl extends ServiceImpl<FirstpageMapper, Firstpage
     }
 
     @Override
+    @Transactional(rollbackFor = {Exception.class})
     public int updateBy(Firstpage firstpage) {
         int row=firstpageMapper.updateById(firstpage);
+        if(firstpage.getFgSignatureDirectorDoctor()!=null){
+            if (personBaseMapper.query(firstpage.getFgSignatureDirectorDoctor()).size()==0||!personBaseMapper.query(firstpage.getFgSignatureDirectorDoctor()).get(0).getTitleNo().equals("主任医师")){
+            return -1;}
+        }
+        if(firstpage.getFgSignatureChargeDoctor()!=null){
+            if (personBaseMapper.query(firstpage.getFgSignatureChargeDoctor()).size()==0||!personBaseMapper.query(firstpage.getFgSignatureChargeDoctor()).get(0).getTitleNo().equals("主治医师")){
+                return -2;}
+        }
+        if(firstpage.getFgSignatureHouseDoctor()!=null){
+            if (personBaseMapper.query(firstpage.getFgSignatureHouseDoctor()).size()==0||!personBaseMapper.query(firstpage.getFgSignatureHouseDoctor()).get(0).getTitleNo().equals("住院医师")){
+                return -3;}
+        }
+        if(firstpage.getFgSignatureIntern()!=null){
+            if (personBaseMapper.query(firstpage.getFgSignatureIntern()).size()==0||!personBaseMapper.query(firstpage.getFgSignatureIntern()).get(0).getTitleNo().equals("实习医师")){
+                return -4;}
+        }
+        if (caseHistoryMapper.queryC(firstpage.getFgNum(),firstpage.getFgTimes()).size()>0){
+            CaseHistory caseHistory=new CaseHistory(firstpage.getFgTimes(),firstpage.getFgNum(),firstpage.getFgSignatureDirectorDoctor(),firstpage.getFgSignatureChargeDoctor(),firstpage.getFgSignatureHouseDoctor(),firstpage.getFgSignatureIntern());
+                caseHistoryMapper.updatea(caseHistory);
+        }
         return row;
     }
 

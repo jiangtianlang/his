@@ -82,7 +82,7 @@ public class Uh04CrueInfoExpense implements Serializable {
     /**
      * 护士编码
      */
-    private String hCode;
+    private String hsCode;
 
     /**
      * 记账标志
@@ -108,7 +108,7 @@ public class Uh04CrueInfoExpense implements Serializable {
         this.exponse = longRecipe.getExponse();
         this.quality = longRecipe.getQuality();
         this.yCode = longRecipe.getYsCode();
-        this.hCode = longRecipe.getHsCode();
+        this.hsCode = longRecipe.getHsCode();
         this.writeAccountFlag = longRecipe.getWriteAccountFlag();
         this.outFlag = longRecipe.getOutFlag();
     }
@@ -124,7 +124,7 @@ public class Uh04CrueInfoExpense implements Serializable {
         this.exponse = entity.getExponse();
         this.quality = entity.getQuality();
         this.yCode = entity.getYsCode();
-        this.hCode = entity.getHsCode();
+        this.hsCode = entity.getHsCode();
         this.writeAccountFlag = entity.getWriteAccountFlag();
         this.outFlag = entity.getOutFlag();
     }

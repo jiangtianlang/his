@@ -44,8 +44,10 @@ public class PatientBaseController {
     @GetMapping("selectPatientBase")
     public R selectPatientBase(
             @ApiParam(name = "patientBase", value = "查询对象", required = true)
+
                     PatientBase patientBase) {
-        if (patientBase.getIsDelete() == 1){
+       // patientBase.getIsDelete() == 1
+        if (patientBase.getIsDelete()!=null && patientBase.getIsDelete()==1){
             return R.ok().data("data",patientBaseService.getIsDelete());
         }
         //按条件查询 病人基本资料查询
