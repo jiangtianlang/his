@@ -24,6 +24,8 @@ public class Uh05StaffServiceImpl extends ServiceImpl<Uh05StaffMapper, Uh05Staff
     private Uh05StaffMapper uh05StaffMapper;
     @Override
     public R insertStaff(Uh05Staff uh05Staff) {
+        if(uh05Staff.getStaffNo().length()!=8){
+            return R.ok().message("职工号错误");}
         int row=uh05StaffMapper.insert(uh05Staff);
         if(row>0)
         return R.ok().message("添加成功");

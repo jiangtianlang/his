@@ -26,4 +26,7 @@ public interface Uh08OnDutyService extends IService<Uh08OnDuty> {
     R workloadYear(String date);
 
     R selectDate(String workDate);
+
+    R selectDepart(String department);
+    void schedule();
 }

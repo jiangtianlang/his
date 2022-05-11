@@ -60,14 +60,20 @@ public class Uh05HealthStudentServiceImpl extends ServiceImpl<Uh05HealthStudentM
         QueryWrapper<Uh05HealthStudentM> queryWrapper1=new QueryWrapper<>();
         if(uh05HealthStudent.getStudentNo()!=null){
             if(!uh05HealthStudent.getStudentNo().equals("undefined")){
-                queryWrapper1.like("student_no",uh05HealthStudent.getStudentNo());
+//                queryWrapper1.like("student_no",uh05HealthStudent.getStudentNo());
                queryWrapper.like("student_no",uh05HealthStudent.getStudentNo());
             }
         }
+        if(uh05HealthStudent.getCheckNo()!=null){
+            if(!uh05HealthStudent.getCheckNo().equals("undefined")){
+//                queryWrapper1.like("student_no",uh05HealthStudent.getStudentNo());
+                queryWrapper.like("check_no",uh05HealthStudent.getCheckNo());
+            }
+        }
         List<Uh05HealthStudent> list=uh05HealthStudentMapper.selectList(queryWrapper);
-        List<Uh05HealthStudentM> list1=uh05HealthStudentMMapper.selectList(queryWrapper1);
-        if(list.size()>0 || list1.size()>0)
-            return R.ok().data("data",list).data("dataGaokao",list1);
+//        List<Uh05HealthStudentM> list1=uh05HealthStudentMMapper.selectList(queryWrapper1);
+        if(list.size()>0)
+            return R.ok().data("data",list);
         else
             return R.ok().message("没有数据");
     }

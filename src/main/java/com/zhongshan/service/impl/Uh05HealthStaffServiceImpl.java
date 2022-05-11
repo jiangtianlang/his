@@ -35,15 +35,12 @@ public class Uh05HealthStaffServiceImpl extends ServiceImpl<Uh05HealthStaffMappe
     public R selectHealthStaff(Uh05HealthStaff uh05HealthStaff) {
         QueryWrapper<Uh05HealthStaff> queryWrapper=new QueryWrapper<>();
         if(StringUtils.isNotBlank(uh05HealthStaff.getCheckNo())){
-            if(uh05HealthStaff.getCheckNo().equals("undefined")){
+            if(!uh05HealthStaff.getCheckNo().equals("undefined")){
             queryWrapper.like("check_no",uh05HealthStaff.getCheckNo());}
         }
         if(StringUtils.isNotBlank(uh05HealthStaff.getStaffNo())){
-            if(uh05HealthStaff.getStaffNo().equals("undefined")){
+            if(!uh05HealthStaff.getStaffNo().equals("undefined")){
             queryWrapper.like("staff_no",uh05HealthStaff.getStaffNo());}
-        }
-        if(uh05HealthStaff.getDate()!=null){
-            queryWrapper.like("date",uh05HealthStaff.getDate());
         }
         List<Uh05HealthStaff> list=uh05HealthStaffMapper.selectList(queryWrapper);
         if(list.size()>0)
@@ -59,6 +56,15 @@ public class Uh05HealthStaffServiceImpl extends ServiceImpl<Uh05HealthStaffMappe
             return R.ok().message("删除成功");
         else
             return R.ok().message("删除失败");
+    }
+
+    @Override
+    public R updateHealthStaff(Uh05HealthStaff uh05HealthStaff) {
+        int row=uh05HealthStaffMapper.updateById(uh05HealthStaff);
+        if(row>0)
+            return R.ok().message("修改成功");
+        else
+            return R.ok().message("修改失败");
     }
 }
 

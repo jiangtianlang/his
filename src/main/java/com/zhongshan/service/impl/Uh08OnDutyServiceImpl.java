@@ -1,23 +1,24 @@
 package com.zhongshan.service.impl;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zhongshan.entity.Firstpage;
-import com.zhongshan.entity.Prescription;
-import com.zhongshan.entity.Uh05Staff;
-import com.zhongshan.entity.Uh08OnDuty;
+import com.zhongshan.entity.*;
 import com.zhongshan.entity.inpatient.PatientBase;
 import com.zhongshan.entity.inpatient.Uh04WardBedSum;
 import com.zhongshan.entity.vo.MappVo;
 import com.zhongshan.entity.vo.MonthVo;
 import com.zhongshan.entity.vo.Uho8OnDutyVo;
 import com.zhongshan.mapper.*;
+import com.zhongshan.mapper.personBase_mapper.PersonBaseMapper;
 import com.zhongshan.service.Uh08OnDutyService;
 import com.zhongshan.utils.result.R;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.DateFormat;
@@ -220,6 +221,73 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
                     return R.ok().message("没有数据");
         }
         return R.ok().message("请输入时间");
+    }
+    @Resource
+    private PersonBaseMapper personBaseMapper;
+    @Override
+    public R selectDepart(String department) {
+        Date date=new Date();
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String date1=dateFormat.format(date);
+       String branchOfWork="02";
+        QueryWrapper<Uh08OnDuty> queryWrapper=new QueryWrapper<>();
+        if(StringUtils.isNotBlank(department)){
+            queryWrapper.like("department",department);
+        }
+        queryWrapper.like("branch_of_work",branchOfWork);
+        queryWrapper.like("work_date",date1);
+        List<Uh08OnDuty> list=uh08OnDutyMapper.selectList(queryWrapper);
+        if(list.size()>0){
+            for (Uh08OnDuty u:list) {
+                PersonBase personBase=personBaseMapper.selectById(u.getStaffNo());
+                u.setStaffNo(personBase.getPersonName());
+            }
+            return R.ok().data("data",list);
+        }else {
+            return R.ok().message("值班人员未安排");
+        }
+    }
+    @Scheduled(cron = " 0 0 1 * * ?")
+    @Transactional(
+            rollbackFor = {Exception.class}
+    )
+    @Override
+    public void schedule() {
+        QueryWrapper<PersonBase> queryWrapper=new QueryWrapper<>();
+        List<PersonBase> list=personBaseMapper.selectList(queryWrapper);
+        for (PersonBase p:list) {
+            Uh08OnDuty uh08OnDuty=new Uh08OnDuty();
+            uh08OnDuty.setStaffNo(p.getPersonNo());
+            QueryWrapper<Uh08OnDuty> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.like("staff_no",p.getPersonNo());
+            queryWrapper1.like("work_date", DateUtil.yesterday());
+            List<Uh08OnDuty> list1=uh08OnDutyMapper.selectList(queryWrapper1);
+            if(list1.get(0).getBranchOfWork().equals("01")){
+            uh08OnDuty.setBranchOfWork("02");
+            uh08OnDuty.setExWorkAmount(8.0);
+            uh08OnDuty.setWorkAmount(8.0);
+            }
+            if(list1.get(0).getBranchOfWork().equals("02")){
+                uh08OnDuty.setBranchOfWork("03");
+                uh08OnDuty.setExWorkAmount(9.0);
+                uh08OnDuty.setWorkAmount(9.0);
+            }if(list1.get(0).getBranchOfWork().equals("03")){
+                uh08OnDuty.setBranchOfWork("04");
+                uh08OnDuty.setExWorkAmount(6.0);
+                uh08OnDuty.setWorkAmount(6.0);
+            }if(list1.get(0).getBranchOfWork().equals("04")){
+                uh08OnDuty.setBranchOfWork("05");
+                uh08OnDuty.setExWorkAmount(10.0);
+                uh08OnDuty.setWorkAmount(10.0);
+            }if(list1.get(0).getBranchOfWork().equals("05")){
+                uh08OnDuty.setBranchOfWork("01");
+                uh08OnDuty.setExWorkAmount(6.0);
+                uh08OnDuty.setWorkAmount(6.0);
+            }
+            uh08OnDuty.setWorkDate(new Date());
+            uh08OnDutyMapper.insert(uh08OnDuty);
+        }
+
     }
 }
 

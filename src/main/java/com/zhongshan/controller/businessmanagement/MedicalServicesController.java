@@ -24,13 +24,19 @@ public class MedicalServicesController {
     public R selectDate(String workDate){
         return uh08OnDutyService.selectDate(workDate);
     }
+//    @RequestMapping(value = "/test/selectDepartment",method = RequestMethod.GET)
+//    @ApiOperation(value = "根据部门查询值班名单",notes = "",httpMethod = "GET", response = String.class)
+//    public R selectDepartment(String department){
+//        List<Uh08OnDuty> list=uh08OnDutyService.selectDepartment(department);
+//        if(list.size()>0)
+//        return R.ok().data("data",list).message("查询成功");
+//        else
+//            return R.ok().message("没有数据");
+//    }
     @RequestMapping(value = "/test/selectDepartment",method = RequestMethod.GET)
     @ApiOperation(value = "根据部门查询值班名单",notes = "",httpMethod = "GET", response = String.class)
     public R selectDepartment(String department){
-        List<Uh08OnDuty> list=uh08OnDutyService.selectDepartment(department);
-        if(list.size()>0)
-        return R.ok().data("data",list).message("查询成功");
-        else
-            return R.ok().message("没有数据");
+        return uh08OnDutyService.selectDepart(department);
     }
+
 }

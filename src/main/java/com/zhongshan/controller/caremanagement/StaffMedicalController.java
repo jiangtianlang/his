@@ -29,7 +29,7 @@ public class StaffMedicalController {
     @RequestMapping(value = "/test/updateHealthStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工体检信息修改",notes = "",httpMethod = "GET", response = String.class)
     public R updateHealthStaff(Uh05HealthStaff uh05HealthStaff){
-        return uh05HealthStaffService.insertHealthStaff(uh05HealthStaff);
+        return uh05HealthStaffService.updateHealthStaff(uh05HealthStaff);
     }
     @RequestMapping(value = "/test/deleteHealthStaff",method = RequestMethod.GET)
     @ApiOperation(value = "教职工体检信息删除",notes = "",httpMethod = "GET", response = String.class)

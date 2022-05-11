@@ -22,18 +22,18 @@ public class Uh05HealthStudent implements Serializable {
      * 体检单号
      */
     @TableId
-    private Integer checkNo;
+    private String checkNo;
 
     /**
      * 学号
      */
-    private Integer studentNo;
+    private String studentNo;
 
     /**
      * 体检日期
      */
-    @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date studentTime;
 
     /**
