@@ -17,12 +17,12 @@ import java.util.List;
 public class Uh03OnStoreCController {
     @Resource
     private Uh03OnStoreCService uh03OnStoreCService;
-    @RequestMapping(value = "/test/updateCount",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateCount",method = RequestMethod.GET)
     @ApiOperation(value = "更新药品库存接口",notes = "药品代号mediNo和药品数量quantity",httpMethod = "GET", response = String.class)
     public  R updateCount(String mediNo,Integer quantity){
         return R.ok();
     }
-    @RequestMapping(value = "/test/selectMedical",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectMedical",method = RequestMethod.GET)
     @ApiOperation(value = "查看药品库存接口",notes = "",httpMethod = "GET", response = String.class)
     public  R selectMedical(){
         List<Uh03OnStoreC> list=uh03OnStoreCService.selectMedical();

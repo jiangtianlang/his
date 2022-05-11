@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @Api(value = "药品仓库test",tags = "(药房管理系统)药品仓库接口API")
-@RequestMapping(value = "test/pharmacy")
+@RequestMapping(value = "pharmacy")
 public class WarehouseController {
 @Resource
   private Uh03OnStoreCService uh03OnStoreCService;

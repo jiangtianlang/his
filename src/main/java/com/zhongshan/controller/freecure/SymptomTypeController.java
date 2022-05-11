@@ -23,7 +23,7 @@ import java.util.List;
  * @since 2022-05-09 11:14:33
  */
 @RestController
-@RequestMapping("test/symptomType")
+@RequestMapping("symptomType")
 @Api(tags = "(公费医疗)病种代码接口")
 public class SymptomTypeController  {
     /**

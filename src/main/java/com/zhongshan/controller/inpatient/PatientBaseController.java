@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Api(tags = "(住院管理)病人基本资料接口")
 @RestController
-@RequestMapping("/test/patientBase")
+@RequestMapping("patientBase")
 public class PatientBaseController {
     @Resource
     private PatientBaseService patientBaseService;

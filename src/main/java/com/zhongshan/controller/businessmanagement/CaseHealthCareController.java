@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 public class CaseHealthCareController {
     @Resource
     private FixedAssetsService fixedAssetsService;
-    @RequestMapping(value = "/test/selectCaseHealthCare",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectCaseHealthCare",method = RequestMethod.GET)
     @ApiOperation(value = "查询不同病案的发病情况人数",notes = "",httpMethod = "GET", response = String.class)
     public R selectCaseHealthCare(Firstpage firstpage){
         return fixedAssetsService.selectCaseHealthCare(firstpage);

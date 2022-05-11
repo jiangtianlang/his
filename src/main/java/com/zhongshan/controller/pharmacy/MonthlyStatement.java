@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "调价test",tags = "(药房管理系统)月结接口API")
-@RequestMapping(value = "test/MonthlyStatement")
+@RequestMapping(value = "MonthlyStatement")
 public class MonthlyStatement {
     @Resource
     Uh03MonthBalanceCService uh03MonthBalanceCService;

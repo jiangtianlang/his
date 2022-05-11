@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2022-04-29 21:28:16
  */
 @RestController
-@RequestMapping("test/subject")
+@RequestMapping("subject")
 @Api(tags = "(住院管理)科目编码管理接口")
 public class SubjectController {
     /**

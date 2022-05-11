@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "手术情况test",tags = "(病案管理子系统)手术情况接口API")
-@RequestMapping(value = "test/Operation")
+@RequestMapping(value = "Operation")
 public class OperationController {
 
         @Resource

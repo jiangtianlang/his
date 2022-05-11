@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class MedicalCardController {
     @Resource
     private MedicalCardService medicalCardService;
-    @RequestMapping(value = "/test/updateState",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateState",method = RequestMethod.GET)
     @ApiOperation(value = "医疗卡号挂失接口",notes = "",httpMethod = "GET", response = String.class)
     public R updateState(String personsNo){
 
@@ -32,7 +32,7 @@ public class MedicalCardController {
             return R.error().message("挂失失败");
         }
  }
-    @RequestMapping(value = "/test/selectMedicalCard",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectMedicalCard",method = RequestMethod.GET)
     @ApiOperation(value = "根据卡号或者姓名查询医疗卡号接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectMedicalCard(String personsNo){
         if(personsNo==null){
@@ -53,7 +53,7 @@ public class MedicalCardController {
             }
         }
     }
-    @RequestMapping(value = "/test/addmedicalCard",method = RequestMethod.GET)
+    @RequestMapping(value = "/addmedicalCard",method = RequestMethod.GET)
     @ApiOperation(value = "新增医疗卡号接口",notes = "",httpMethod = "GET", response = String.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "personsNo",value = "医疗卡号",paramType = "query",dataType = "String",required = true),

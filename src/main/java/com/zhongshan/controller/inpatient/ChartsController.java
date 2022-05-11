@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Api(tags = "(住院管理)住院部报表接口")
 @RestController
-@RequestMapping("test/charts")
+@RequestMapping("charts")
 public class ChartsController {
 
     @Resource

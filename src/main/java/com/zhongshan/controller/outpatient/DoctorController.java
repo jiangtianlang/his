@@ -17,7 +17,7 @@ import java.util.List;
 public class DoctorController {
     @Resource
     private DoctorService doctorService;
-    @RequestMapping(value = "/test/addDoctor",method = RequestMethod.GET)
+    @RequestMapping(value = "/addDoctor",method = RequestMethod.GET)
     @ApiOperation(value = "添加医生接口",notes = "",httpMethod = "GET", response = String.class)
     public R addDoctor(Doctor doctor){
         boolean b=doctorService.addaddDoctor(doctor);
@@ -27,12 +27,12 @@ public class DoctorController {
         return R.error().message("添加失败");
         }
     }
-    @RequestMapping(value = "/test/deleteDoctor",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteDoctor",method = RequestMethod.GET)
     @ApiOperation(value = "删除医生接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteDoctor(String doctorNo){
         return this.doctorService.removeById(doctorNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
-    @RequestMapping(value = "/test/updateDoctor",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateDoctor",method = RequestMethod.GET)
     @ApiOperation(value = "修改医生接口",notes = "",httpMethod = "GET", response = String.class)
     private R updateDoctor(Doctor doctor){
         boolean b=doctorService.updateDoctor(doctor);
@@ -42,7 +42,7 @@ public class DoctorController {
         return R.error().message("修改失败");
         }
     }
-    @RequestMapping(value = "/test/selectDoctor",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectDoctor",method = RequestMethod.GET)
     @ApiOperation(value = "查询医生接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectDoctor(String doctorName){
         if(doctorName==null){

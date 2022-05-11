@@ -24,7 +24,7 @@ import java.util.List;
  * @since 2020-01-12
  */
 @RestController
-@RequestMapping("test/admin/role")
+@RequestMapping("admin/role")
 @Api(tags = "(系统管理)角色管理接口")
 //@CrossOrigin
 public class RoleController {

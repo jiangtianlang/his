@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "供应商test",tags = "(药房管理系统)供应商接口API")
-@RequestMapping(value = "test/supplier")
+@RequestMapping(value = "supplier")
 public class SupplierController {
     @Resource
     Uh03CompanyListService uh03CompanyListService;

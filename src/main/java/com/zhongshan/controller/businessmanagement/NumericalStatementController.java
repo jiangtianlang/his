@@ -30,7 +30,7 @@ public class NumericalStatementController {
 //        return R.ok();
 //    }
 
-    @RequestMapping(value = "/test/workloadDaily",method = RequestMethod.GET)
+    @RequestMapping(value = "/workloadDaily",method = RequestMethod.GET)
     @ApiOperation(value = "当日医护人员工作量统计表",notes = "",httpMethod = "GET", response = String.class)
     public R workloadDaily(){
         return uh08OnDutyService.workloadDaily();
@@ -48,13 +48,13 @@ public class NumericalStatementController {
 //        return R.ok();
 //    }
 
-    @RequestMapping(value = "/test/workloadMonth",method = RequestMethod.GET)
+    @RequestMapping(value = "/workloadMonth",method = RequestMethod.GET)
     @ApiOperation(value = "医务人员月工作量统计计算",notes = "",httpMethod = "GET", response = String.class)
     public R workloadMonth(String date){
         return uh08OnDutyService.workloadMonth(date);
     }
 
-    @RequestMapping(value = "/test/workloadYear",method = RequestMethod.GET)
+    @RequestMapping(value = "/workloadYear",method = RequestMethod.GET)
     @ApiOperation(value = "医务人员年工作量统计计算",notes = "",httpMethod = "GET", response = String.class)
     public R workloadYear(String date){
         return uh08OnDutyService.workloadYear(date);
@@ -68,7 +68,7 @@ public class NumericalStatementController {
 //
     @Resource
     private FixedAssetsService fixedAssetsService;
-    @RequestMapping(value = "/test/healthPersonnel",method = RequestMethod.GET)
+    @RequestMapping(value = "/healthPersonnel",method = RequestMethod.GET)
     @ApiOperation(value = "卫生人员数",notes = "",httpMethod = "GET", response = String.class)
     public R healthPersonnel(){
         return fixedAssetsService.healthPersonnel();

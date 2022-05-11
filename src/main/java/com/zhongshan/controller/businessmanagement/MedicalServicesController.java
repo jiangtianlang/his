@@ -19,7 +19,7 @@ import java.util.List;
 public class MedicalServicesController {
     @Resource
     private Uh08OnDutyService uh08OnDutyService;
-    @RequestMapping(value = "/test/selectDate",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectDate",method = RequestMethod.GET)
     @ApiOperation(value = "根据日期查询信息",notes = "",httpMethod = "GET", response = String.class)
     public R selectDate(String workDate){
         return uh08OnDutyService.selectDate(workDate);
@@ -33,7 +33,7 @@ public class MedicalServicesController {
 //        else
 //            return R.ok().message("没有数据");
 //    }
-    @RequestMapping(value = "/test/selectDepartment",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectDepartment",method = RequestMethod.GET)
     @ApiOperation(value = "根据部门查询值班名单",notes = "",httpMethod = "GET", response = String.class)
     public R selectDepartment(String department){
         return uh08OnDutyService.selectDepart(department);

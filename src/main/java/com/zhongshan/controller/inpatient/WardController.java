@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Api(tags = "(住院管理)床位登记接口")
 @RestController
-@RequestMapping({"test/ward"})
+@RequestMapping({"ward"})
 public class WardController  {
     @Resource
     private WardService wardService;

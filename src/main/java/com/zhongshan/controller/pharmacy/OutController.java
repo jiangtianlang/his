@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "test/pharmacyOut")
+@RequestMapping(value = "pharmacyOut")
 @Api(value = "药品出库管理",tags = "(药房管理系统)药品出库API")
 public class OutController {
 @Resource

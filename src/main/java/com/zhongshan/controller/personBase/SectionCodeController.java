@@ -17,7 +17,7 @@ import java.util.List;
 public class SectionCodeController {
     @Resource
     private SectionCodeService sectionCodeService;
-    @RequestMapping(value = "/test/findSectionCodeById",method = RequestMethod.GET)
+    @RequestMapping(value = "/findSectionCodeById",method = RequestMethod.GET)
     @ApiOperation(value = "查询科室信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R findSectionCodeById(String sectionNo){
         if(sectionNo==null){

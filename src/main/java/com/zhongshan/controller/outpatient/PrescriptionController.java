@@ -26,7 +26,7 @@ import java.util.*;
 public class PrescriptionController {
     @Resource
     private PrescriptionService prescriptionService;
-    @RequestMapping(value = "/test/selectGetPrice",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectGetPrice",method = RequestMethod.GET)
     @ApiOperation(value = "查询计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectGetPrice(Prescription prescription){
         if(prescription==null){
@@ -37,7 +37,7 @@ public class PrescriptionController {
             return R.ok().data("data",list).message("查询成功");
         }
     }
-    @RequestMapping(value = "/test/addGetPrice",method = RequestMethod.GET)
+    @RequestMapping(value = "/addGetPrice",method = RequestMethod.GET)
     @ApiOperation(value = "新增计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R addGetPrice(GetPrescription getPrescription){
         System.out.println(getPrescription.getMediNo());
@@ -48,7 +48,7 @@ public class PrescriptionController {
         return prescriptionService.addGetPrice(getPrescription);
 
     }
-    @RequestMapping(value = "/test/updateGetPrice",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateGetPrice",method = RequestMethod.GET)
     @ApiOperation(value = "修改计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
     public R updateGetPrice(Prescription prescription){
         System.out.println(prescription.getMediName());
@@ -73,48 +73,48 @@ public class PrescriptionController {
 
 
 
-//    @RequestMapping(value = "/test/selectByIdQuantity",method = RequestMethod.GET)
+//    @RequestMapping(value = "/selectByIdQuantity",method = RequestMethod.GET)
 //    @ApiOperation(value = "查询药品数量情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R selectByIdQuantity(Prescription prescription){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/getPrice",method = RequestMethod.GET)
+//    @RequestMapping(value = "/getPrice",method = RequestMethod.GET)
 //    @ApiOperation(value = "收费情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R getPrice(PrescriptionVo prescriptionVo){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/selectByMany",method = RequestMethod.GET)
+//    @RequestMapping(value = "/selectByMany",method = RequestMethod.GET)
 //    @ApiOperation(value = "处方详情接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R selectByMany(PrescriptionVo prescriptionVo){
 //        return R.ok();
 //    }
 
-//    @RequestMapping(value = "/test/selectGetopera",method = RequestMethod.GET)
+//    @RequestMapping(value = "/selectGetopera",method = RequestMethod.GET)
 //    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R selectGetopera(Date startTime,Date End){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/select",method = RequestMethod.GET)
+//    @RequestMapping(value = "/select",method = RequestMethod.GET)
 //    @ApiOperation(value = "计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R selectGetopera(Date startTime,Date End){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/subjectMedicalAttention",method = RequestMethod.GET)
+//    @RequestMapping(value = "/subjectMedicalAttention",method = RequestMethod.GET)
 //    @ApiOperation(value = "各科室查询看病情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R subjectMedicalAttention(Date startTime,Date endTime){
 //        return  R.ok();
 //    }
-//    @RequestMapping(value = "/test/operaMedicalAttention",method = RequestMethod.GET)
+//    @RequestMapping(value = "/operaMedicalAttention",method = RequestMethod.GET)
 //    @ApiOperation(value = "操作人员工作情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R operaMedicalAttention(Date startTime,Date endTime){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/doctorMedicalAttention",method = RequestMethod.GET)
+//    @RequestMapping(value = "/doctorMedicalAttention",method = RequestMethod.GET)
 //    @ApiOperation(value = "医生工作情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R doctorMedicalAttention(Date startTime,Date endTime){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/registeredMedicalAttention",method = RequestMethod.GET)
+//    @RequestMapping(value = "/registeredMedicalAttention",method = RequestMethod.GET)
 //    @ApiOperation(value = "挂号和计价收费情况接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R registeredMedicalAttention(Date startTime,Date endTime){
 //        return R.ok();

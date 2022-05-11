@@ -19,19 +19,19 @@ import java.util.List;
 public class OutpatientSubjectsController {
     @Resource
     private OutpatientSubjectsService outpatientSubjectsService;
-    @RequestMapping(value = "/test/addSubject",method = RequestMethod.GET)
+    @RequestMapping(value = "/addSubject",method = RequestMethod.GET)
     @ApiOperation(value = "添加门诊科目代码接口",notes = "",httpMethod = "GET", response = String.class)
     public R addSubject(OutpatientSubjects outpatientSubjects){
         boolean b=outpatientSubjectsService.addSubject(outpatientSubjects);
         return R.ok().message("添加成功");
     }
-    @RequestMapping(value = "/test/deleteSubject",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteSubject",method = RequestMethod.GET)
     @ApiOperation(value = "删除门诊科目代码接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteSubject(String subjectNo){
         int inum = Integer.parseInt(subjectNo);
         return this.outpatientSubjectsService.removeById(inum)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
-    @RequestMapping(value = "/test/updateSubject",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateSubject",method = RequestMethod.GET)
     @ApiOperation(value = "修改门诊科目代码接口",notes = "",httpMethod = "GET", response = String.class)
     private R updateSubject(OutpatientSubjects outpatientSubjects){
         boolean b=outpatientSubjectsService.updateSubject(outpatientSubjects);
@@ -41,7 +41,7 @@ public class OutpatientSubjectsController {
         return R.error().message("修改失败");
         }
     }
-    @RequestMapping(value = "/test/selectSubject",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectSubject",method = RequestMethod.GET)
     @ApiOperation(value = "查询门诊科目代码接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectSubject(String subjectName){
         if(subjectName==null){

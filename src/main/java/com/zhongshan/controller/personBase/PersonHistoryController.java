@@ -17,7 +17,7 @@ import java.util.List;
 public class PersonHistoryController {
     @Resource
     private PersonHistoryService personHistoryService;
-    @RequestMapping(value = "/test/findPersonHistory",method = RequestMethod.GET)
+    @RequestMapping(value = "/findPersonHistory",method = RequestMethod.GET)
     @ApiOperation(value = "根据Id查询个人简历信息接口",notes = "personNo",httpMethod = "GET", response = String.class)
     public R findPersonHistory(String personNo){
         if(personNo==null){
@@ -28,7 +28,7 @@ public class PersonHistoryController {
             return R.ok().data("data", personHistory).message("查询成功");
         }
     }
-    @RequestMapping(value = "/test/addPersonHistory",method = RequestMethod.POST)
+    @RequestMapping(value = "/addPersonHistory",method = RequestMethod.POST)
     @ApiOperation(value = "添加个人简历资料接口",notes = "",httpMethod = "POST", response = String.class)
     public R addPersonHistory(PersonHistory personHistory){
        boolean b=personHistoryService.add(personHistory);
@@ -38,7 +38,7 @@ public class PersonHistoryController {
            return R.error().message("添加失败");
        }
     }
-    @RequestMapping(value = "/test/updatePersonHistory",method = RequestMethod.POST)
+    @RequestMapping(value = "/updatePersonHistory",method = RequestMethod.POST)
     @ApiOperation(value = "修改个人简历资料接口",notes = "",httpMethod = "POST", response = String.class)
     public R updatePersonHistory(PersonHistory personHistory){
         boolean b=personHistoryService.updateMany(personHistory);
@@ -48,7 +48,7 @@ public class PersonHistoryController {
             return R.error().message("修改失败");
         }
     }
-//    @RequestMapping(value = "/test/selectPersonHistory",method = RequestMethod.POST)
+//    @RequestMapping(value = "/selectPersonHistory",method = RequestMethod.POST)
 //    @ApiOperation(value = "查看个人简历资料接口",notes = "员工编号person_no",httpMethod = "POST", response = String.class)
 //    public R selectPersonHistory(String personNo){
 //        PersonHistory personHistory=personHistoryService.select(personNo);
@@ -58,7 +58,7 @@ public class PersonHistoryController {
 //            return R.error().message("查询失败");
 //        }
 //    }
-//    @RequestMapping(value = "/test/deletePersonHistory",method = RequestMethod.POST)
+//    @RequestMapping(value = "/deletePersonHistory",method = RequestMethod.POST)
 //    @ApiOperation(value = "删除个人简历资料接口",notes = "员工编号person_no",httpMethod = "POST", response = String.class)
 //    public R deletePersonHistory(String personNo){
 //        return this.personHistoryService.removeById(personNo)?R.ok().message("删除成功"):R.ok().message("删除失败");

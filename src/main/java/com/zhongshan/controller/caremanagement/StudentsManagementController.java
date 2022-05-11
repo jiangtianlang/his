@@ -16,34 +16,34 @@ import javax.annotation.Resource;
 public class StudentsManagementController {
     @Resource
     private Uh05StudentService uh05StudentService;
-    @RequestMapping(value = "/test/insertStudent",method = RequestMethod.GET)
+    @RequestMapping(value = "/insertStudent",method = RequestMethod.GET)
     @ApiOperation(value = "学生基本信息录入",notes = "",httpMethod = "GET", response = String.class)
     public R insertStudent(Uh05Student uh05Student){
         return uh05StudentService.insertStudent(uh05Student);
     }
-    @RequestMapping(value = "/test/updateStudent",method = RequestMethod.GET)
+    @RequestMapping(value = "/updateStudent",method = RequestMethod.GET)
     @ApiOperation(value = "学生基本信息修改",notes = "",httpMethod = "GET", response = String.class)
     public R updateStudent(Uh05Student uh05Student){
         return uh05StudentService.updateStudent(uh05Student);
     }
-    @RequestMapping(value = "/test/deleteStudent",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteStudent",method = RequestMethod.GET)
     @ApiOperation(value = "学生基本信息删除",notes = "",httpMethod = "GET", response = String.class)
     public R deleteStudent(Uh05Student uh05Student){
         return uh05StudentService.deleteStudent(uh05Student);
     }
-    @RequestMapping(value = "/test/queryStudent",method = RequestMethod.GET)
+    @RequestMapping(value = "/queryStudent",method = RequestMethod.GET)
     @ApiOperation(value = "学生基本信息查询",notes = "",httpMethod = "GET", response = String.class)
     public R queryStudent(Uh05Student uh05Student){
         System.out.println(uh05Student.getStudentNo());
         return uh05StudentService.queryStudent(uh05Student);
 
     }
-    @RequestMapping(value = "/test/bulkInsertStudent",method = RequestMethod.POST)
+    @RequestMapping(value = "/bulkInsertStudent",method = RequestMethod.POST)
     @ApiOperation(value = "学生基本信息批量录入",notes = "",httpMethod = "POST", response = String.class)
     public R bulkInsertStudent(Uh05Student uh05Student){
         return R.ok();
     }
-    @RequestMapping(value = "/test/printStudent",method = RequestMethod.POST)
+    @RequestMapping(value = "/printStudent",method = RequestMethod.POST)
     @ApiOperation(value = "学生基本信息打印",notes = "",httpMethod = "POST", response = String.class)
     public R printStudent(Uh05Student uh05Student){
         return R.ok();

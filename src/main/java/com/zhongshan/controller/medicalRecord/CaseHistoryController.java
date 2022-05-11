@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "病历test", tags = "(病案管理子系统)病历接口API")
-@RequestMapping(value = "test/CsaeHistory")
+@RequestMapping(value = "CsaeHistory")
 public class CaseHistoryController {
         @Resource
         private CaseHistoryService caseHistoryService;

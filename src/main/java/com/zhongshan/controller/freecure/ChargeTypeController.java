@@ -25,7 +25,7 @@ import java.util.List;
  * @since 2022-05-09 11:12:57
  */
 @RestController
-@RequestMapping("test/chargeType")
+@RequestMapping("chargeType")
 @Api(tags = "(公费医疗)收费类型接口")
 public class ChargeTypeController{
     /**

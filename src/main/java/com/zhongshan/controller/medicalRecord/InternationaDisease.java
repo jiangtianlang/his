@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "疾病test",tags = "(病案管理子系统)疾病接口API")
-@RequestMapping(value = "test/Disease")
+@RequestMapping(value = "Disease")
 public class InternationaDisease {
     @Resource
     private DiagnoseService diagnoseService;

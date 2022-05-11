@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "部门test",tags = "(药房管理系统)部门接口API")
-@RequestMapping(value = "test/role")
+@RequestMapping(value = "role")
 public class RoleContrller {
     @Resource
     DepartmentService departmentService;

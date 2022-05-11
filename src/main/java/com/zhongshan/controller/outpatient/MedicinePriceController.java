@@ -17,7 +17,7 @@ import java.util.List;
 public class MedicinePriceController {
     @Resource
     Uh03PriceCDbfService uh03PriceCDbfService;
-    @RequestMapping(value = "/test/selectAllMedicine",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectAllMedicine",method = RequestMethod.GET)
     @ApiOperation(value = "查询所有药品接口",notes = "",httpMethod = "GET", response = String.class)
     public  R selectAllMedicine(){
         List<Uh03PriceCDbf> list=uh03PriceCDbfService.selectAllMedicine();

@@ -26,7 +26,7 @@ public class Putcontroller {
 @Resource
 private Uh03StoreInCService uh03StoreInCService;
 
-@RequestMapping(value = "test/pharmacyPut/add" ,method = RequestMethod.POST)
+@RequestMapping(value = "pharmacyPut/add" ,method = RequestMethod.POST)
 @ApiOperation(value = "药品入库接口",notes = "添加药品")
 //@ApiImplicitParams({
 //        @ApiImplicitParam(name = "mediNo",value = "药品代码",paramType = "insert",dataType = "String",required = true),
@@ -55,7 +55,7 @@ public R add(@RequestBody List<Uh03StoreInC>  uh03StoreInCS){
 
 }
 
-@RequestMapping(value = "test/pharmacyPut/selectAll",method = RequestMethod.GET)
+@RequestMapping(value = "pharmacyPut/selectAll",method = RequestMethod.GET)
 @ApiOperation(value = "药品入库订单查询接口",notes = "根据查询所有药品入库订单",httpMethod = "GET")
 public R findAll(){
       List list=  uh03StoreInCService.findAll();
@@ -66,7 +66,7 @@ public R findAll(){
         }
 }
 
-@RequestMapping(value = "test/pharmacyPut/select",method = RequestMethod.GET)
+@RequestMapping(value = "pharmacyPut/select",method = RequestMethod.GET)
 @ApiOperation(value = "药品入库查询接口",notes = "根据多条件查询药品入库订单",httpMethod = "GET")
 public R findById(@RequestBody Uh03StoreInCVo uh03StoreInCVo){
     List list=uh03StoreInCService.findById(uh03StoreInCVo);
@@ -76,7 +76,7 @@ public R findById(@RequestBody Uh03StoreInCVo uh03StoreInCVo){
         return R.ok().message("没有符合的数据");
     }
 }
-    @RequestMapping(value = "test/pharmacyPut/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "pharmacyPut/delete",method = RequestMethod.POST)
     @ApiOperation(value = "入库单删除接口",notes = "条件删除入库单",httpMethod = "POST")
 public R delete(Integer inId){
       return   this.uh03StoreInCService.removeById(inId)?R.ok().message("删除成功"):R.ok().message("删除失败");

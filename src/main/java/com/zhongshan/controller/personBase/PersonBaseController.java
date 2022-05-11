@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 public class PersonBaseController {
     @Resource
     private PersonBaseService personBaseService;
-    @RequestMapping(value = "/test/findByIdOrName",method = RequestMethod.GET)
+    @RequestMapping(value = "/findByIdOrName",method = RequestMethod.GET)
     @ApiOperation(value = "单项查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findByIdOrName(String IdOrNmae){
         System.out.println(IdOrNmae);
@@ -47,7 +47,7 @@ public class PersonBaseController {
             return R.ok().data("data",list).message("查询成功");
         }
     }
-    @RequestMapping(value = "/test/findByManyCondition",method = RequestMethod.GET)
+    @RequestMapping(value = "/findByManyCondition",method = RequestMethod.GET)
     @ApiOperation(value = "组合查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findByManyCondition(PersonBase personBase){
         System.out.println(personBase.getInWorkDate());
@@ -82,7 +82,7 @@ public class PersonBaseController {
             }
         }
     }
-    @RequestMapping(value = "/test/findComprehensiveQuery",method = RequestMethod.GET)
+    @RequestMapping(value = "/findComprehensiveQuery",method = RequestMethod.GET)
     @ApiOperation(value = "综合查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     public R findComprehensiveQuery(String schoolName){
         if(schoolName==null){
@@ -93,24 +93,24 @@ public class PersonBaseController {
         return R.ok().data("data",list).message("查询成功");
         }
     }
-    @RequestMapping(value = "/test/findPersonBase",method = RequestMethod.GET)
+    @RequestMapping(value = "/findPersonBase",method = RequestMethod.GET)
     @ApiOperation(value = "查询个人详细信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R findPersonBase(String personNo){
         List<PersonBase> list=personBaseService.findById(personNo);
         return  R.ok().data("data",list).message("查询成功");
     }
 
-    @RequestMapping(value = "/test/CountPeopleByMany",method = RequestMethod.GET)
+    @RequestMapping(value = "/CountPeopleByMany",method = RequestMethod.GET)
     @ApiOperation(value = "统计各种级别各种层次人数接口",notes = "",httpMethod = "GET", response = String.class)
     public R CountPeopleByMany(CountPeople countPeople){
         return R.ok();
     }
-    @RequestMapping(value = "/test/CountPeopleByAge",method = RequestMethod.GET)
+    @RequestMapping(value = "/CountPeopleByAge",method = RequestMethod.GET)
     @ApiOperation(value = "统计各年龄段人数接口",notes = "",httpMethod = "GET", response = String.class)
     public R CountPeopleByAge(CountPeople countPeople){
         return R.ok();
     }
-    @RequestMapping(value = "/test/addPersonBase",method = RequestMethod.GET)
+    @RequestMapping(value = "/addPersonBase",method = RequestMethod.GET)
     @ApiOperation(value = "添加人事资料接口",notes = "",httpMethod = "GET", response = String.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "sectionNo",value = "科室编号",paramType = "query",dataType = "String",required = true),
@@ -138,7 +138,7 @@ public class PersonBaseController {
             return R.error();
         }
     }
-         @RequestMapping(value = "/test/findById",method = RequestMethod.GET)
+         @RequestMapping(value = "/findById",method = RequestMethod.GET)
          @ApiOperation(value = "根据Id查询人事资料接口",notes = "人事Id(personNo)",httpMethod = "GET", response = String.class)
         public R findById(String personNo){
             if(personNo==null){
@@ -152,7 +152,7 @@ public class PersonBaseController {
                  return R.ok().data("data",list).message("查询成功");
              }
         }
-        @RequestMapping(value = "/test/findByIdName",method = RequestMethod.GET)
+        @RequestMapping(value = "/findByIdName",method = RequestMethod.GET)
         @ApiOperation(value = "根据编号查询人事资料接口",notes = "人事Id(personNo)",httpMethod = "GET", response = String.class)
         public  R findByIdName(String personNo){
             List<PersonBase> list=personBaseService.findByIdName(personNo);
@@ -162,7 +162,7 @@ public class PersonBaseController {
                 return R.ok().message("没有数据");
             }
         }
-        @RequestMapping(value = "/test/updateById",method = RequestMethod.GET)
+        @RequestMapping(value = "/updateById",method = RequestMethod.GET)
         @ApiOperation(value = "修改人事资料接口",notes = "",httpMethod = "GET", response = String.class)
         public R updateById(PersonBase personBase){
             boolean b = personBaseService.updateById(personBase);
@@ -173,24 +173,24 @@ public class PersonBaseController {
             }
         }
 
-//            @RequestMapping(value = "/test/findByManyPage",method = RequestMethod.GET)
+//            @RequestMapping(value = "/findByManyPage",method = RequestMethod.GET)
 //        @ApiOperation(value = "多条件分页查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
 //        public R findByManyPage(PersonBaseVo personBaseVo, Integer page, Integer limit){
 //                Page page1=personBaseService.findByManyPage(personBaseVo,page,limit);
 //            return   R.ok().data("data",page1).message("查询成功");
 //        }
-            //        @RequestMapping(value = "/test/select",method = RequestMethod.GET)
+            //        @RequestMapping(value = "/select",method = RequestMethod.GET)
 //      @ApiOperation(value = "多条件查询人事资料接口",notes = "",httpMethod = "GET", response = String.class)
 //      public List<PersonBase> selectByMany(PersonBaseVo personBaseVo){
 //               return personBaseService.selectByMany(personBaseVo);
 //       }
 //        }
-//        @RequestMapping(value = "/test/GroupByMany",method = RequestMethod.GET)
+//        @RequestMapping(value = "/GroupByMany",method = RequestMethod.GET)
 //        @ApiOperation(value = "统计各种级别各种层次人数资料接口",notes = "",httpMethod = "GET", response = String.class)
 //        public R GroupByMany(PersonBase personBase){
 //            return R.ok().message("成功");
 //        }
-//        @RequestMapping(value = "/test/GroupByAge",method = RequestMethod.GET)
+//        @RequestMapping(value = "/GroupByAge",method = RequestMethod.GET)
 //        @ApiOperation(value = "统计各年龄段人数接口",notes = "",httpMethod = "GET", response = String.class)
 //        public R GroupByAge(){
 //            return R.ok().message("成功");

@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Api(tags = "(住院管理)出院管理接口")
 @RestController
-@RequestMapping("test/outHospital")
+@RequestMapping("outHospital")
 public class OutHospitalController {
 
     @Resource

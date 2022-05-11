@@ -23,7 +23,7 @@ import java.util.List;
  * @since 2022-05-09 11:14:33
  */
 @RestController
-@RequestMapping("test/persons")
+@RequestMapping("persons")
 @Api(tags = "(公费医疗)人员基本资料接口")
 public class PersonsController  {
     /**

@@ -23,7 +23,7 @@ import java.util.List;
  * @since 2022-04-29 21:28:16
  */
 @RestController
-@RequestMapping("test/uh04TemporaryRecipe")
+@RequestMapping("uh04TemporaryRecipe")
 @Api(tags = "(住院管理)临时医嘱管理接口")
 public class Uh04TemporaryRecipeController  {
     /**

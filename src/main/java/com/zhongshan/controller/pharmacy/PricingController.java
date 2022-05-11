@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "调价test",tags = "(药房管理系统)药品调价接口API")
-@RequestMapping(value = "test/pricing")
+@RequestMapping(value = "pricing")
 public class PricingController {
     @Resource
     Uh03PriceCDbfService uh03PriceCDbfService;

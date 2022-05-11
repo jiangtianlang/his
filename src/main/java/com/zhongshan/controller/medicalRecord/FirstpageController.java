@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "病案首页管理",tags = "(病案管理子系统)病案首页接口API")
-@RequestMapping(value = "test/firstPage")
+@RequestMapping(value = "firstPage")
 public class FirstpageController {
     @Resource
     private FirstpageService firstpageService;

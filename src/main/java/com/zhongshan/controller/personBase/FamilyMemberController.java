@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class FamilyMemberController {
     @Resource
     private FamilyMemberService familyMemberService;
-    @RequestMapping(value = "/test/findFamilyMember",method = RequestMethod.GET)
+    @RequestMapping(value = "/findFamilyMember",method = RequestMethod.GET)
     @ApiOperation(value = "根据Id查询家庭主要成员及主要社会关系信息接口",notes = "personNo",httpMethod = "GET", response = String.class)
     public R findFamilyMember(String personNo){
         FamilyMember familyMember=familyMemberService.findFamilyMember(personNo);
@@ -27,7 +27,7 @@ public class FamilyMemberController {
         }
 
     }
-    @RequestMapping(value = "/test/addFamilyMember",method = RequestMethod.GET)
+    @RequestMapping(value = "/addFamilyMember",method = RequestMethod.GET)
     @ApiOperation(value = "新增家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R addFamilyMember(FamilyMember familyMember){
         boolean b=familyMemberService.addFamilyMember(familyMember);
@@ -37,7 +37,7 @@ public class FamilyMemberController {
             return R.error().message("新增失败");
         }
     }
-    @RequestMapping(value = "/test/updataFamilyMember",method = RequestMethod.GET)
+    @RequestMapping(value = "/updataFamilyMember",method = RequestMethod.GET)
     @ApiOperation(value = "修改家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R updataFamilyMember(FamilyMember familyMember){
         boolean b=familyMemberService.updataFamilyMember(familyMember);
@@ -47,7 +47,7 @@ public class FamilyMemberController {
             return R.error().message("修改失败");
         }
     }
-    @RequestMapping(value = "/test/deleteFamilyMember",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteFamilyMember",method = RequestMethod.GET)
     @ApiOperation(value = "删除家庭主要成员及主要社会关系信息接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteFamilyMember(String personNo){
        return this.familyMemberService.removeById(personNo)?R.ok().message("删除成功"):R.ok().message("删除失败");

@@ -19,14 +19,14 @@ import javax.annotation.Resource;
 public class SpecialManagementController {
     @Resource
     private DeathService deathService;
-    @RequestMapping(value = "/test/registrationOfDeath",method = RequestMethod.POST)
+    @RequestMapping(value = "/registrationOfDeath",method = RequestMethod.POST)
     @ApiOperation(value = "死亡登记",notes = "",httpMethod = "POST", response = String.class)
     public R registrationOfDeath(Death death){
         return deathService.registrationOfDeath(death);
     }
     @Resource
     private ContagionService contagionService;
-    @RequestMapping(value = "/test/registrationOfContagion",method = RequestMethod.POST)
+    @RequestMapping(value = "/registrationOfContagion",method = RequestMethod.POST)
     @ApiOperation(value = "传染病登记",notes = "",httpMethod = "POST", response = String.class)
     public R registrationOfContagion(@RequestBody Contagion contagion){
         return contagionService.registrationOfContagion(contagion);

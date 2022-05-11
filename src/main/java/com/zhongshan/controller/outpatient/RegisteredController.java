@@ -21,7 +21,7 @@ public class RegisteredController {
     private RegisteredService registeredService;
     @Resource
     private MedicalCardService medicalCardService;
-    @RequestMapping(value = "/test/addOutSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/addOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R addOutSchoolPatient(Registered registered){
         boolean b=registeredService.addOutSchoolPatient(registered);
@@ -38,7 +38,7 @@ public class RegisteredController {
         return R.error().message("挂号失败");
         }
     }
-    @RequestMapping(value = "/test/selectOutSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "姓名查询校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectOutSchoolPatient(String name){
         if(name==null){
@@ -49,7 +49,7 @@ public class RegisteredController {
             return R.ok().data("data",list).message("查询成功");
         }
     }
-    @RequestMapping(value = "/test/updataOutSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/updataOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "修改校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public  R updataOutSchoolPatient(Registered registered){
         boolean b=registeredService.updataOutSchoolPatient(registered);
@@ -58,12 +58,12 @@ public class RegisteredController {
         }
         return R.ok().message("修改失败");
     }
-    @RequestMapping(value = "/test/deleteOutSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteOutSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "删除校外人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteOutSchoolPatient(String personsNo){
         return   this.registeredService.removeById(personsNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
-    @RequestMapping(value = "/test/addInSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/addInSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R addInSchoolPatient(Registered registered){
         boolean b=registeredService.addInSchoolPatient(registered);
@@ -73,7 +73,7 @@ public class RegisteredController {
             return R.error().message("挂号失败");
         }
     }
-    @RequestMapping(value = "/test/selectInSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectInSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "卡号查询校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectInSchoolPatientById(String personsNo){
 //        if(personsNo==null){
@@ -85,7 +85,7 @@ public class RegisteredController {
 
 
     }
-    @RequestMapping(value = "/test/selectInSchoolPatientByName",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectInSchoolPatientByName",method = RequestMethod.GET)
     @ApiOperation(value = "姓名查询校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R selectInSchoolPatientByName(String name){
         if(name==null){
@@ -96,13 +96,13 @@ public class RegisteredController {
                 return R.ok().data("data",list).message("查询成功");
         }
     }
-    @RequestMapping(value = "/test/deleteInSchoolPatient",method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteInSchoolPatient",method = RequestMethod.GET)
     @ApiOperation(value = "删除校内人员挂号接口",notes = "",httpMethod = "GET", response = String.class)
     public R deleteInSchoolPatient(String personsNo){
 
         return this.registeredService.removeById(personsNo)?R.ok().message("删除成功"):R.ok().message("删除失败");
     }
-    @RequestMapping(value = "/test/selectByName",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectByName",method = RequestMethod.GET)
     @ApiOperation(value = "查询所有挂号人员接口",notes = "",httpMethod = "GET", response = String.class)
     public  R selectByName(String name){
         if(name==null){
@@ -123,7 +123,7 @@ public class RegisteredController {
 
 
 
-//    @RequestMapping(value = "/test/selectPatient",method = RequestMethod.GET)
+//    @RequestMapping(value = "/selectPatient",method = RequestMethod.GET)
 //    @ApiOperation(value = "查询病人接口",notes = "医疗卡号personsNo",httpMethod = "GET", response = String.class)
 //    public R selectPatient(String personsNo){
 //        if(personsNo==null){
@@ -135,13 +135,13 @@ public class RegisteredController {
 //        }
 //
 //    }
-//    @RequestMapping(value = "/test/updatePatient",method = RequestMethod.GET)
+//    @RequestMapping(value = "/updatePatient",method = RequestMethod.GET)
 //    @ApiOperation(value = "修改病人接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R updatePatient(Registered registered){
 //        boolean b=registeredService.updateById(registered);
 //        return R.ok().message("修改成功");
 //    }
-//    @RequestMapping(value = "/test/dalatePatient",method = RequestMethod.GET)
+//    @RequestMapping(value = "/dalatePatient",method = RequestMethod.GET)
 //    @ApiOperation(value = "删除病人接口",notes = "门诊号careId",httpMethod = "GET", response = String.class)
 //    public R dalatePatient(Integer careId){
 //        boolean b=registeredService.dalatePatient(careId);
@@ -150,52 +150,52 @@ public class RegisteredController {
 //        }
 //        return R.error().message("删除失败");
 //    }
-//    @RequestMapping(value = "/test/coutPeople",method = RequestMethod.GET)
+//    @RequestMapping(value = "/coutPeople",method = RequestMethod.GET)
 //    @ApiOperation(value = "查询已挂号人数接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R coutPeople(){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/getHasPrice",method = RequestMethod.GET)
+//    @RequestMapping(value = "/getHasPrice",method = RequestMethod.GET)
 //    @ApiOperation(value = "已计价人次接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R getHasPrice(){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/getNoPrice",method = RequestMethod.GET)
+//    @RequestMapping(value = "/getNoPrice",method = RequestMethod.GET)
 //    @ApiOperation(value = "未计价人次接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R getNoPrice(){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/hasNumberNoPrice",method = RequestMethod.GET)
+//    @RequestMapping(value = "/hasNumberNoPrice",method = RequestMethod.GET)
 //    @ApiOperation(value = "查询已挂号但未计价人员费用接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R hasNumberNoPrice(){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/getPersonsNo",method = RequestMethod.GET)
+//    @RequestMapping(value = "/getPersonsNo",method = RequestMethod.GET)
 //    @ApiOperation(value = "制作医疗卡接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R getPersonsNo(){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/updateSate",method = RequestMethod.GET)
+//    @RequestMapping(value = "/updateSate",method = RequestMethod.GET)
 //    @ApiOperation(value = "挂失医疗卡接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R updateSate(String personsNo){
 //        return R.ok();
 //    }
-////    @RequestMapping(value = "/test/oneGetPriceInfo",method = RequestMethod.GET)
+////    @RequestMapping(value = "/oneGetPriceInfo",method = RequestMethod.GET)
 ////    @ApiOperation(value = "个人代扣计价收费明细接口",notes = "",httpMethod = "GET", response = String.class)
 ////    public R oneGetPriceInfo(PersonVo personVo){
 ////        return R.ok();
 ////    }
-//    @RequestMapping(value = "/test/allNoPrice",method = RequestMethod.GET)
+//    @RequestMapping(value = "/allNoPrice",method = RequestMethod.GET)
 //    @ApiOperation(value = "查询所有欠款人员名单接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R allNoPrice(){
 //        return R.ok();
 //    }
-//    @RequestMapping(value = "/test/balance",method = RequestMethod.GET)
+//    @RequestMapping(value = "/balance",method = RequestMethod.GET)
 //    @ApiOperation(value = "查询余额接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R balance(Registered registered){
 //        return  R.ok();
 //    }
-//    @RequestMapping(value = "/test/selectPersonPriceInfo",method = RequestMethod.GET)
+//    @RequestMapping(value = "/selectPersonPriceInfo",method = RequestMethod.GET)
 //    @ApiOperation(value = "以医疗卡号打印个人代扣计价收费明细接口",notes = "",httpMethod = "GET", response = String.class)
 //    public R selectPersonPriceInfo(String personsNo,String name){
 //        return R.ok();

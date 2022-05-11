@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class DayMoneyController {
     @Resource
     private DayMoneyService dayMoneyService;
-    @RequestMapping(value = "/test/addMoney",method = RequestMethod.GET)
+    @RequestMapping(value = "/addMoney",method = RequestMethod.GET)
     @ApiOperation(value = "追加金额接口",notes = "",httpMethod = "GET", response = String.class)
     public R addMoney(Double dayMoney){
         return R.ok();
