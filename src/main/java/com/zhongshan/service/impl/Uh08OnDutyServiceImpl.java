@@ -55,16 +55,20 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
     }
     @Resource
     private Uh05StaffMapper uh05StaffMapper;
+    @Resource
+    private PersonBaseMapper personBaseMapper;
     @Override
     public R queryWorkload(String name) {
         QueryWrapper<Uh08OnDuty> queryWrapper=new QueryWrapper<>();
         if(StringUtils.isNotBlank(name)){
-            QueryWrapper<Uh05Staff> queryWrapper1=new QueryWrapper<>();
+            QueryWrapper<PersonBase> queryWrapper1=new QueryWrapper<>();
             queryWrapper1.like("name",name);
-            List<Uh05Staff> list=uh05StaffMapper.selectList(queryWrapper1);
-            queryWrapper.like("staff_no",list.get(0).getName());
+            List<PersonBase> list=personBaseMapper.selectList(queryWrapper1);
+            queryWrapper.like("staff_no",list.get(0).getPersonNo());
             queryWrapper.like("department",name);
         }
+        queryWrapper.eq("work_date",DateFormat.getDateInstance().format(new Date()));
+        queryWrapper.orderByDesc(DateFormat.getDateInstance().format(new Date()));
         List<Uh08OnDuty> list=uh08OnDutyMapper.selectList(queryWrapper);
 
         List<Uho8OnDutyVo> list1=new ArrayList<>();
@@ -76,9 +80,9 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
             uho8OnDutyVo.setAverWorkAmount(u.getAverWorkAmount());
             uho8OnDutyVo.setWorkAmount(u.getWorkAmount());
             uho8OnDutyVo.setExWorkAmount(u.getExWorkAmount());
-            QueryWrapper<Uh05Staff> queryWrapper1=new QueryWrapper<>();
-            queryWrapper1.like("staff_no",u.getStaffNo());
-            uho8OnDutyVo.setName(uh05StaffMapper.selectList(queryWrapper1).get(0).getName());
+            QueryWrapper<PersonBase> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.like("person_no",u.getStaffNo());
+            uho8OnDutyVo.setName(personBaseMapper.selectList(queryWrapper1).get(0).getPersonName());
             list1.add(uho8OnDutyVo);
         }}
         if(list.size()>0)
@@ -104,6 +108,9 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
 
     @Override
     public R workloadMonth(String date) {
+        if(!StringUtils.isNotBlank(date)){
+            date=DateFormat.getDateInstance().format(new Date());
+        }
         String year=date.substring(0,4);
         String month=date.substring(5);
         List<MonthVo> list=uh08OnDutyMapper.workloadMonth(year,month);
@@ -222,8 +229,7 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
         }
         return R.ok().message("请输入时间");
     }
-    @Resource
-    private PersonBaseMapper personBaseMapper;
+
     @Override
     public R selectDepart(String department) {
         Date date=new Date();
@@ -260,14 +266,14 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
             uh08OnDuty.setStaffNo(p.getPersonNo());
             QueryWrapper<Uh08OnDuty> queryWrapper1=new QueryWrapper<>();
             queryWrapper1.like("staff_no",p.getPersonNo());
-            queryWrapper1.like("work_date", DateUtil.yesterday());
+            queryWrapper1.eq("work_date", DateUtil.yesterday());
             List<Uh08OnDuty> list1=uh08OnDutyMapper.selectList(queryWrapper1);
+            if(list1.size()>0){
             if(list1.get(0).getBranchOfWork().equals("01")){
             uh08OnDuty.setBranchOfWork("02");
             uh08OnDuty.setExWorkAmount(8.0);
             uh08OnDuty.setWorkAmount(8.0);
-            }
-            if(list1.get(0).getBranchOfWork().equals("02")){
+            }if(list1.get(0).getBranchOfWork().equals("02")){
                 uh08OnDuty.setBranchOfWork("03");
                 uh08OnDuty.setExWorkAmount(9.0);
                 uh08OnDuty.setWorkAmount(9.0);
@@ -284,6 +290,12 @@ public class Uh08OnDutyServiceImpl extends ServiceImpl<Uh08OnDutyMapper, Uh08OnD
                 uh08OnDuty.setExWorkAmount(6.0);
                 uh08OnDuty.setWorkAmount(6.0);
             }
+            }else {
+                uh08OnDuty.setBranchOfWork("01");
+                uh08OnDuty.setExWorkAmount(6.0);
+                uh08OnDuty.setWorkAmount(6.0);
+            }
+
             uh08OnDuty.setWorkDate(new Date());
             uh08OnDutyMapper.insert(uh08OnDuty);
         }

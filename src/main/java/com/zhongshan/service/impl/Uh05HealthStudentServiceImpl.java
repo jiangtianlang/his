@@ -11,6 +11,7 @@ import com.zhongshan.service.Uh05HealthStudentService;
 import com.zhongshan.mapper.Uh05HealthStudentMapper;
 import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -25,9 +26,17 @@ public class Uh05HealthStudentServiceImpl extends ServiceImpl<Uh05HealthStudentM
     implements Uh05HealthStudentService{
     @Resource
     private Uh05HealthStudentMapper uh05HealthStudentMapper;
-
+    @Transactional(
+            rollbackFor = {Exception.class}
+    )
     @Override
     public R insertStudentsMedical(Uh05HealthStudent uh05HealthStudent) {
+        QueryWrapper<Uh05HealthStudent> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("check_no",uh05HealthStudent.getCheckNo());
+        List<Uh05HealthStudent> list=uh05HealthStudentMapper.selectList(queryWrapper);
+        if(list.size()!=0){
+            return R.ok().message("该体检单已录入");
+        }
         int row =uh05HealthStudentMapper.insert(uh05HealthStudent);
         if(row>0)
            return R.ok().message("添加成功");

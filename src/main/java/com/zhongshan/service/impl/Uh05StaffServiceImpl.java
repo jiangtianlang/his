@@ -8,6 +8,7 @@ import com.zhongshan.service.Uh05StaffService;
 import com.zhongshan.mapper.Uh05StaffMapper;
 import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,10 +23,19 @@ public class Uh05StaffServiceImpl extends ServiceImpl<Uh05StaffMapper, Uh05Staff
     implements Uh05StaffService{
     @Resource
     private Uh05StaffMapper uh05StaffMapper;
+    @Transactional(
+            rollbackFor = {Exception.class}
+    )
     @Override
     public R insertStaff(Uh05Staff uh05Staff) {
         if(uh05Staff.getStaffNo().length()!=8){
             return R.ok().message("职工号错误");}
+        QueryWrapper<Uh05Staff> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("staff_no",uh05Staff.getStaffNo());
+        List<Uh05Staff> list=uh05StaffMapper.selectList(queryWrapper);
+        if(list.size()!=0){
+            R.ok().message("员工信息已录入");
+        }
         int row=uh05StaffMapper.insert(uh05Staff);
         if(row>0)
         return R.ok().message("添加成功");

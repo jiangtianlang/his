@@ -17,7 +17,7 @@
     </sql>
     <select id="workloadMonth" resultType="com.zhongshan.entity.vo.MonthVo">
         select SUM(d.ex_work_amount) ex,SUM(d.aver_work_amount) average,SUM(d.work_amount) work,
-        d.department department,s.name from uh08_on_duty d LEFT JOIN uh05_staff s ON d.staff_no=s.staff_no
+        d.department department,s.person_name name from uh08_on_duty d LEFT JOIN person_base s ON d.staff_no=s.person_no
         <where>
             <if test="month != null">
                 month(d.work_date) = #{month}
@@ -30,7 +30,7 @@
     </select>
     <select id="workloadYear" resultType="com.zhongshan.entity.vo.MonthVo">
         select SUM(d.ex_work_amount) ex,SUM(d.aver_work_amount) average,SUM(d.work_amount) work,
-        d.department department,s.name from uh08_on_duty d LEFT JOIN uh05_staff s ON d.staff_no=s.staff_no
+        d.department department,s.person_name name from uh08_on_duty d LEFT JOIN person_base s ON d.staff_no=s.person_no
         <where>
             <if test="year != null">
                 and YEAR(d.work_date) = #{year}
@@ -40,7 +40,7 @@
     </select>
     <select id="workloadDaily" resultType="com.zhongshan.entity.vo.MonthVo">
         select SUM(d.ex_work_amount) ex,SUM(d.aver_work_amount) average,SUM(d.work_amount) work,
-        d.department department,s.name from uh08_on_duty d LEFT JOIN uh05_staff s ON d.staff_no=s.staff_no
+        d.department department,s.person_name name from uh08_on_duty d LEFT JOIN person_base s ON d.staff_no=s.person_no
         <where>
             <if test="day != null">
                 day(d.work_date) = #{day}

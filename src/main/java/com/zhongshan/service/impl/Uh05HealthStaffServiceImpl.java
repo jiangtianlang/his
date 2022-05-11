@@ -8,6 +8,7 @@ import com.zhongshan.service.Uh05HealthStaffService;
 import com.zhongshan.mapper.Uh05HealthStaffMapper;
 import com.zhongshan.utils.result.R;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -22,8 +23,17 @@ public class Uh05HealthStaffServiceImpl extends ServiceImpl<Uh05HealthStaffMappe
     implements Uh05HealthStaffService{
     @Resource
    private Uh05HealthStaffMapper uh05HealthStaffMapper;
+    @Transactional(
+            rollbackFor = {Exception.class}
+    )
     @Override
     public R insertHealthStaff(Uh05HealthStaff uh05HealthStaff) {
+        QueryWrapper<Uh05HealthStaff> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("check_no",uh05HealthStaff.getCheckNo());
+        List<Uh05HealthStaff> list=uh05HealthStaffMapper.selectList(queryWrapper);
+        if(list.size()!=0){
+            return R.ok().message("体检信息已录入");
+        }
         int row=uh05HealthStaffMapper.insert(uh05HealthStaff);
         if(row>0)
             return R.ok().message("添加成功");

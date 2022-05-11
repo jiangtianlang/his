@@ -24,6 +24,15 @@ public class Uh05StudentServiceImpl extends ServiceImpl<Uh05StudentMapper, Uh05S
     private Uh05StudentMapper uh05StudentMapper;
     @Override
     public R insertStudent(Uh05Student uh05Student) {
+        if(uh05Student.getStudentNo().length()!=8){
+            R.ok().message("学号不规范");
+        }
+        QueryWrapper<Uh05Student> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("student_no",uh05Student.getStudentNo());
+        List<Uh05Student> list=uh05StudentMapper.selectList(queryWrapper);
+        if(list.size()!=0){
+            R.ok().message("该学生信息以录入");
+        }
         int row=uh05StudentMapper.insert(uh05Student);
         if(row>0)
         return R.ok().message("添加成功");

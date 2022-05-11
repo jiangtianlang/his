@@ -37,14 +37,14 @@ public class StaffManagementController {
         return uh05StaffService.queryStaff(uh05Staff);
     }
 
-    @RequestMapping(value = "/bulkInsertStaff",method = RequestMethod.POST)
-    @ApiOperation(value = "教职工基本信息批量录入",notes = "",httpMethod = "POST", response = String.class)
-    public R bulkInsertStaff(Uh05Staff uh05Staff){
-        return R.ok();
-    }
-    @RequestMapping(value = "/printStaff",method = RequestMethod.POST)
-    @ApiOperation(value = "教职工基本信息打印",notes = "",httpMethod = "POST", response = String.class)
-    public R printStaff(Uh05Staff uh05Staff){
-        return R.ok();
-    }
+//    @RequestMapping(value = "/bulkInsertStaff",method = RequestMethod.POST)
+//    @ApiOperation(value = "教职工基本信息批量录入",notes = "",httpMethod = "POST", response = String.class)
+//    public R bulkInsertStaff(Uh05Staff uh05Staff){
+//        return R.ok();
+//    }
+//    @RequestMapping(value = "/printStaff",method = RequestMethod.POST)
+//    @ApiOperation(value = "教职工基本信息打印",notes = "",httpMethod = "POST", response = String.class)
+//    public R printStaff(Uh05Staff uh05Staff){
+//        return R.ok();
+//    }
 }

@@ -21,7 +21,7 @@ public class DictionaryController {
     @Resource
     private Sp05DiseaseCodeService sp05DiseaseCodeService;
     //疾病体症代码字典数据
-    @RequestMapping(value = "/test/test/insertDiseaseBodyCode",method = RequestMethod.GET)
+    @RequestMapping(value = "/test/insertDiseaseBodyCode",method = RequestMethod.GET)
     @ApiOperation(value = "疾病体症代码录入",notes = "",httpMethod = "GET", response = String.class)
     public R insertDiseaseBodyCode(Sp05DiseaseCode sp05DiseaseCode){
         return sp05DiseaseCodeService.insertDiseaseBodyCode(sp05DiseaseCode);
