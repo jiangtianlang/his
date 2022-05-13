@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ad680e05.css",
+    "main.js": "/static/js/main.f3e259d4.js",
+    "static/js/787.9484fce5.chunk.js": "/static/js/787.9484fce5.chunk.js",
+    "static/media/yiliao4.jpg": "/static/media/yiliao4.b315ccfd889fd0fbf2ae.jpg",
+    "index.html": "/index.html",
+    "main.ad680e05.css.map": "/static/css/main.ad680e05.css.map",
+    "main.f3e259d4.js.map": "/static/js/main.f3e259d4.js.map",
+    "787.9484fce5.chunk.js.map": "/static/js/787.9484fce5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ad680e05.css",
+    "static/js/main.f3e259d4.js"
+  ]
+}
