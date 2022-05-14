@@ -57,7 +57,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile/**").anonymous()
                 .antMatchers("/common/download**").anonymous()
                 .antMatchers("/common/download/resource**").anonymous()
-                .antMatchers("/swagger-ui.html").anonymous()
+                .antMatchers("/*.html").anonymous()
                 .antMatchers("/swagger-resources/**").anonymous()
                 .antMatchers("/webjars/**").anonymous()
                 .antMatchers("/*/api-docs").anonymous()
@@ -80,6 +80,8 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/test/**",
                 "/*.png",
                 "/*.jpg",
+                "/*.ico",
+                "/*.json",
                 "/code/img",
                 "/swagger-ui.html",
                 "/swagger-resources/**",
@@ -88,6 +90,8 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.html",
                 "/**/*.css",
                 "/**/*.js",
+                "/",
+                "/index.html",
                 "/*/api-docs");
     }
 }
